@@ -1,0 +1,12 @@
+# Distribution / packaging
+.Python
+./build/*
+dist/
+
+# Environments
+.env
+
+# mkdocs documentation
+/site
+
+.idea
