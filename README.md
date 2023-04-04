@@ -1,5 +1,5 @@
 # self-learn-python-project
 
 #### 介绍
-自学项目，分为多个模块
+python自学项目 以代码记录学到的有趣的内容
 
