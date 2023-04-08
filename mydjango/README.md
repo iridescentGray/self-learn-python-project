@@ -11,6 +11,10 @@ django相关demo
     python -m pip install --upgrade pip
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+### 启动项目
+
+    cd restapi_demo 
+    python manage.py runserver
 
 ### 卸载
 
