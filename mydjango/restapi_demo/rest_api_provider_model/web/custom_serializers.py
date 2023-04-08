@@ -31,7 +31,18 @@ class PeopleSerializer(serializers.Serializer):
     score = serializers.IntegerField()
 
     def update(self, instance, validated_data):
+        """
+        不实现
+        :param instance:
+        :param validated_data:
+        :return:
+        """
         pass
 
     def create(self, validated_data):
+        """
+        不实现
+        :param validated_data:
+        :return:
+        """
         pass

@@ -22,9 +22,9 @@ def show_teachers(request: HttpRequest) -> HttpResponse:
         sno = int(request.GET.get('sno'))
         subject = Subject.objects.only('name').get(no=sno)
         teachers = Teacher.objects.filter(subject=subject).defer('subject').order_by('no')
-        subject_seri = SubjectVoSerializer(subject)
-        teacher_seri = TeacherSerializer(teachers, many=True)
-        return Response({'subject': subject_seri.data, 'teachers': teacher_seri.data})
+        subject_serializer = SubjectVoSerializer(subject)
+        teacher_serializer = TeacherSerializer(teachers, many=True)
+        return Response({'subject': subject_serializer.data, 'teachers': teacher_serializer.data})
     except (TypeError, ValueError, Subject.DoesNotExist):
         return Response(status=404)
 

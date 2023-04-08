@@ -13,8 +13,17 @@ django相关demo
 
 ### 启动项目
 
-    cd restapi_demo 
-    python manage.py runserver
+#### restapi_demo的启动
+
+    cd restapi_demo                   //进入项目目录
+    python manage.py migrate          //初始化数据库，默认sqlite3使用
+    python manage.py createsuperuser  //初始化超级管理员
+    python manage.py runserver        //启动服务
+
+    http://127.0.0.1:8000/admin                   //管理员界面
+    http://127.0.0.1:8000/rest-api/show_people    //测试接口调用
+    
+
 
 ### 卸载
 
