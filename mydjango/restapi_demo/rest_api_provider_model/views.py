@@ -1,4 +1,6 @@
 # Create your views here.
+import logging
+
 from django.http import HttpRequest, HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -25,7 +27,8 @@ def show_teachers(request: HttpRequest) -> HttpResponse:
         subject_serializer = SubjectVoSerializer(subject)
         teacher_serializer = TeacherSerializer(teachers, many=True)
         return Response({'subject': subject_serializer.data, 'teachers': teacher_serializer.data})
-    except (TypeError, ValueError, Subject.DoesNotExist):
+    except (TypeError, ValueError, Subject.DoesNotExist) as e:
+        logging.error(e)
         return Response(status=404)
 
 

@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_api_provider_model.web.apps.RestApiProviderModelConfig',
+    'rest_api_provider_model.apps.RestApiProviderModelConfig',
 ]
 
 REST_FRAMEWORK = {
