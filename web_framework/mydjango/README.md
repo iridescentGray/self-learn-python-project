@@ -6,7 +6,7 @@ django相关demo
 
 ### 通过pyenv的virtualenv插件使用
 
-    pyenv virtualenv  3.10.9 my-django  //还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
+    pyenv virtualenv  3.10.9 my-django  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-django
     python -m pip install --upgrade pip
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
