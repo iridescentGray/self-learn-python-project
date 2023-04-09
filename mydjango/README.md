@@ -28,6 +28,7 @@ django相关demo
     http://127.0.0.1:8000/rest-api/show_people           //测试接口1调用
     http://127.0.0.1:8000/rest-api/show_teachers/?sno=1  //测试接口2调用
     http://127.0.0.1:8000/rest-api/show_subjects/        //测试接口3调用
+    http://127.0.0.1:8000/rest-api/subjects/             //测试CBV视图提供的列表接口4调用
 
 ## 卸载项目
 

@@ -41,9 +41,9 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     # 配置默认页面大小
-    # 'PAGE_SIZE': 10,
-    # 配置默认的分页类
-    # 'DEFAULT_PAGINATION_CLASS': '...',
+    'PAGE_SIZE': 10,
+    # 配置默认的分页类，添加后，list接口的响应，会自动的有分页效果
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination'
     # 配置异常处理器
     # 'EXCEPTION_HANDLER': '...',
     # 配置默认解析器
