@@ -6,14 +6,24 @@ django相关demo
 
 ### 通过pyenv的virtualenv插件使用
 
-    pyenv virtualenv  3.10.9 my-django
+    pyenv virtualenv  3.10.9 my-django  //还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-django
     python -m pip install --upgrade pip
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-## 启动项目
+## 项目
 
 ### restapi_demo
+
+#### 项目介绍
+
+restapi_demo是一个使用了django+djangorestframework+redis的简单样例项目，让django能够提供RestFul风格的API。
+
+#### 相关文档
+    django： https://docs.djangoproject.com/zh-hans/4.2/
+    djangorestframework：https://www.django-rest-framework.org/    
+    redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/ 
+    
 
 #### 启动项目
 

@@ -66,6 +66,30 @@ REST_FRAMEWORK = {
     # ),
 }
 
+# redis配置
+CACHES = {
+    'default': {
+        # 指定通过django-redis接入Redis服务
+        'BACKEND': 'django_redis.cache.RedisCache',
+        # Redis服务器的URL
+        'LOCATION': ['redis://127.0.0.1:6379', ],
+        # Redis中键的前缀（解决命名冲突）
+        'KEY_PREFIX': 'restapi',
+        # 其他的配置选项
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            # "SERIALIZER": "django_redis.serializers.json.JSONSerializer",     #不指定的话，默认使用Python pickle 序列化
+            # 连接池（预置若干备用的Redis连接）参数
+            'CONNECTION_POOL_KWARGS': {
+                # 最大连接数
+                'max_connections': 32,
+            },
+            # 连接Redis的用户口令
+            'PASSWORD': '',
+        }
+    },
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

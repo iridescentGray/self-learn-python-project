@@ -2,6 +2,8 @@
 import logging
 
 from django.http import HttpRequest, HttpResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
@@ -14,12 +16,32 @@ from .models import Subject, People, Teacher
 
 # FBV（基于函数的视图）
 @api_view(('GET',))
+# 声明式缓存
+@cache_page(timeout=86400, cache='default')
 def show_subjects(request: HttpRequest) -> HttpResponse:
     subjects = Subject.objects.all().order_by('no')
     # 创建序列化器对象并指定要序列化的模型
     serializer = SubjectAllSerializer(subjects, many=True)
     # 通过序列化器的data属性获得模型对应的字典并通过创建Response对象返回JSON格式的数据
     return Response(serializer.data)
+
+
+# 编程式缓存
+# def show_subjects(request):
+#     """获取学科数据"""
+#     redis_cli = get_redis_connection()
+#     # 先尝试从缓存中获取学科数据
+#     data = redis_cli.get('rest_api_provider_model:restapi:subjects')
+#     if data:
+#         # 如果获取到学科数据就进行反序列化操作
+#         data = json.loads(data)
+#     else:
+#         # 如果缓存中没有获取到学科数据就查询数据库
+#         queryset = Subject.objects.all()
+#         data = SubjectAllSerializer(queryset, many=True).data
+#         # 将查到的学科数据序列化后放到缓存中
+#         redis_cli.set('rest_api_provider_model:restapi:subjects', json.dumps(data), ex=86400)
+#     return Response({'code': 200, 'subjects': data})
 
 
 # FBV（基于函数的视图）
@@ -48,6 +70,8 @@ def get_people(request: HttpRequest) -> HttpResponse:
 
 
 # CBV（基于类的视图）
+# CBV，可以利用Django中名为method_decorator的装饰器将cache_page（cache_page装饰器不能直接放在类上）这个装饰到类中的方法上
+@method_decorator(decorator=cache_page(timeout=86400, cache='default'), name='get')
 class SubjectView(ListAPIView):
     """
     它封装了获取数据列表并返回JSON数据的get方法。
