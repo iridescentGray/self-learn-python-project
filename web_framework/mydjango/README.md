@@ -9,6 +9,7 @@ django相关demo
     pyenv virtualenv  3.10.9 my-django  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-django
     python -m pip install --upgrade pip
+    cd web_framework/mydjango/ 
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ## 项目

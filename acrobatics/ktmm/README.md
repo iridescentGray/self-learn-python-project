@@ -13,6 +13,7 @@ ktmm是一个通过移动鼠标防止系统休眠的脚本。
     pyenv virtualenv  3.9.16 ktmm
     pyenv activate ktmm
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    cd acrobatics/ktmm/
     python ktmm.py
 
 ### 卸载
