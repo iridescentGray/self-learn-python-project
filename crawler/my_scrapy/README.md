@@ -14,17 +14,20 @@ Scrapy相关demo
 
 ## 项目
 
-### fastapi_demo
+### hello_world_demo
 
 #### 项目介绍
 
-fastapi_demo是一个使用了fast-api的简单样例项目
+hello_world_demo是一个scrapy的简单入门项目
 
 #### 相关文档
 
     Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
 
-                    
+#### 启动
+
+    cd crawler/my_scrapy/hello_world_demo/hello_world_demo/spiders/
+    scrapy crawl douban -o result.json            #运行并保存
 
 ## 卸载项目
 
