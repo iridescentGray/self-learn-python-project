@@ -4,19 +4,19 @@ import re
 import subprocess as sp
 
 
-def initpattern():
+def init_re_pattern():
     """
     函数说明:初始化正则表达式
     Parameters:
-    	无
+
     Returns:
-    	lose_time - 匹配丢包数
-    	waste_time - 匹配平均时间
+        lose_time - 匹配丢包数
+        waste_time - 匹配平均时间
     Modify:
-    	2017-05-27
+        2017-05-27
     """
     # 匹配丢包数
-    success_received = re.compile(u"(\d+) packets received,", re.IGNORECASE)
+    success_received = re.compile(u"(\d+) packets received", re.IGNORECASE)
     # 匹配平均时间
     waste_time = re.compile(u"time=(\d+)ms", re.IGNORECASE)
     return success_received, waste_time
@@ -26,11 +26,11 @@ def get_proxy_list():
     """
     函数说明:获取IP代理
     Parameters:
-    	page - 获取第一页
+        page - 获取第一页
     Returns:
-    	proxys_list - 代理列表
+        proxys_list - 代理列表
     Modify:
-    	2017-05-27
+        2017-05-27
     """
 
     # 存储代理的列表
@@ -44,13 +44,13 @@ def check_ip(need_check_ip, success_received, waste_time):
     """
     函数说明:检查代理IP的连通性
     Parameters:
-    	ip - 代理的ip地址
-    	lose_time - 匹配丢包数
-    	waste_time - 匹配平均时间
+        ip - 代理的ip地址
+        lose_time - 匹配丢包数
+        waste_time - 匹配平均时间
     Returns:
-    	average_time - 代理ip平均耗时
+        average_time - 代理ip平均耗时
     Modify:
-    	2017-05-27
+        2017-05-27
     """
     # 命令 -c 要发送的回显请求数 -i 等待每次回复的超时时间(毫秒)
     cmd = "ping -c3 -i1 %s"
@@ -60,7 +60,6 @@ def check_ip(need_check_ip, success_received, waste_time):
     out = p.stdout.read().decode("utf-8")
     # 丢包数
     success_received = success_received.findall(out)
-    # 当匹配到丢失包信息失败,默认为三次请求全部丢包,丢包数lose赋值为3
     if len(success_received) == 3:
         return True
     else:
@@ -68,7 +67,7 @@ def check_ip(need_check_ip, success_received, waste_time):
 
 
 def get_effective_ip(ip_list: list):
-    success_received, waste_time = initpattern()
+    success_received, waste_time = init_re_pattern()
     # 如果平均时间超过200ms重新选取ip
     while ip_list:
         # 从100个IP中随机选取一个IP作为代理进行访问
@@ -84,7 +83,6 @@ def get_effective_ip(ip_list: list):
 
 
 if __name__ == '__main__':
-    # 初始化正则表达式
     # 获取IP代理
     proxy_list = get_proxy_list()
     proxy_ip = get_effective_ip(proxy_list)
