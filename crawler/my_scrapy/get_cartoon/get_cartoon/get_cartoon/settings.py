@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = "get_cartoon.spiders"
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 8
@@ -62,9 +62,9 @@ DOWNLOAD_DELAY = 0.5
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    "get_cartoon.pipelines.MhgChapterPipeline": 1,
-}
+# ITEM_PIPELINES = {
+#     "get_cartoon.pipelines.MhgChapterPipeline": 1,
+# }
 IMAGES_STORE = str(pathlib.Path.home()) + '/Downloads/get_cartoon'
 
 # Enable and configure the AutoThrottle extension (disabled by default)

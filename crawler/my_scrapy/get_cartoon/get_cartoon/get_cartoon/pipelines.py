@@ -9,7 +9,7 @@ import os
 
 import requests
 
-from crawler.my_scrapy.get_cartoon.get_cartoon.get_cartoon import settings
+from . import settings
 
 
 class MhgChapterPipeline:

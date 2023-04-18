@@ -1,7 +1,7 @@
 import scrapy
 from scrapy import Selector, Request
 
-from ..items import DoubanItem
+from hello_world_demo.items import DoubanItem
 
 
 class DoubanSpider(scrapy.Spider):

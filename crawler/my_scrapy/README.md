@@ -49,7 +49,7 @@ get_cartoon是一个scrapy的漫画爬虫
 
 #### 启动
 
-    cd crawler/my_scrapy/get_cartoon/get_cartoon/spiders/
+    cd /crawler/my_scrapy/get_cartoon/get_cartoon/spiders/
     scrapy crawl manhuagui -o result.json            #运行并保存
 
 ## 卸载项目
