@@ -18,6 +18,7 @@ Scrapy相关demo
     cd crawler/my_scrapy 
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+
 ## 项目
 
 ### hello_world_demo
@@ -28,8 +29,9 @@ hello_world_demo是一个scrapy的简单入门项目
 
 #### 相关文档
 
-    Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
+    Scrapy：    https://docs.scrapy.org/en/latest/intro/overview.html
     Scrapy中文： https://scrapy-chs.readthedocs.io/zh_CN/1.0/intro/tutorial.html
+    scrapy-playwright： https://github.com/scrapy-plugins/scrapy-playwright
 
 #### 启动
 
@@ -48,7 +50,7 @@ get_cartoon是一个scrapy的漫画爬虫
     Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
 
 #### 启动
-
+    playwright install chromium
     cd /crawler/my_scrapy/get_cartoon/get_cartoon/spiders/
     scrapy crawl manhuagui -o result.json            #运行并保存
 

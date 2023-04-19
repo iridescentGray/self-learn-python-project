@@ -9,7 +9,7 @@ import os
 
 import requests
 
-from . import settings
+import settings
 
 
 class MhgChapterPipeline:

@@ -2,8 +2,6 @@ import time
 from urllib.parse import quote
 
 import scrapy
-from scrapy import Selector
-from scrapy.cmdline import execute
 
 from get_cartoon.items import MhgChapterItem
 
@@ -24,6 +22,20 @@ domain = 'https://www.manhuagui.com'
 
 class ManhuaguiSpider(scrapy.Spider):
     name = "manhuagui"
+    custom_settings = {
+        "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
+        'CONCURRENT_REQUESTS': 1,
+        'DOWNLOAD_DELAY': 3,
+        'COOKIES_ENABLED': False,
+        'PLAYWRIGHT_BROWSER_TYPE': 'chromium',
+        "DOWNLOAD_HANDLERS": {
+            "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+        },
+        "PLAYWRIGHT_LAUNCH_OPTIONS": {
+            "headless": False,
+            "timeout": 10 * 1000,  # 10 seconds
+        }
+    }
 
     def __init__(self, **kwargs):
         self.allowed_domains = ['manhuagui.com']
@@ -71,23 +83,30 @@ class ManhuaguiSpider(scrapy.Spider):
             i = i + 1
             if i >= 5:
                 continue
-            time.sleep(1)
-            page_url = bond_path_to_url(domain, chapter_item['url']) + '#p=%s' % (str(page))
+            page_url = bond_path_to_url(domain, chapter_item['url']) + f'#p={str(page)}'
             print(page_url)
-            yield scrapy.Request(url=page_url, meta={'item': chapter_item}, callback=self.parse_image_url,
-                                 dont_filter=True)
+            yield scrapy.Request(url=page_url,
+                                 meta=dict(
+                                     item='item',
+                                     playwright=True,
+                                     playwright_include_page=True
+                                 ),
+                                 callback=self.parse_image_url,
+                                 dont_filter=True,
+                                 errback=self.errback_close_page)
 
-    def parse_image_url(self, response):
+    async def parse_image_url(self, response):
         print("parse_every_images is %s")
 
+        page = response.meta["playwright_page"]
+        await page.close()
+        image_path = response.xpath('//*[@id="mangaFile"]/@src').extract_first()
+        print(f"image_path is {image_path}")
         chapter_item = response.meta['item']
-        sel = Selector(response)
-        image_path = sel.xpath('//*[@id="mangaFile"]/@src').extract_first()
         chapter_item['image_paths'] = image_path
-        print(image_path)
-        print("image_path is %s" % image_path)
-        time.sleep(1)
+
         yield chapter_item
 
-
-execute(['scrapy', 'crawl', 'manhuagui'])
+    async def errback_close_page(self, failure):
+        page = failure.request.meta["playwright_page"]
+        await page.close()
