@@ -2,7 +2,6 @@
 
 数据分析入门demo
 
-
 ## 环境搭建
 
 ### 通过pyenv的virtualenv插件使用
@@ -22,20 +21,19 @@
 data_analysis_hello_world是一个数据分析的入门项目
 
 #### 相关文档
+
     jupyter：
         https://zhuanlan.zhihu.com/p/32320214
     numpy：
     pandas：
     matplotlib：
-   
-
 
 #### 启动
+
     启动jupyter: jupyter notebook
 
-    
-
 ## 卸载项目
+
     pyenv deactivate data_analysis_hello_world 
     pyenv virtualenv-delete data_analysis_hello_world
  
