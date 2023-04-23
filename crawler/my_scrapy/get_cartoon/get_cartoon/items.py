@@ -10,4 +10,4 @@ class MhgChapterItem(scrapy.Item):
     name = scrapy.Field()
     url = scrapy.Field()
     page_number = scrapy.Field()
-    image_paths = scrapy.Field()
+    image_paths = scrapy.Field(serializer=list)

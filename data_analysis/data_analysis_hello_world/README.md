@@ -23,8 +23,9 @@ data_analysis_hello_world是一个数据分析的入门项目
 #### 相关文档
 
     jupyter：
-        https://zhuanlan.zhihu.com/p/32320214
+        - https://zhuanlan.zhihu.com/p/32320214
     numpy：
+        - https://www.pythonprogramming.in/numpy-tutorial-with-examples-and-solutions.html
     pandas：
     matplotlib：
 

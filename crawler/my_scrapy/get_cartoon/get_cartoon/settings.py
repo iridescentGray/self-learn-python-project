@@ -62,9 +62,9 @@ DOWNLOAD_DELAY = 0.5
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#     "get_cartoon.pipelines.MhgChapterPipeline": 1,
-# }
+ITEM_PIPELINES = {
+    "get_cartoon.pipelines.MhgChapterPipeline": 1,
+}
 IMAGES_STORE = str(pathlib.Path.home()) + '/Downloads/get_cartoon'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
