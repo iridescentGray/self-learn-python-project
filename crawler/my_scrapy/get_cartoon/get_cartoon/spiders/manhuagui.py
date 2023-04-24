@@ -1,20 +1,6 @@
-from urllib.parse import quote
-
 import scrapy
 
 from get_cartoon.items import MhgChapterItem
-
-
-def bond_path_to_url(url, path) -> str:
-    """
-    拼接url与所带参数
-    :param url: {str} 链接
-    :param path: {str} 参数
-    :return: {str} 拼接后的url
-    """
-    str_encode = quote(path)
-    return url + str_encode
-
 
 domain = 'https://www.manhuagui.com'
 
@@ -31,8 +17,8 @@ class ManhuaguiSpider(scrapy.Spider):
             "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
         },
         "PLAYWRIGHT_LAUNCH_OPTIONS": {
-            "headless": False,
-            "timeout": 10 * 1000,  # 10 seconds
+            "headless": True,
+            "timeout": 15 * 1000,  # 15 seconds
         }
     }
 
@@ -59,11 +45,11 @@ class ManhuaguiSpider(scrapy.Spider):
             chapter_item['url'] = chapters_selector.xpath('a[1]/@href').extract_first()
             chapter_item['page_number'] = chapters_selector.xpath('a[1]/span/i/text()').extract_first().removesuffix(
                 'p')
-            chapter_item['image_paths'] = []
+            chapter_item['web_image_items'] = {}
             chapter_items.append(chapter_item)
 
         for chapter_item in chapter_items:
-            yield scrapy.Request(url=bond_path_to_url(domain, chapter_item['url']),
+            yield scrapy.Request(url=f'{domain}/{chapter_item["url"]}',
                                  meta={'item': chapter_item},
                                  callback=self.parse_every_chapter_pages)
 
@@ -71,10 +57,11 @@ class ManhuaguiSpider(scrapy.Spider):
         chapter_item = response.meta['item']
         pages = int(chapter_item['page_number'])
         for page in range(1, pages, 1):
-            page_url = bond_path_to_url(domain, chapter_item['url']) + f'#p={str(page)}'
+            page_url = f'{domain}/{chapter_item["url"]}#p={str(page)}'
             yield scrapy.Request(url=page_url,
                                  meta=dict(
                                      item=chapter_item,
+                                     current_page=page,
                                      playwright=True,
                                      playwright_include_page=True
                                  ),
@@ -83,12 +70,13 @@ class ManhuaguiSpider(scrapy.Spider):
                                  errback=self.errback_close_page)
 
     async def parse_image_url(self, response):
-        page = response.meta["playwright_page"]
-        await page.close()
+        web_page = response.meta["playwright_page"]
+        await web_page.close()
+        current_page_number = response.meta["current_page"]
         image_path = response.xpath('//*[@id="mangaFile"]/@src').extract_first()
         chapter_item = response.meta['item']
-
-        chapter_item['image_paths'].append(image_path)
+        # {漫画页数：漫画路径}
+        chapter_item['web_image_items'].update({current_page_number: image_path})
         yield chapter_item
 
     async def errback_close_page(self, failure):

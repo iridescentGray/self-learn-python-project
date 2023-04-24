@@ -13,33 +13,29 @@ from get_cartoon import settings
 
 
 class MhgChapterPipeline:
+
     def process_item(self, item, spider):
         # 如果获取了图片链接，进行如下操作
-        if 'image_paths' in item:
-            images = []
-            # 文件夹名字
-            dir_path = '%s/%s' % (settings.IMAGES_STORE, item['name'])
-            # 文件夹不存在则创建文件夹
-            if not os.path.exists(dir_path):
-                os.makedirs(dir_path)
+        web_image_items = item['web_image_items']
+        if web_image_items:
+            # 准备文件夹
+            local_file_path = f'{settings.IMAGES_STORE}/{item["name"]}'
+            if not os.path.exists(local_file_path):
+                os.makedirs(local_file_path)
+
             # 获取每一个图片链接
-            i = 1
-            for image_url in item['image_paths']:
-                # 解析链接，根据链接为图片命名
-                image_file_name = '第' + str(i) + '页.jpeg'
+            for key, value in web_image_items.items():
+                image_file_name = f'{str(key)}.jpeg'
                 # 图片保存路径
-                file_path = '%s/%s' % (dir_path, image_file_name)
-                i = i + 1
-                images.append(file_path)
-                if os.path.exists(file_path):
-                    continue
+                full_file_path = f'{local_file_path}/{image_file_name}'
                 # 保存图片
-                with open(file_path, 'wb') as handle:
-                    response = requests.get(url=image_url, headers={'Referer': 'https://www.manhuagui.com/'})
-                    for block in response.iter_content(1024):
-                        if not block:
-                            break
-                        handle.write(block)
-            # 返回图片保存路径
-            item['image_paths'] = images
+                self.save_to_local(full_file_path, value)
         return item
+
+    def save_to_local(self, full_file_path, web_image):
+        with open(full_file_path, 'wb') as handle:
+            response = requests.get(url=web_image, headers={'Referer': 'https://www.manhuagui.com/'})
+            for block in response.iter_content(1024):
+                if not block:
+                    break
+                handle.write(block)
