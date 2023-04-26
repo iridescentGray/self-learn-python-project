@@ -7,7 +7,6 @@ logging.basicConfig(level=logging.INFO)
 if __name__ == '__main__':
     """
     二维数组
-    更高维度的数组谁用的方法类似
     """
     # 嵌套两个array，组成一个二维数组
     two_dimensional_array1 = np.array([[1, 2, 3], [4, 5, 6]])
