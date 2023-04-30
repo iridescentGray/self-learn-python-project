@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     # 使用arange函数，指定取值范围创建数组对象
     range_array = np.arange(0, 20, 2)
-    logging.info(f" range_array: {range_array}")
+    logging.info(f" arange: {range_array}")
 
     # 用指定范围均匀间隔的数字创建数组对象
     linspace_array = np.linspace(-5, 5, 101)
