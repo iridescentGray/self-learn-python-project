@@ -43,12 +43,12 @@ if __name__ == '__main__':
         print("starting double_number_gens...")
         while double_num < 10:
             double_num = double_num + 1
-            print("one double_num" + str(double_num))
+            print(f"one double_num {double_num}")
             yield double_num
 
         while double_num > 0:
             double_num = double_num - 1
-            print("two double_num" + str(double_num))
+            print(f"two double_num {double_num}")
             yield double_num
 
 
