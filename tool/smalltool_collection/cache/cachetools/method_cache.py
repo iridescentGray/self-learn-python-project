@@ -11,7 +11,7 @@ def ttl_with_param_method(user_id, name, age):
     return f'success ,user_id:{user_id}'
 
 
-# 尝试缓存是否生效
+# 尝试缓存装饰器是否生效：理想情况下，给方法传递相同的参数，会命中缓存
 def test_ttl_method():
     print(ttl_with_param_method(2, 'zj', 13))
     print("*" * 100)
