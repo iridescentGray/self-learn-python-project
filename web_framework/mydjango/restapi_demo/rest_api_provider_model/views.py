@@ -4,15 +4,18 @@ import logging
 from django.http import HttpRequest, HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from rest_api_provider_model.custom_serializers import (
+    PeopleSerializer,
+    SubjectAllSerializer,
+    SubjectVoSerializer,
+    TeacherSerializer,
+)
+from rest_api_provider_model.models import People, Subject, Teacher
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-
-from .custom_serializers import (PeopleSerializer, SubjectAllSerializer,
-                                 SubjectVoSerializer, TeacherSerializer)
-from .models import People, Subject, Teacher
 
 
 # FBV（基于函数的视图）
