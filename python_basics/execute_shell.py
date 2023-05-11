@@ -1,6 +1,6 @@
 import subprocess as sp
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cmd = "ls"
     # 执行命令
     process = sp.Popen(cmd, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE, shell=True)

@@ -16,9 +16,9 @@ def init_re_pattern():
         2017-05-27
     """
     # 匹配丢包数
-    success_received = re.compile(u"(\d+) packets received", re.IGNORECASE)
+    success_received = re.compile("(\d+) packets received", re.IGNORECASE)
     # 匹配平均时间
-    waste_time = re.compile(u"time=(\d+)ms", re.IGNORECASE)
+    waste_time = re.compile("time=(\d+)ms", re.IGNORECASE)
     return success_received, waste_time
 
 
@@ -55,7 +55,9 @@ def check_ip(need_check_ip, success_received, waste_time):
     # 命令 -c 要发送的回显请求数 -i 等待每次回复的超时时间(毫秒)
     cmd = "ping -c3 -i1 %s"
     # 执行命令
-    p = sp.Popen(cmd % need_check_ip, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE, shell=True)
+    p = sp.Popen(
+        cmd % need_check_ip, stdin=sp.PIPE, stdout=sp.PIPE, stderr=sp.PIPE, shell=True
+    )
     # 获得返回结果并解码
     out = p.stdout.read().decode("utf-8")
     # 丢包数
@@ -82,7 +84,7 @@ def get_effective_ip(ip_list: list):
             return ip
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 获取IP代理
     proxy_list = get_proxy_list()
     proxy_ip = get_effective_ip(proxy_list)

@@ -11,4 +11,3 @@ pydantic是使用Python类型注释，进行数据验证和设置管理的工具
     python -m pip install --upgrade pip
     cd tool/mypydantic
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-

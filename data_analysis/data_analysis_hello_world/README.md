@@ -35,7 +35,5 @@ data_analysis_hello_world是一个数据分析的入门项目
 
 ## 卸载项目
 
-    pyenv deactivate data_analysis_hello_world 
+    pyenv deactivate data_analysis_hello_world
     pyenv virtualenv-delete data_analysis_hello_world
- 
-

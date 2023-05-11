@@ -22,7 +22,9 @@ def count_execute_time(text=""):
             start = datetime.now()
             res = fn(*args, **kwargs)
             end = datetime.now()
-            logging.info("%s  methods: %s ,运行共计耗时: %s s" % (text, fn.__name__, end - start))
+            logging.info(
+                "%s  methods: %s ,运行共计耗时: %s s" % (text, fn.__name__, end - start)
+            )
             return res
 
         return wrapper
@@ -32,9 +34,9 @@ def count_execute_time(text=""):
 
 def singleton(cls):
     """
-      线程安全的单例装饰器，用于装饰class
-      :param cls: 类
-      :return: 单例
+    线程安全的单例装饰器，用于装饰class
+    :param cls: 类
+    :return: 单例
     """
     instances = {}
     locker = RLock()

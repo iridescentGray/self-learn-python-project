@@ -18,23 +18,24 @@ def read_local_csv():
         nrows：需要读取的行数
         na_values：哪些值被视为空值
     """
-    dataframe_from_csv = pd.read_csv('file_for_read/points_settlement.csv', index_col='id')
-    logging.info(f'dataframe_from_csv: \n{dataframe_from_csv}')
+    dataframe_from_csv = pd.read_csv(
+        "file_for_read/points_settlement.csv", index_col="id"
+    )
+    logging.info(f"dataframe_from_csv: \n{dataframe_from_csv}")
 
 
 def read_local_excel():
     """
-        read_excel与上面的read_csv非常相近，多了一个sheet_name参数来指定数据表的名称，
-        不同于 CSV 文件，没有sep或delimiter这样的参数。
-        下面的代码中，read_excel函数的skiprows参数是一个 Lambda 函数，通过该 Lambda 函数指定只读取 Excel 文件的表头和其中10%的数据，跳过其他的数据。
+    read_excel与上面的read_csv非常相近，多了一个sheet_name参数来指定数据表的名称，
+    不同于 CSV 文件，没有sep或delimiter这样的参数。
+    下面的代码中，read_excel函数的skiprows参数是一个 Lambda 函数，通过该 Lambda 函数指定只读取 Excel 文件的表头和其中10%的数据，跳过其他的数据。
     """
     dataframe_from_excel = pd.read_excel(
-        io='file_for_read/points_settlement.xlsx',
-        index_col='id'
+        io="file_for_read/points_settlement.xlsx", index_col="id"
     )
-    logging.info(f'dataframe_from_excel: \n{dataframe_from_excel}')
+    logging.info(f"dataframe_from_excel: \n{dataframe_from_excel}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     read_local_csv()
     read_local_excel()

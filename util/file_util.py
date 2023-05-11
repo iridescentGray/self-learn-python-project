@@ -32,7 +32,7 @@ def without_hide_dir_file_generator(target_dir: str) -> Generator:
     for root, dirs, files in os.walk(target_dir):
         for file_name in files:
             file_full_url = os.path.join(root, file_name)
-            if not file_name.startswith('.'):
+            if not file_name.startswith("."):
                 yield file_full_url
 
 
@@ -49,7 +49,7 @@ def create_dir_if_not_exit(will_create_dir: str):
         os.makedirs(will_create_dir)
 
 
-def write_text_to_file(line: str, file: str, mode='w'):
+def write_text_to_file(line: str, file: str, mode="w"):
     """
         把字符串写入到文件中
     Args:
@@ -66,15 +66,15 @@ def write_text_to_file(line: str, file: str, mode='w'):
 
 def write_text_to_file_if_not_exist(line: str, file: str, block: bool = False):
     """
-           把字符串写入到文件中，如果文件不存在
-       Args:
-           line: 字符串
-           file: 将被创建的文件
-           block: 如果文件已存在，则不会覆盖旧文件，阻塞直到旧文件被删除
+        把字符串写入到文件中，如果文件不存在
+    Args:
+        line: 字符串
+        file: 将被创建的文件
+        block: 如果文件已存在，则不会覆盖旧文件，阻塞直到旧文件被删除
 
-       Returns:
-           None
-       """
+    Returns:
+        None
+    """
     while os.path.exists(file) and block:
         time.sleep(1)
     with open(file, "w") as f:

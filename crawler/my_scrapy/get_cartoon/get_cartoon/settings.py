@@ -14,7 +14,7 @@ SPIDER_MODULES = ["get_cartoon.spiders"]
 NEWSPIDER_MODULE = "get_cartoon.spiders"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -65,7 +65,7 @@ DOWNLOAD_DELAY = 0.5
 ITEM_PIPELINES = {
     "get_cartoon.pipelines.MhgChapterPipeline": 1,
 }
-IMAGES_STORE = str(pathlib.Path.home()) + '/Downloads/get_cartoon'
+IMAGES_STORE = str(pathlib.Path.home()) + "/Downloads/get_cartoon"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

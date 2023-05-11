@@ -4,7 +4,7 @@ import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 生成随机数创建数组对象,产生10个$[0, 1)$范围的随机小数
     random_rand_array = np.random.rand(10)
     logging.info(f" random_rand_array: {random_rand_array}")

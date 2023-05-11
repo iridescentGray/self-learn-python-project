@@ -1,9 +1,9 @@
 # Scrapy
 
-Scrapy相关demo 
+Scrapy相关demo
 
 ## 免责声明
-1. 若使用者滥用本项目,本人 无需承担 任何法律责任. 
+1. 若使用者滥用本项目,本人 无需承担 任何法律责任.
 2. 本程序仅供娱乐,源码全部开源,禁止滥用和二次贩卖盈利. 禁止用于商业用途.
 
 
@@ -15,7 +15,7 @@ Scrapy相关demo
     pyenv virtualenv  3.10.9 my-scrapy  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-scrapy
     python -m pip install --upgrade pip
-    cd crawler/my_scrapy 
+    cd crawler/my_scrapy
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 
@@ -46,7 +46,7 @@ hello_world_demo是一个scrapy的简单入门项目
 get_cartoon是一个scrapy的漫画爬虫
 
 #### 相关文档
-    
+
     Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
 
 #### 启动
@@ -57,5 +57,3 @@ get_cartoon是一个scrapy的漫画爬虫
 ## 卸载项目
 
     pyenv virtualenv-delete my-scrapy
- 
-

@@ -4,7 +4,7 @@ import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """
     二维数组
     """
@@ -27,8 +27,12 @@ if __name__ == '__main__':
     logging.info(f" two_dimensional_full_array: {two_dimensional_full_array}")
 
     # 将一维数组变成二维数组
-    one_dimensional_to_two_dimensional_array = np.array([1, 2, 3, 4, 5, 6]).reshape(2, 3)
-    logging.info(f" one_dimensional_to_two_dimensional_array: {one_dimensional_to_two_dimensional_array}")
+    one_dimensional_to_two_dimensional_array = np.array([1, 2, 3, 4, 5, 6]).reshape(
+        2, 3
+    )
+    logging.info(
+        f" one_dimensional_to_two_dimensional_array: {one_dimensional_to_two_dimensional_array}"
+    )
 
     # 产生$[0, 1)$范围的随机小数构成的3行4列的二维数组
     random_two_dimensional_array = np.random.rand(3, 4)
@@ -36,4 +40,6 @@ if __name__ == '__main__':
 
     # $[1, 100)$范围的随机整数构成的3行4列的二维数组
     random_int_two_dimensional_array = np.random.randint(1, 100, (3, 4))
-    logging.info(f" random_int_two_dimensional_array: {random_int_two_dimensional_array}")
+    logging.info(
+        f" random_int_two_dimensional_array: {random_int_two_dimensional_array}"
+    )

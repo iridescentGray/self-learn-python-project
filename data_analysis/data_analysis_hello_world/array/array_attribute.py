@@ -4,7 +4,7 @@ import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # 随机的的三维数组
     three_dimensional_array = np.random.randint(1, 100, (3, 4, 5))
     logging.info(f" three_dimensional_array: {three_dimensional_array}")
@@ -17,6 +17,8 @@ if __name__ == '__main__':
     # 数组维度
     logging.info(f" three_dimensional_array.ndim : {three_dimensional_array.ndim}")
     # 数组单元素占用内存空间字节
-    logging.info(f" three_dimensional_array.itemsize : {three_dimensional_array.itemsize}")
+    logging.info(
+        f" three_dimensional_array.itemsize : {three_dimensional_array.itemsize}"
+    )
     # 数组数组所有元素占用内存空间字节
     logging.info(f" three_dimensional_array.nbytes : {three_dimensional_array.nbytes}")

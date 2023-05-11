@@ -1,6 +1,6 @@
 # Playwright
 
-Playwright相关demo 
+Playwright相关demo
 
 
 ## 环境搭建
@@ -35,5 +35,3 @@ hello_world_demo是一个scrapy的简单入门项目
 ## 卸载项目
 
     pyenv virtualenv-delete my_playwright
- 
-

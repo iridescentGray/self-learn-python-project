@@ -4,7 +4,7 @@ import numpy as np
 
 logging.basicConfig(level=logging.INFO)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """
     矩阵
     官方并不推荐使用matrix类而是建议使用二维数组，而且有可能在将来的版本中会移除matrix类
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     # 创建单位矩阵
     identity_matrix = np.eye(4)
     logging.info(f" identity_matrix: {identity_matrix}")
-    matrix1 = np.matrix('1 2 3; 4 5 6')
+    matrix1 = np.matrix("1 2 3; 4 5 6")
     logging.info(f" matrix1: {matrix1}")
 
     matrix2 = np.asmatrix(np.array([[1, 1], [2, 2], [3, 3]]))

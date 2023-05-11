@@ -9,7 +9,7 @@ django相关demo
     pyenv virtualenv  3.10.9 my-django  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-django
     python -m pip install --upgrade pip
-    cd web_framework/mydjango/ 
+    cd web_framework/mydjango/
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ## 项目
@@ -22,9 +22,9 @@ restapi_demo是一个使用了django+djangorestframework+redis的简单样例项
 
 #### 相关文档
     django： https://docs.djangoproject.com/zh-hans/4.2/
-    djangorestframework：https://www.django-rest-framework.org/    
-    redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/ 
-    
+    djangorestframework：https://www.django-rest-framework.org/
+    redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/
+
 
 #### 启动项目
 
@@ -44,5 +44,3 @@ restapi_demo是一个使用了django+djangorestframework+redis的简单样例项
 ## 卸载项目
 
     pyenv virtualenv-delete my-django
- 
-
