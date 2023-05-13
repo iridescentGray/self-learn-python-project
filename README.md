@@ -1,8 +1,8 @@
 # self-learn-python-project
 
-python自学项目
+Python Self Study Project
 
-#### 介绍
+#### introduce
 
-- 记录python库的使用方法
-- 以代码记录学到的有趣的内容
+- Record the usage method of Python libraries or framework
+- Record interesting content learned in code

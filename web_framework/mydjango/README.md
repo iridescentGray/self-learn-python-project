@@ -2,9 +2,9 @@
 
 django相关demo
 
-## 环境搭建
+## Environmental construction
 
-### 通过pyenv的virtualenv插件使用
+### Used by pyenv virtualenv plugin
 
     pyenv virtualenv  3.10.9 my-django  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-django
@@ -16,17 +16,17 @@ django相关demo
 
 ### restapi_demo
 
-#### 项目介绍
+#### Project Introduction
 
 restapi_demo是一个使用了django+djangorestframework+redis的简单样例项目，让django能够提供RestFul风格的API。
 
-#### 相关文档
+#### Related documents
     django： https://docs.djangoproject.com/zh-hans/4.2/
     djangorestframework：https://www.django-rest-framework.org/
     redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/
 
 
-#### 启动项目
+#### start-up
 
     cd restapi_demo                   //进入项目目录
     python manage.py migrate          //初始化数据库，默认sqlite3使用
@@ -41,6 +41,6 @@ restapi_demo是一个使用了django+djangorestframework+redis的简单样例项
     http://127.0.0.1:8000/rest-api/show_subjects/        //测试接口3调用
     http://127.0.0.1:8000/rest-api/subjects/             //测试CBV视图提供的列表接口4调用
 
-## 卸载项目
+## uninstall
 
     pyenv virtualenv-delete my-django

@@ -1,14 +1,14 @@
 # ktmm
 
-## 介绍
+## introduce
 
-ktmm是一个通过移动鼠标防止系统休眠的脚本。
+Ktmm is a script that prevents system hibernation by moving the mouse。
 
-- 原始项目：https://github.com/ao/ktmm
+- Original project：https://github.com/ao/ktmm
 
-## 使用
+## use
 
-### 通过pyenv的virtualenv插件使用
+### Used by pyenv virtualenv plugin
 
     pyenv virtualenv  3.9.16 ktmm
     pyenv activate ktmm
@@ -16,6 +16,6 @@ ktmm是一个通过移动鼠标防止系统休眠的脚本。
     cd acrobatics/ktmm/
     python ktmm.py
 
-### 卸载
+### uninstall
 
     pyenv virtualenv-delete ktmm

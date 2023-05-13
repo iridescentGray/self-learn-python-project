@@ -8,9 +8,9 @@ Scrapy相关demo
 
 
 
-## 环境搭建
+## Environmental construction
 
-### 通过pyenv的virtualenv插件使用
+### Used by pyenv virtualenv plugin
 
     pyenv virtualenv  3.10.9 my-scrapy  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-scrapy
@@ -23,17 +23,17 @@ Scrapy相关demo
 
 ### hello_world_demo
 
-#### 项目介绍
+#### project introduce
 
 hello_world_demo是一个scrapy的简单入门项目
 
-#### 相关文档
+#### Related documents
 
     Scrapy：    https://docs.scrapy.org/en/latest/intro/overview.html
     Scrapy中文： https://scrapy-chs.readthedocs.io/zh_CN/1.0/intro/tutorial.html
     scrapy-playwright： https://github.com/scrapy-plugins/scrapy-playwright
 
-#### 启动
+#### start-up
 
     cd crawler/my_scrapy/hello_world_demo/hello_world_demo/spiders/
     scrapy crawl douban -o result.json            #运行并保存
@@ -41,19 +41,19 @@ hello_world_demo是一个scrapy的简单入门项目
 
 ### get_cartoon
 
-#### 项目介绍
+#### introduce
 
 get_cartoon是一个scrapy的漫画爬虫
 
-#### 相关文档
+#### Related documents
 
     Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
 
-#### 启动
+#### start-up
     playwright install chromium
     cd /crawler/my_scrapy/get_cartoon/get_cartoon/spiders/
     scrapy crawl manhuagui -o result.json            #运行并保存
 
-## 卸载项目
+## uninstall
 
     pyenv virtualenv-delete my-scrapy

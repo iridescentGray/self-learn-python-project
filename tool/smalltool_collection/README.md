@@ -4,7 +4,7 @@
 
 ## 使用
 
-### 通过pyenv的virtualenv插件使用
+### Used by pyenv virtualenv plugin
 
     工具
     pyenv virtualenv  3.10.9 smalltool_collection

@@ -4,7 +4,7 @@ tornado相关demo
 
 ## 使用
 
-### 通过pyenv的virtualenv插件使用
+### Used by pyenv virtualenv plugin
 
     pyenv virtualenv  3.10.9 my-tornado
     pyenv activate my-tornado
