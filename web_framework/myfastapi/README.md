@@ -13,19 +13,19 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
     cd web_framework/myfastapi/
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-## 项目
-
-### fastapi_demo
-
-#### Project Introduction
-
-fastapi_demo是一个使用了fast-api的简单样例项目
-
-#### Related documents
+### Related documents
 
     FastAPI： https://fastapi.tiangolo.com/zh/
     pydantic：https://docs.pydantic.dev/
     starlette：https://www.starlette.io/
+
+## project
+
+### fastapi_demo
+
+#### introduce
+
+fastapi_demo是一个使用了fast-api的简单样例项目
 
 #### start-up
 
@@ -34,7 +34,7 @@ fastapi_demo是一个使用了fast-api的简单样例项目
     查看项目接口文档： http://127.0.0.1:8000/docs
     另一种接口文档：http://127.0.0.1:8000/redoc
 
-#### 测试接口
+#### Test interface
 
     http://127.0.0.1:8000/
 

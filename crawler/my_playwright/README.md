@@ -13,23 +13,20 @@ Playwright相关demo
     cd crawler/my_playwright
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+### Related documents
+
+    playwright-python-doc:   https://playwright.dev/python/docs/intro
+    playwright-python-api:   https://playwright.dev/python/docs/api/class-playwright
+
 ## introduce
 
 ### hello_world_demo
 
-#### Project Introduction
+#### introduce
 
-hello_world_demo是一个scrapy的简单入门项目
-
-#### Related documents
-
-    Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
-    Scrapy中文： https://scrapy-chs.readthedocs.io/zh_CN/1.0/intro/tutorial.html
+hello_world_demo是一个playwright的简单入门项目
 
 #### start-up
-
-    cd crawler/my_scrapy/hello_world_demo/hello_world_demo/spiders/
-    scrapy crawl douban -o result.json            #运行并保存
 
 
 ## uninstall

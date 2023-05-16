@@ -12,15 +12,7 @@
     cd data_analysis/data_analysis_hello_world
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-## project
-
-### data_analysis_hello_world
-
-#### Project Introduction
-
-data_analysis_hello_world是一个数据分析的入门项目
-
-#### Related documents
+### Related documents
 
     jupyter：
         - https://zhuanlan.zhihu.com/p/32320214
@@ -28,6 +20,14 @@ data_analysis_hello_world是一个数据分析的入门项目
         - https://www.pythonprogramming.in/numpy-tutorial-with-examples-and-solutions.html
     pandas：
     matplotlib：
+
+## project
+
+### data_analysis_hello_world
+
+#### introduce
+
+data_analysis_hello_world是一个数据分析的入门项目
 
 #### start-up
 

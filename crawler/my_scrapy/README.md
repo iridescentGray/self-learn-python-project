@@ -19,19 +19,25 @@ Scrapy相关demo
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 
-## 项目
-
-### hello_world_demo
-
-#### project introduce
-
-hello_world_demo是一个scrapy的简单入门项目
-
-#### Related documents
+### Related documents
 
     Scrapy：    https://docs.scrapy.org/en/latest/intro/overview.html
     Scrapy中文： https://scrapy-chs.readthedocs.io/zh_CN/1.0/intro/tutorial.html
     scrapy-playwright： https://github.com/scrapy-plugins/scrapy-playwright
+    playwright-python-doc:   https://playwright.dev/python/docs/intro
+    playwright-python-api:   https://playwright.dev/python/docs/api/class-playwright
+
+## uninstall
+
+    pyenv virtualenv-delete my-scrapy
+
+## project
+
+### hello_world_demo
+
+#### introduce
+
+hello_world_demo是一个scrapy的简单入门项目
 
 #### start-up
 
@@ -45,15 +51,20 @@ hello_world_demo是一个scrapy的简单入门项目
 
 get_cartoon是一个scrapy的漫画爬虫
 
-#### Related documents
-
-    Scrapy： https://docs.scrapy.org/en/latest/intro/overview.html
-
 #### start-up
     playwright install chromium
     cd /crawler/my_scrapy/get_cartoon/get_cartoon/spiders/
-    scrapy crawl manhuagui -o result.json            #运行并保存
+    scrapy crawl manhuagui
 
-## uninstall
 
-    pyenv virtualenv-delete my-scrapy
+### scrapy_playwright_demo
+
+#### introduce
+
+scrapy_playwright_demo include Official document demo and own demo
+
+#### start-up
+    playwright install chromium
+    cd crawler/my_scrapy/scrapy_playwright_demo/scrapy_playwright_demo/spiders/
+    scrapy crawl scroll_and_shot_all_screen  
+

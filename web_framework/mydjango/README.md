@@ -12,19 +12,18 @@ django相关demo
     cd web_framework/mydjango/
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-## 项目
+### Related documents
 
-### restapi_demo
-
-#### Project Introduction
-
-restapi_demo是一个使用了django+djangorestframework+redis的简单样例项目，让django能够提供RestFul风格的API。
-
-#### Related documents
     django： https://docs.djangoproject.com/zh-hans/4.2/
     djangorestframework：https://www.django-rest-framework.org/
     redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/
 
+## project
+
+### restapi_demo
+#### introduce
+
+restapi_demo是一个使用了django+djangorestframework+redis的简单样例项目，让django能够提供RestFul风格的API。
 
 #### start-up
 
@@ -33,7 +32,7 @@ restapi_demo是一个使用了django+djangorestframework+redis的简单样例项
     python manage.py createsuperuser  //初始化超级管理员
     python manage.py runserver        //启动服务
 
-#### 测试接口
+#### Test interface
 
     http://127.0.0.1:8000/admin                          //打开管理员界面，密码由createsuperuser命令制定
     http://127.0.0.1:8000/rest-api/show_people           //测试接口1调用

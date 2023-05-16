@@ -3,7 +3,7 @@ from scrapy_playwright.page import PageMethod
 
 
 class ScrollSpider(scrapy.Spider):
-    name = "scroll_get"
+    name = "scroll_and_shot_all_screen"
     custom_settings = {
         "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
         "CONCURRENT_REQUESTS": 1,

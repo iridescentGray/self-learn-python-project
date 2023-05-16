@@ -12,18 +12,18 @@
     cd test/unit_testing
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+### Related documents
+
+    pytest git： https://github.com/pytest-dev/pytest
+    pytest-doc： https://docs.pytest.org/en/stable/
 
 ## project
 
 ### mypytest
 
-#### Project Introduction
+#### introduce
 
 mypytest是一个pytest项目
 pytest是一个开源的第三方单元测试框架，第一个版本发布于2009年。
 pytest功能多，设计复杂，但pytest的最大优势在于，它把Python的一些惯用写法与单元测试很好地融合了起来。
 
-#### Related documents
-
-    pytest git： https://github.com/pytest-dev/pytest
-    pytest-doc： https://docs.pytest.org/en/stable/
