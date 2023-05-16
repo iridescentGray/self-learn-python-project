@@ -14,10 +14,10 @@ NEWSPIDER_MODULE = "scrapy_playwright_demo.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = "scrapy_playwright_demo (+http://www.yourdomain.com)"
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -91,3 +91,32 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# ------------------------------!!!!!playwright Supported settings!!!!!!-------------------------------
+
+# The browser type to be launched, e.g. chromium, firefox, webkit.
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+
+#Type dict, default {} ,details: https://github.com/scrapy-plugins/scrapy-playwright#playwright_launch_options
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": False,
+    "timeout": 30 * 1000,  # 30 seconds
+}
+# Type dict[str, dict], default {},Define browser contexts variable to start when starting
+PLAYWRIGHT_CONTEXTS = {
+    "foobar": {
+        "context_arg1": "value",
+        "context_arg2": "value",
+    },
+    "default": {
+        "context_arg1": "value",
+        "context_arg2": "value",
+    },
+    "persistent": {
+        "user_data_dir": "/path/to/dir",  # will be a persistent context
+        "context_arg1": "value",
+    },
+}
+
+# Type Optional[int], default None，Maximum concurrent Playwright limit，unset or None meas no limit
+PLAYWRIGHT_MAX_CONTEXTS = 8

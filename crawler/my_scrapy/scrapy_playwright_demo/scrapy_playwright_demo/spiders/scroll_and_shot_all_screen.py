@@ -1,8 +1,11 @@
 import scrapy
 from scrapy_playwright.page import PageMethod
 
-
+# run command: scrapy crawl scroll_and_shot_all_screen
 class ScrollSpider(scrapy.Spider):
+    """
+    scroll and then shot_all_screen
+    """
     name = "scroll_and_shot_all_screen"
     custom_settings = {
         "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",
