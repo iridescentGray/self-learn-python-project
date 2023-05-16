@@ -6,9 +6,11 @@
 
 # useful for handling different item types with a single interface
 import os
+import pathlib
 
 import requests
-from get_cartoon import settings
+
+IMAGES_STORE = f"{str(pathlib.Path.home())}/Downloads/get_cartoon"
 
 
 class MhgChapterPipeline:
@@ -17,7 +19,7 @@ class MhgChapterPipeline:
         web_image_items = item["web_image_items"]
         if web_image_items:
             # 准备文件夹
-            local_file_path = f'{settings.IMAGES_STORE}/{item["name"]}'
+            local_file_path = f'{IMAGES_STORE}/{item["name"]}'
             if not os.path.exists(local_file_path):
                 os.makedirs(local_file_path)
 

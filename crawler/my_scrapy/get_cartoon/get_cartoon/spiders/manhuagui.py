@@ -19,6 +19,9 @@ class ManhuaguiSpider(scrapy.Spider):
             "headless": True,
             "timeout": 15 * 1000,  # 15 seconds
         },
+        'ITEM_PIPELINES': {
+            "get_cartoon.pipelines.MhgChapterPipeline": 1,
+        },
     }
 
     def __init__(self, **kwargs):
