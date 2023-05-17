@@ -1,4 +1,5 @@
 import scrapy
+
 from get_cartoon.items import MhgChapterItem
 
 domain = "https://www.manhuagui.com"
@@ -81,7 +82,9 @@ class ManhuaguiSpider(scrapy.Spider):
             )
 
     async def parse_image_url(self, response):
+        # if playwright_include_page=True,The following 'playwright_page' attributes can be obtain
         web_page = response.meta["playwright_page"]
+        # wait page loading complete
         await web_page.close()
         current_page_number = response.meta["current_page"]
         image_path = response.xpath('//*[@id="mangaFile"]/@src').extract_first()

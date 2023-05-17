@@ -1,8 +1,9 @@
 # pydantic
 
 pydantic是使用Python类型注释，进行数据验证和设置管理的工具
+值得一提的是，pydantic的类对json转化友好，无需定义Serializer
 
-## 使用
+## Environmental construction 
 
 ### Used by pyenv virtualenv plugin
     工具

@@ -6,12 +6,14 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import playwright
+import scrapy
 
+from playwright.async_api import Request
 BOT_NAME = "scrapy_playwright_demo"
 
 SPIDER_MODULES = ["scrapy_playwright_demo.spiders"]
 NEWSPIDER_MODULE = "scrapy_playwright_demo.spiders"
-
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
@@ -92,31 +94,68 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-# ------------------------------!!!!!playwright Supported settings!!!!!!-------------------------------
+# -------------------------------------playwright Supported settings--------------------------------------
 
 # The browser type to be launched, e.g. chromium, firefox, webkit.
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
 
-#Type dict, default {} ,details: https://github.com/scrapy-plugins/scrapy-playwright#playwright_launch_options
+# Type dict, default {} ,details: https://github.com/scrapy-plugins/scrapy-playwright#playwright_launch_options
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
     "timeout": 30 * 1000,  # 30 seconds
 }
 # Type dict[str, dict], default {},Define browser contexts variable to start when starting
-PLAYWRIGHT_CONTEXTS = {
-    "foobar": {
-        "context_arg1": "value",
-        "context_arg2": "value",
-    },
-    "default": {
-        "context_arg1": "value",
-        "context_arg2": "value",
-    },
-    "persistent": {
-        "user_data_dir": "/path/to/dir",  # will be a persistent context
-        "context_arg1": "value",
-    },
-}
-
+# PLAYWRIGHT_CONTEXTS = {
+#     "foobar": {
+#         "context_arg1": "value",
+#         "context_arg2": "value",
+#     },
+#     "default": {
+#         "context_arg1": "value",
+#         "context_arg2": "value",
+#     },
+#     "persistent": {
+#         "user_data_dir": "/path/to/dir",  # will be a persistent context
+#         "context_arg1": "value",
+#     },
+# }
 # Type Optional[int], default None，Maximum concurrent Playwright limit，unset or None meas no limit
 PLAYWRIGHT_MAX_CONTEXTS = 8
+# Type Optional[float], default None
+# Timeout for Playwright requesting pages，unset or None meas will use default value 30000
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30 * 1000  # 30 seconds
+
+
+def custom_headers(
+        browser_type: str,
+        playwright_request: playwright.async_api.Request,
+        scrapy_headers: scrapy.http.headers.Headers,
+) -> dict:
+    if browser_type == "firefox":
+        return {"User-Agent": "foo"}
+    return {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"}
+
+
+# Type Optional[Union[Callable, str]]
+# default scrapy_playwright.headers.use_scrapy_headers,if unset or None, headers from Scrapy requests will be ignored
+# A function that processes headers for every request and return a headers dictionary to be used
+# support Coroutine functions
+PLAYWRIGHT_PROCESS_REQUEST_HEADERS = custom_headers
+
+# Type int, defaults  value is Scrapy's CONCURRENT_REQUESTS setting
+# Maximum concurrent Playwright pages for each context
+PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 4
+
+
+# param is playwright.async_api.Request
+def should_abort_request(request):
+    return (
+            request.resource_type == "image" or ".file_type" in request.url
+    )
+
+
+# Type Optional[Union[Callable, str]], default None
+# A predicate function that, return True will aborted request
+# aborted requests will not appear in the DEBUG level logs
+PLAYWRIGHT_ABORT_REQUEST = should_abort_request
