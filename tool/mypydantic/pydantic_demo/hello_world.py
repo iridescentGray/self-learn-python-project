@@ -1,6 +1,9 @@
+import logging
 from datetime import datetime
 
 from pydantic import BaseModel, ValidationError
+
+logging.basicConfig(level=logging.INFO)
 
 
 class User(BaseModel):
@@ -18,12 +21,14 @@ external_data = {
 
 if __name__ == "__main__":
     user = User(**external_data)
-    print(user.id)
-    print(repr(user.signup_ts))
-    print(user.friends)
-    print(user.dict())
+    logging.info(f"user id {user.id}")
+    logging.info(f"repr {repr(user.signup_ts)}")
+    logging.info(f"friends {repr(user.friends)}")
+    logging.info(f"user.dict {repr(user.dict())}")
+    logging.info(f"user.json {user.json()}")
+
     try:
         User(signup_ts="broken", friends=[1, 2, "not number"])
     except ValidationError as e:
-        print("----------------error------------------")
-        print(e.json())
+        logging.error(f"ValidationError {repr(user.json())}")
+        logging.error(e)
