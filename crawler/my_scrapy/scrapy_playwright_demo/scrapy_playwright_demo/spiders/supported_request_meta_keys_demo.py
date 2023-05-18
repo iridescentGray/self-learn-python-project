@@ -32,8 +32,18 @@ class SupportedRequestMetaKeysDemo(Spider):
                 # if True, the Playwright page can be available in the callback at response.meta['playwright_page']
                 # this option is not necessary, this option Don't influence PageMethod to be applied and page load
                 # only if you need access to the Page object in the callback response,Examples are as follows:
+                # playwright_include_page_demo.py
                 # https://github.com/scrapy-plugins/scrapy-playwright#receiving-page-objects-in-callbacks
                 "playwright_include_page": True,
+
+                # Type Dict[Str, Callable], default {},
+                # Keys are the name of the event to be handled
+                # Values can be either actual callables or spider member method name str
+                # Examples are as follows:
+                # playwright_handling_page_events.py
+                # https://github.com/scrapy-plugins/scrapy-playwright#handling-page-events
+                "playwright_page_event_handlers": {
+                },
                 "playwright_page_methods": [
                     PageMethod(
                         # 给请求截图
