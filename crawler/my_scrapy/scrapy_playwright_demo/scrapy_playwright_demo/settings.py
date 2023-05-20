@@ -103,8 +103,34 @@ PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
     "timeout": 30 * 1000,  # 30 seconds
+    # proxy are supported at the Browser level by specifying the proxy key in the PLAYWRIGHT_LAUNCH_OPTIONS setting:
+    # "proxy": {
+    #     "server": "http://myproxy.com:3128",
+    #     "username": "user",
+    #     "password": "pass",
+    # },
 }
+
+# proxy can also be set at the context level with the PLAYWRIGHT_CONTEXTS setting:
+# PLAYWRIGHT_CONTEXTS = {
+#     "default": {
+#         "proxy": {
+#             "server": "http://default-proxy.com:3128",
+#             "username": "user1",
+#             "password": "pass1",
+#         },
+#     },
+#     "alternative": {
+#         "proxy": {
+#             "server": "http://alternative-proxy.com:3128",
+#             "username": "user2",
+#             "password": "pass2",
+#         },
+#     },
+# }
+
 # Type dict[str, dict], default {},Define browser contexts variable to start when starting
+
 # PLAYWRIGHT_CONTEXTS = {
 #     "foobar": {
 #         "context_arg1": "value",
@@ -119,6 +145,12 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 #         "context_arg1": "value",
 #     },
 # }
+# Creating a context during a crawl:
+# If the context specified in the playwright_context meta key does not exist, it will be created
+# You can specify keyword arguments to be passed to Browser.new_context in the playwright_context_kwargs meta key:
+
+
+
 # Type Optional[int], default None，Maximum concurrent Playwright limit，unset or None meas no limit
 PLAYWRIGHT_MAX_CONTEXTS = 8
 # Type Optional[float], default None
@@ -149,13 +181,13 @@ PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 4
 
 
 # param is playwright.async_api.Request
-def should_abort_request(request):
-    return (
-            request.resource_type == "image" or ".file_type" in request.url
-    )
+# def should_abort_request(request):
+#     return (
+#             request.resource_type == "image" or ".file_type" in request.url
+#     )
 
 
 # Type Optional[Union[Callable, str]], default None
 # A predicate function that, return True will aborted request
 # aborted requests will not appear in the DEBUG level logs
-PLAYWRIGHT_ABORT_REQUEST = should_abort_request
+# PLAYWRIGHT_ABORT_REQUEST = should_abort_request
