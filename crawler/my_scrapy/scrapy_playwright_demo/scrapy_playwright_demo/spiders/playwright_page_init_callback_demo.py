@@ -2,6 +2,7 @@ import scrapy
 
 
 async def init_page(page, request):
+    await page.set_extra_http_headers({"Asdf": "Qwerty"})
     print("init_page is execute")
     await page.add_init_script(path="./resource/custom_script.js")
 

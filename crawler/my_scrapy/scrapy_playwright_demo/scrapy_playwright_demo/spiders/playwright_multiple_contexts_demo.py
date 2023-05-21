@@ -15,7 +15,11 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
         "DOWNLOAD_HANDLERS": {
             "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
         },
-        "PLAYWRIGHT_MAX_CONTEXTS": 6,
+        "CONCURRENT_REQUESTS": 16,
+        "PLAYWRIGHT_MAX_CONTEXTS": 4,
+        "FEEDS": {
+            "playwright_multiple_contexts_demo.json": {"format": "json", "encoding": "utf-8", "indent": 4},
+        },
         "PLAYWRIGHT_CONTEXTS": {
             "first": {
                 "storage_state": {
@@ -47,7 +51,7 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
     }
 
     def start_requests(self):
-        # using existing contexts
+        # 1. using existing contexts (first,second)
         for ctx_name in self.custom_settings["PLAYWRIGHT_CONTEXTS"].keys():
             yield Request(
                 url="https://example.org",
@@ -58,7 +62,7 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
                 },
                 dont_filter=True,
             )
-        # create a new context
+        # 2.create a new context named 'third',it will override old value
         yield Request(
             url="https://example.org",
             meta={
@@ -79,27 +83,18 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
             },
             dont_filter=True,
         )
-        # default context
+        # 3.default context
         yield Request(
             url="https://example.org",
             meta={"playwright": True, "playwright_include_page": True},
             dont_filter=True,
         )
-        # each request on a different context
-        for i in range(20):
-            yield Request(
-                url=f"https://example.org?foo={i}",
-                meta={
-                    "playwright": True,
-                    "playwright_context": f"context-{i}",
-                    "playwright_include_page": True,
-                },
-                dont_filter=True,
-            )
 
     async def parse(self, response):
         page = response.meta["playwright_page"]
+        # get context
         context_name = response.meta["playwright_context"]
+        # get value from context
         storage_state = await page.context.storage_state()
         await page.context.close()
         return {
@@ -107,3 +102,7 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
             "context": context_name,
             "cookies": storage_state["cookies"],
         }
+
+    async def errback_close_page(self, failure):
+        page = failure.request.meta["playwright_page"]
+        await page.close()
