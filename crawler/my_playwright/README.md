@@ -12,6 +12,7 @@ Playwright相关demo
     python -m pip install --upgrade pip
     cd crawler/my_playwright
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    playwright install chromium
 
 ### Related documents
 
