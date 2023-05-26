@@ -20,13 +20,28 @@ external_data = {
 }
 
 if __name__ == "__main__":
+    logging.info(f"-----------------------------------------base operation------------------------------------------")
     user = User(**external_data)
+    logging.info(f"user id {type(user)}")
     logging.info(f"user id {user.id}")
     logging.info(f"repr {repr(user.signup_ts)}")
-    logging.info(f"friends {repr(user.friends)}")
+    logging.info(f"get friends {repr(user.friends)}")
     logging.info(f"user.dict {repr(user.dict())}")
-    logging.info(f"user.json {user.json()}")
 
+    logging.info(f"------------------------------------------deal json-----------------------------------------------")
+    user_json = user.json()
+    logging.info(f"user.json {user_json}")
+    logging.info(f"user.type {type(user_json)}")
+
+    # parse json to Object
+    user_from_json = User.parse_raw(user_json)
+    logging.info(f"User.parse_obj type  {type(user_from_json)}")
+    logging.info(f"User.parse_obj   {user_from_json}")
+    # 'is' return False, '==' return True, it means == is overrider by pydantic
+    logging.info(f"user is user_from_json  {user is user_from_json}")
+    logging.info(f"user==user_from_json  {user == user_from_json}")
+
+    logging.info(f"------------------------------------------error_test-----------------------------------------------")
     try:
         User(signup_ts="broken", friends=[1, 2, "not number"])
     except ValidationError as e:
