@@ -1,8 +1,10 @@
 import scrapy
-from hello_world_demo.items import DoubanItem
 from scrapy import Request, Selector
 
+from hello_world_demo.items import DoubanItem
 
+
+# run command: scrapy crawl douban
 class DoubanSpider(scrapy.Spider):
     name = "douban"
     allowed_domains = ["movie.douban.com"]
@@ -16,8 +18,13 @@ class DoubanSpider(scrapy.Spider):
         movie_items = sel.css("#content > div > div.article > ol > li")
 
         for movie_sel in movie_items:
-            item = DoubanItem()
-            item["title"] = movie_sel.css(".title::text").extract_first()
-            item["score"] = movie_sel.css(".rating_num::text").extract_first()
-            item["motto"] = movie_sel.css(".inq::text").extract_first()
-            yield item
+            # use scrapy.Item
+            # item["title"] = movie_sel.css(".title::text").extract_first()
+            # item["score"] = movie_sel.css(".rating_num::text").extract_first()
+            # item["motto"] = movie_sel.css(".inq::text").extract_first()
+
+            # use pydantic
+            title = movie_sel.css(".title::text").extract_first()
+            score = movie_sel.css(".rating_num::text").extract_first()
+            motto = movie_sel.css(".inq::text").extract_first()
+            yield DoubanItem(title=title, score=score, motto=motto)

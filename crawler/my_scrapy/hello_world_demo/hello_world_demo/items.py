@@ -3,16 +3,17 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from pydantic import BaseModel
 
 
-class HelloWorldDemoItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+# Have Be Verified，pydantic Can be replaced scrapy Native Item
+class DoubanItem(BaseModel):
+    title: str
+    score: str
+    motto: str | None
 
-
-class DoubanItem(scrapy.Item):
-    title = scrapy.Field()
-    score = scrapy.Field()
-    motto = scrapy.Field()
+# scrapy Native Item
+# class DoubanItem(scrapy.Item):
+#     title = scrapy.Field()
+#     score = scrapy.Field()
+#     motto = scrapy.Field()
