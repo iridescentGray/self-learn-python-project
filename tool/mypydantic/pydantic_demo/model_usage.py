@@ -95,7 +95,6 @@ company_model_from_orm = CompanyModel.from_orm(co_orm)
 logging.info(f"CompanyModel.from_orm(co_orm): {company_model_from_orm}")
 
 logging.info(f"------------------------------------- ORM-recursive_orm_models-----------------------------------")
-from pydantic import BaseModel
 
 
 class PetCls:
@@ -127,8 +126,11 @@ class Person(BaseModel):
     class Config:
         orm_mode = True
 
+
 bones = PetCls(name='Bones', species='dog')
 orion = PetCls(name='Orion', species='cat')
 anna = PersonCls(name='Anna', age=20, pets=[bones, orion])
 anna_model = Person.from_orm(anna)
 logging.info(f"anna_model.from_orm(anna): {anna_model}")
+
+logging.info(f"------------------------------------- ORM-data-binding----------------------------------")
