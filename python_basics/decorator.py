@@ -1,3 +1,4 @@
+import asyncio
 import functools
 import logging
 from datetime import datetime
@@ -50,3 +51,103 @@ def singleton(cls):
         return instances[cls]
 
     return wrapper
+
+
+def retry(times, exceptions):
+    """
+    Retry Decorator
+
+    :param times: The number of times to repeat the wrapped function/method
+    :type times: Int
+
+    :param exceptions: Lists of exceptions that trigger a retry attempt
+    :type Exceptions: Tuple of Exceptions
+    """
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            attempt = 0
+            while attempt < times:
+                try:
+                    return func(*args, **kwargs)
+                except exceptions:
+                    attempt += 1
+                    print(
+                        'Exception thrown when attempting to run %s, attempt '
+                        '%d of %d' % (func, attempt, times)
+                    )
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+def async_retry(times, exceptions):
+    """
+    Retry Decorator
+
+    :param times: The number of times to repeat the wrapped function/method
+    :type times: Int
+
+    :param exceptions: Lists of exceptions that trigger a retry attempt
+    :type Exceptions: Tuple of Exceptions
+    """
+
+    def decorator(func):
+        @functools.wraps(func)
+        async def wrapper(*args, **kwargs):
+            attempt = 0
+            while attempt < times:
+                try:
+                    return await func(*args, **kwargs)
+                except exceptions:
+                    attempt += 1
+                    print(
+                        'Exception thrown when attempting to run %s, attempt '
+                        '%d of %d' % (func, attempt, times)
+                    )
+            return await func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+@retry(times=3, exceptions=(ValueError, TypeError))
+def foo1():
+    print('Some code here ....')
+    print('Oh no, we have exception')
+    raise ValueError('Some error')
+
+
+def tries(times):
+    def func_wrapper(f):
+        async def wrapper(*args, **kwargs):
+            for time in range(times):
+                print('times:', time + 1)
+                # noinspection PyBroadException
+                try:
+                    return await f(*args, **kwargs)
+                except Exception as exc:
+                    pass
+            raise RuntimeError() from exc
+
+        return wrapper
+
+    return func_wrapper
+
+
+@async_retry(times=3, exceptions=(ValueError, TypeError))
+async def foo2():
+    print('Some code here ....')
+    print('Oh no, we have exception')
+    raise ValueError('Some error')
+
+
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    tasks = [foo2()]
+    loop.run_until_complete(asyncio.wait(tasks))
+    loop.close()
