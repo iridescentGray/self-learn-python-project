@@ -1,5 +1,6 @@
 import asyncio
 import functools
+import inspect
 import logging
 from datetime import datetime
 from multiprocessing import RLock
@@ -101,6 +102,10 @@ def async_retry(times, exceptions):
             attempt = 0
             while attempt < times:
                 try:
+                    # if you want arguments names as a list:
+                    args_name = inspect.getfullargspec(func)[0]
+                    print(args_name)
+
                     return await func(*args, **kwargs)
                 except exceptions:
                     attempt += 1
@@ -122,32 +127,15 @@ def foo1():
     raise ValueError('Some error')
 
 
-def tries(times):
-    def func_wrapper(f):
-        async def wrapper(*args, **kwargs):
-            for time in range(times):
-                print('times:', time + 1)
-                # noinspection PyBroadException
-                try:
-                    return await f(*args, **kwargs)
-                except Exception as exc:
-                    pass
-            raise RuntimeError() from exc
-
-        return wrapper
-
-    return func_wrapper
-
-
 @async_retry(times=3, exceptions=(ValueError, TypeError))
-async def foo2():
+async def foo2(parm, test=2):
     print('Some code here ....')
-    print('Oh no, we have exception')
+    print(f'Oh no, we have exception{parm} {test}')
     raise ValueError('Some error')
 
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    tasks = [foo2()]
+    tasks = [foo2(1, 5)]
     loop.run_until_complete(asyncio.wait(tasks))
     loop.close()
