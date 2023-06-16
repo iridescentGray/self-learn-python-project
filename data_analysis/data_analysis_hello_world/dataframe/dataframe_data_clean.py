@@ -1,5 +1,6 @@
 import logging
 
+import numpy as np
 import pandas as pd
 
 logging.basicConfig(level=logging.INFO)
@@ -147,11 +148,10 @@ if __name__ == "__main__":
     )
 
     logging.info(
-        f"-----------------------------预处理------------------------------------------"
+        f"-----------------------------数据预处理------------------------------------------"
     )
     sales_df = pd.read_excel(
-        "file_for_read/2020_sales_data.xlsx",
-        usecols=["销售日期", "销售区域", "销售渠道", "品牌", "销售数量"],
+        "file_for_read/2020_sales_data.xlsx"
     )
     logging.info(f"sales_data_df: \n{sales_df}")
     # 为sales_data追加列
@@ -162,3 +162,41 @@ if __name__ == "__main__":
     sales_df["季度"] = sales_df["销售日期"].dt.quarter
     sales_df["星期"] = sales_df["销售日期"].dt.weekday
     logging.info(f"sales_data_df: \n{sales_df}")
+
+    logging.info(
+        f"-----------------------------数据深度预处理------------------------------------------"
+    )
+    # 深度的分析和挖掘，字符串、日期时间这样的非数值类型都需要处理成数值，因为非数值类型没有办法计算相关性
+    # 字符串类型，通常有三类处理方法：
+    # 1.有序变量（Ordinal Variable）：若字符串数据有顺序关系，可以对字符串进行序号化处理。
+    # 2.分类变量（Categorical Variable）/ 名义变量（Nominal Variable）：字符串数据没有大小关系和等级之分，可以用独热编码的方式处理成哑变量（虚拟变量）矩阵。
+    # 3.定距变量（Scale Variable）：字符串有大小高低，且可进行加减运算，那么只需要将字符串处理成对应的数值即可。
+
+    deep_data_handle_df = pd.DataFrame(
+        data={
+            '姓名': ['关羽', '张飞', '赵云', '马超', '黄忠'],
+            '职业': ['医生', '医生', '程序员', '画家', '教师'],
+            '学历': ['研究生', '大专', '研究生', '高中', '本科']
+        }
+    )
+    logging.info(f"deep_data_preproces_df: \n{deep_data_handle_df}")
+    # 将职业处理成哑变量矩阵。 对应处理方法2.分类变量
+    logging.info(f"deep_data_preproces_df_dummies: \n{pd.get_dummies(deep_data_handle_df['职业'])}")
+
+    logging.info(
+        f"-----------------------------离散化/分箱------------------------------------------"
+    )
+    # 若变量的取值是连续值，那么它的取值有无数种可能，那对数据分组时会非常的不方便
+    # 之所以把离散化叫做分箱，是因为我们可以预先设置一些箱子，每个箱子代表了数据取值的范围，即实现离散化
+    dataframe_from_excel = pd.read_excel(
+        io="file_for_read/points_settlement.xlsx", index_col="id"
+    )
+    # 用describe的返回值作为cut的依据
+    logging.info(f"dataframe_from_excel_describe(): \n{dataframe_from_excel.describe()}")
+    # 依据describe返回，min 110.050000,max 122.590000，分4段（每3分一组的4个箱子）
+    paragraph = np.arange(110, 123, 3)
+    # right参数默认值为True，表示箱子左开右闭；False左闭右开
+    excel_data_cut_by_paragraph = pd.cut(dataframe_from_excel.score, paragraph, right=False)
+    logging.info(f"excel_data_cut_by_paragraph: \n{excel_data_cut_by_paragraph}")
+
+    # pandas还提供了一个名为qcut的函数，可以指定分位数对数据进行分箱
