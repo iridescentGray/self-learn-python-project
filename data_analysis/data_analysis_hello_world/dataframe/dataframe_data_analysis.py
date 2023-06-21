@@ -2,6 +2,7 @@ import logging
 
 import numpy as np
 import pandas as pd
+import pandas_datareader as pdr
 
 logging.basicConfig(level=logging.INFO)
 
@@ -75,11 +76,89 @@ if __name__ == "__main__":
         f"agg by diff field : \n{dataframe_from_excel.groupby('销售区域')[['销售额', '销售数量']].agg({'销售额': 'mean', '销售数量': ['max', 'min']})}")
 
     logging.info(
-        f"----------------------------透视表和交叉表------------------------------------------"
+        f"----------------------------透视表------------------------------------------"
     )
     # pivot_table函数中分别对应index和values参数，这两个参数都可以是单个列或者多个列
-    # groupby操作后，如果对单个列进行聚合，得到的结果是一个Series对象，而pivot_table结果是一个DataFrame 对象
+    # 和groupby的区别：groupby后，如果对单个列进行聚合，得到的结果是一个Series对象，而pivot_table结果是一个DataFrame 对象
+
+    # 简单透视表：
     logging.info(
-        f"pivot_table single field: \n{pd.pivot_table(dataframe_from_excel, index='销售区域', values='销售额', aggfunc='sum')}")
+        f"pivot_table simple field: \n{pd.pivot_table(dataframe_from_excel, index='销售区域', values='销售额', aggfunc='sum')}")
+
+    # 多列透视表： index中的字段会作为列
     logging.info(
-        f"pivot_table mut field : \n{pd.pivot_table(dataframe_from_excel, index='销售区域', columns=dataframe_from_excel['销售日期'].dt.month,values='销售额', aggfunc='sum', fill_value=0)}")
+        f"pivot_table mut line: \n{pd.pivot_table(dataframe_from_excel, index=['销售区域', dataframe_from_excel['销售日期'].dt.month], values='销售额', aggfunc='sum')}")
+
+    # 多行透视表：columns中的字段会作为行
+    # fill_value=0会将空值处理为0。
+    logging.info(
+        f"pivot_table mut row: \n{pd.pivot_table(dataframe_from_excel, index='销售区域', columns=dataframe_from_excel['销售日期'].dt.month, values='销售额', aggfunc='sum', fill_value=0)}")
+
+    # 多行透视表：处理数据，以添加行
+    dataframe_from_excel['月份'] = dataframe_from_excel['销售日期'].dt.month
+    # 多行透视表：添加聚合列
+    # margins：对行数据进行聚合，margins_name: 聚合结果列名
+    logging.info(
+        f"pivot_table add aggregate Column: \n{pd.pivot_table(dataframe_from_excel, index='销售区域', columns='月份', values='销售额', aggfunc='sum', fill_value=0, margins=True, margins_name='总计')}")
+
+    logging.info(
+        f"----------------------------交叉表------------------------------------------"
+    )
+    sales_area, sales_month, sales_amount = dataframe_from_excel['销售区域'], dataframe_from_excel['月份'], \
+                                            dataframe_from_excel['销售额']
+    logging.info(
+        f"cross tab: \n{pd.crosstab(index=sales_area, columns=sales_month, values=sales_amount, aggfunc='sum').fillna(0).applymap(int)}")
+
+    logging.info(
+        f"----------------------------窗口/滑动/采样------------------------------------------"
+    )
+    # rolling方法可以将数据置于窗口中，然后就可以使用函数对窗口中的数据进行运算和处理
+    # count()	统计非空数量
+    # sum()	求和
+    # mean()	求均值
+    # median()	求中位数
+    # min()	最小值
+    # max()	最大值
+    # std()	求标准差
+    # var()	有偏方差
+    # skew()	偏度
+    # kurt()	峰度
+    # quantile()	求四分位数
+    # apply()	apply函数使用
+    # cov()	无偏方差
+    # corr()	相关系数
+
+    # 获取baidu的股票数据
+    baidu_df = pdr.get_data_stooq('BIDU', start='2021-11-22', end='2021-12-7')
+    baidu_df.sort_index(inplace=True)
+    logging.info(f"baidu df: \n{baidu_df}")
+    # 5日均线
+    logging.info(f"baidu df rolling 5: \n{baidu_df.rolling(5).mean()}")
+    # Close的7日均线
+    logging.info(f"baidu df Close field rolling: \n{baidu_df.Close.rolling(7).mean()}")
+
+    # shift()方法：通过时间前移或后移数据
+    logging.info(f"baidu df shift 2: \n{baidu_df.shift(2, fill_value=0)}")
+    logging.info(f"baidu df shift -2: \n{baidu_df.shift(-2, fill_value=0)}")
+    # asfreq() 指定一个时间频率抽取对应的数据
+    logging.info(f"baidu df asfreq('5D'): \n{baidu_df.asfreq('5D')}")
+    # 基于时间对数据进行重采样，相当于根据时间周期对数据进行了分组操作
+    logging.info(f"baidu df resample('1M'): \n{baidu_df.resample('1M').mean()}")
+
+    logging.info(
+        f"----------------------------协方差/相关系数------------------------------------------"
+    )
+    # ·协方差（covariance）来衡量两个随机变量的联合变化程度，显示两个变量的相关性。
+    # 1.如果变量 X 的较大值主要与变量 Y 的较大值相对应，而两者较小值也相对应，那么两个变量倾向于表现出相似的行为，协方差为正
+    # 2.如果变量 X 的较大值主要对应于变量 Y 的较小值，则两个变量倾向于表现出相反的行为，协方差为负
+    # 3.如果X和Y是统计独立的，那么二者的协方差为0
+    # ·'皮尔逊积矩相关系数'就是正态形式的协方差，它用于度量两个变量间的相关程度（线性相关），其值介于-1到1之间，皮尔逊相关系数适用于：
+    # 1.两个变量之间是线性关系，都是连续数据
+    # 2.两个变量的总体是正态分布，或接近正态的单峰分布
+    # 3.两个变量的观测值是成对的，每对观测值之间相互独立
+    boston_df = pd.read_csv('file_for_read/boston_house_price.csv')
+    # DataFrame对象的cov方法和corr方法分别用于计算协方差和相关系数
+    # corr方法的第一个参数method的默认值是pearson，表示计算皮尔逊相关系数
+    logging.info(f"boston_df Pearson: \n{boston_df.corr()}")
+    # ；还可以指定kendall或spearman来获得肯德尔系数或斯皮尔曼等级相关系数。
+    logging.info(f"boston_df spearman: \n{boston_df.corr('spearman')}")
