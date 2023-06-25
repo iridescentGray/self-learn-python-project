@@ -20,12 +20,12 @@ def count_execute_time(text=""):
     def wrapper_func(fn):
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
-            logging.info("%s  methods: %s 开始执行" % (text, fn.__name__))
+            logging.info(f"{text}  methods: {fn.__name__} 开始执行")
             start = datetime.now()
             res = fn(*args, **kwargs)
             end = datetime.now()
             logging.info(
-                "%s  methods: %s ,运行共计耗时: %s s" % (text, fn.__name__, end - start)
+                f"{text}  methods: {fn.__name__} ,运行共计耗时: {end - start} s"
             )
             return res
 
@@ -74,9 +74,8 @@ def retry(times, exceptions):
                     return func(*args, **kwargs)
                 except exceptions:
                     attempt += 1
-                    print(
-                        'Exception thrown when attempting to run %s, attempt '
-                        '%d of %d' % (func, attempt, times)
+                    logging.info(
+                         f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
                     )
             return func(*args, **kwargs)
 
@@ -104,14 +103,13 @@ def async_retry(times, exceptions):
                 try:
                     # if you want arguments names as a list:
                     args_name = inspect.getfullargspec(func)[0]
-                    print(args_name)
+                    logging.info(args_name)
 
                     return await func(*args, **kwargs)
                 except exceptions:
                     attempt += 1
-                    print(
-                        'Exception thrown when attempting to run %s, attempt '
-                        '%d of %d' % (func, attempt, times)
+                    logging.info(
+                        f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
                     )
             return await func(*args, **kwargs)
 
