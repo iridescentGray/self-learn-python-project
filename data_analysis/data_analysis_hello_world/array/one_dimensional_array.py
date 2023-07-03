@@ -13,6 +13,10 @@ if __name__ == "__main__":
     randint_list = np.random.randint(1, 100, 10)
     logging.info(f" randint_list: {randint_list}")
 
+    # 产生10个“标准正态”分布随机数
+    randn_list = np.random.randn(10)
+    logging.info(f" randn_list: {randn_list}")
+
     # 产生20个$\mu=50$，$\sigma=10$的正态分布随机数
     random_normal_list = np.random.normal(50, 10, 20)
     logging.info(f" random_normal_list: {random_normal_list}")
