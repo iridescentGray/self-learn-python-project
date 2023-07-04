@@ -7,7 +7,9 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
     """
-        matplotlib绘制各种图
+        matplotlib绘制各种图:
+        更多例子查看官方网站：
+        https://matplotlib.org/stable/gallery/index.html
     """
     # 配置支持中文的非衬线字体（默认的字体无法显示中文）
     plt.rcParams["font.sans-serif"] = ["SimHei", "Songti SC", "STFangsong"]
