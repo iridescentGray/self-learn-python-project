@@ -17,7 +17,9 @@ django相关demo
     django： https://docs.djangoproject.com/zh-hans/4.2/
     djangorestframework：https://www.django-rest-framework.org/
     redis：  https://django-redis-chs.readthedocs.io/zh_CN/latest/
-
+    doc：
+        if you want to Generate Swagger/OpenAPI 2.0 for Django
+        use https://github.com/axnsan12/drf-yasg
 ## project
 
 ### restapi_demo
