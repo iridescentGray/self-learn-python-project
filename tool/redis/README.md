@@ -18,7 +18,7 @@ not say more
     redis： https://redis.io/
     redis-py： https://github.com/redis/redis-py
     redis-py-doc： https://redis.readthedocs.io/en/stable/examples.html
-
+    rq: https://python-rq.org/docs/
 
 ## project
 
@@ -26,7 +26,18 @@ not say more
 
 #### introduce
 
-python redis 操作入门案例
+python redis Introduction to Operation Cases
+
+#### start-up
+
+
+
+### rq_demo
+
+#### introduce
+
+rq_demo is a demo for rq library.
+rq is a simple library for queueing jobs and processing them in the background with workers.
 
 #### start-up
 
