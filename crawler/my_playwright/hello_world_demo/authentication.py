@@ -11,7 +11,7 @@ from playwright.async_api import async_playwright, BrowserContext
 
 class LoadContextChannel(enum.Enum):
     """
-    消息发送类型
+    加载Context的渠道
     """
 
     # 新建
