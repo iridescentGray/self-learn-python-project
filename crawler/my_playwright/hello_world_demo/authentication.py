@@ -60,13 +60,14 @@ async def is_login(page) -> bool:
         # 有登录态时，会跳转到首页
         await page.wait_for_url(url="https://github.com/", timeout=4.0)
         return True
-    except Exception as e:
+    except Exception:
         return False
 
 
 async def ensure_login(browser_context) -> None:
     page = await browser_context.new_page()
     is_login_bool = await is_login(page)
+    await page.close()
     if not is_login_bool:
         await login_and_save_status(browser_context)
 
