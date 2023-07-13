@@ -1,2 +1,2 @@
-pydantic==1.10.7
-sqlalchemy==2.0.15
+pydantic==2.0.2
+sqlalchemy==2.0.18
