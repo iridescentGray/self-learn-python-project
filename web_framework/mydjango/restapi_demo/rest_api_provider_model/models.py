@@ -4,7 +4,7 @@ from django.db import models
 
 # 什么是模型参考：https://docs.djangoproject.com/zh-hans/4.2/intro/tutorial02/
 # 模型内部的字段参考： https://docs.djangoproject.com/zh-hans/4.2/ref/models/fields/
-class Subject(models.Model):
+class Subject(models.StrictModel):
     no = models.AutoField(primary_key=True, verbose_name="编号")
     name = models.CharField(max_length=50, verbose_name="名称")
     intro = models.CharField(max_length=1000, verbose_name="介绍")
@@ -16,7 +16,7 @@ class Subject(models.Model):
         db_table = "tb_subject"
 
 
-class Teacher(models.Model):
+class Teacher(models.StrictModel):
     no = models.AutoField(primary_key=True, verbose_name="编号")
     name = models.CharField(max_length=20, verbose_name="姓名")
     sex = models.BooleanField(default=True, verbose_name="性别")

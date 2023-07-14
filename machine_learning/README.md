@@ -6,10 +6,10 @@ scikit-learn correlation demo
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.9 my-scikit-learn 
-    pyenv activate my-scikit-learn
+    pyenv virtualenv  3.10.9 machine_learning 
+    pyenv activate machine_learning
     python -m pip install --upgrade pip
-    cd machine_learning/my_scikit_learn
+    cd machine_learning
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 
@@ -18,7 +18,7 @@ scikit-learn correlation demo
     scikit-learn：scikit-learn.org     
 ## uninstall
 
-    pyenv virtualenv-delete my-scikit-learn
+    pyenv virtualenv-delete machine_learning
 
 ## project
 

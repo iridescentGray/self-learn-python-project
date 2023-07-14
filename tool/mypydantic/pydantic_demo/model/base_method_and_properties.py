@@ -16,6 +16,7 @@ external_data = {
 }
 
 print(f"-----------------------------------------create instance------------------------------------------")
+# arguments passed to the constructor will be copied
 create_user_with_default_value = User(id=1, friends=[1, 2])
 print(f"create_user_with_default_value:  {create_user_with_default_value}")
 create_user_by_dict = User(**external_data)
