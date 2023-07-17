@@ -2,8 +2,9 @@ import asyncio
 import functools
 import inspect
 import logging
-from datetime import datetime
+import time
 from multiprocessing import RLock
+from typing import Callable, Any
 
 
 def count_execute_time(text=""):
@@ -21,9 +22,9 @@ def count_execute_time(text=""):
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
             logging.info(f"{text}  methods: {fn.__name__} 开始执行")
-            start = datetime.now()
+            start = time.perf_counter()
             res = fn(*args, **kwargs)
-            end = datetime.now()
+            end = time.perf_counter()
             logging.info(
                 f"{text}  methods: {fn.__name__} ,运行共计耗时: {end - start} s"
             )
@@ -32,6 +33,21 @@ def count_execute_time(text=""):
         return wrapper
 
     return wrapper_func
+
+
+def async_timed(func: Callable) -> Callable:
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs) -> Any:
+        print(f"coroutine {func.__name__} 开始执行")
+        start = time.perf_counter()
+        try:
+            return await func(*args, **kwargs)
+        finally:
+            end = time.perf_counter()
+            total = end - start
+            print(f"coroutine {func.__name__} 用 {total} 秒执行完毕")
+
+    return wrapper
 
 
 def singleton(cls):
@@ -75,7 +91,7 @@ def retry(times, exceptions):
                 except exceptions:
                     attempt += 1
                     logging.info(
-                         f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
+                        f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
                     )
             return func(*args, **kwargs)
 
