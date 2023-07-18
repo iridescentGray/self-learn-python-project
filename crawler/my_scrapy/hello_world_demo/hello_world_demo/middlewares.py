@@ -24,7 +24,7 @@ class HelloWorldDemoSpiderMiddleware:
         # Called for each response that goes through the spider
         # middleware and into the spider.
 
-        # Should return None or raise an exception.
+        # Should return None or raise an `exception`.
         return None
 
     def process_spider_output(self, response, result, spider):

@@ -1,0 +1,2 @@
+SQLAlchemy==2.0.19
+asyncmy==0.2.8

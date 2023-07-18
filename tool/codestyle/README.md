@@ -46,3 +46,8 @@ codestyle,此模块中的工具用于：让团队代码风格一致，符合规�
     （1）导入Python标准库包的import语句；
     （2）导入相关联的第三方包的import语句；
     （3）与当前应用（或当前库）相关的import语句。
+
+
+## uninstall
+
+    pyenv virtualenv-delete codestyle

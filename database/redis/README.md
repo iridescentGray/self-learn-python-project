@@ -6,10 +6,10 @@ not say more
 
 ### Used by pyenv virtualenv plugin
     工具
-    pyenv virtualenv  3.10.9 my-pydantic
-    pyenv activate my-pydantic
+    pyenv virtualenv  3.10.9 redis
+    pyenv activate redis
     python -m pip install --upgrade pip
-    cd tool/redis
+    cd database/redis
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 
@@ -41,4 +41,7 @@ rq is a simple library for queueing jobs and processing them in the background w
 
 #### start-up
 
-    
+
+## uninstall
+
+    pyenv virtualenv-delete redis

@@ -4,11 +4,11 @@ import asyncio
 async def delay(seconds):
     print(f"Start Sleep {seconds} 秒")
     await asyncio.sleep(seconds)
-    print(f"Sleep completed")
+    print("Sleep completed")
     return seconds
 
 
-print(f"-----------------------------------------create event loop------------------------------------------")
+print("-----------------------------------------create event loop------------------------------------------")
 
 new_loop = asyncio.new_event_loop()
 try:
@@ -16,7 +16,7 @@ try:
 finally:
     new_loop.close()
 
-print(f"----------------------------------get running loop mode 1：get_running_loop------------------------------")
+print("----------------------------------get running loop mode 1：get_running_loop------------------------------")
 
 
 def some_func():
@@ -37,12 +37,10 @@ finally:
     running_loop_case_loop.close()
 
 
-print(f"----------------------------------get running loop mode2：get_event_loop------------------------------")
-# loop = asyncio.get_event_loop()
-
-
-print(f"----------------------------------View unfinished tasks in event loop------------------------------")
-
+print("----------------------------------get running loop mode2：get_event_loop------------------------------")
+get_event_loop_method_loop = asyncio.get_event_loop()
+get_event_loop_method_loop.close()
+print("----------------------------------View unfinished tasks in event loop------------------------------")
 
 async def main1():
     await asyncio.sleep(1)
