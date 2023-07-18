@@ -38,9 +38,7 @@ async def use_future_in_asyncio():
     #  make_request是一个普通的函数，需要在协程里面调用
     future = make_request()
     print(f"future 是否完成: {future.done()}")
-    # 阻塞等待，直到 future 有值，什么时候有值呢？
-    # 显然是当协程 set_future_value 里面执行完 future.set_result 的时候
-    value = await future  # 暂停 main()，直到 future 的值被设置完成
+    value = await future
     print(f"future 是否完成: {future.done()}")
     print(value)
 
