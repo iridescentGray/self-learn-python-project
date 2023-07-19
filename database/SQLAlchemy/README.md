@@ -24,9 +24,10 @@ SQLAlchemy,database orm framework
 #### introduce
 
 use asyncio to control mysql
+Warning: asyncio MySQL is unstable,don't use in prod
 
 #### start-up
-
+    execute 'database/SQLAlchemy/asyncio_mysql_demo/demo.sql' in mysql
 
 ## uninstall
 

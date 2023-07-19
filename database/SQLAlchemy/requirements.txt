@@ -1,2 +1,3 @@
 SQLAlchemy==2.0.19
 asyncmy==0.2.8
+greenlet==2.0.2
