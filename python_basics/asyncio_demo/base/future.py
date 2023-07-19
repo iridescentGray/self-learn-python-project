@@ -1,6 +1,6 @@
 import asyncio
 
-# asyncio 里面有一个类 Future 和 Task，Task 是 Future 的子类，所以我们用的基本都是 task 对象，而不是 future 对象
+# asyncio 里面有一个类 Future 和 Task，Task 是 Future 的子类，所以我们用的基本都是 task_for_thread_pool 对象，而不是 future 对象
 # 但 Future 和 asyncio 的实现有着密不可分的关系
 # 一个任务可以被认为是一个协程和一个 future的组合
 print(
