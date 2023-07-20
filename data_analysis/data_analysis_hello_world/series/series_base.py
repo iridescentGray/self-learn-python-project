@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # 求最小
     logging.info(ser_by_dict.min())
     # 计数
-    logging.info(ser_by_dict.count())
+    logging.info(ser_by_dict.do_count_number())
     # 求标准差
     logging.info(ser_by_dict.std())
     # 求方差
