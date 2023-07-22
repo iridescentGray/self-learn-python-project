@@ -22,7 +22,7 @@ async def listen_for_conn(server: socket.socket):
         asyncio.create_task(echo(conn, running_loop))
 
 
-async def asyncio_server():
+async def start_server():
     server = socket.socket()
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
     server.setblocking(False)
@@ -31,4 +31,4 @@ async def asyncio_server():
     await listen_for_conn(server)
 
 
-asyncio.run(asyncio_server())
+asyncio.run(start_server())
