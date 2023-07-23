@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">
+        <input style="width: 400px;" type="text" id="message">
+        <input type="submit" id="submit" value="发送">
+        <p>服务端返回的信息会展示在下方</p>
+        <label>
+            <textarea style="width: 400px; height: 200px;"></textarea>
+        </label>
+    </div>
+    <script>
+        ws = new WebSocket("ws://localhost:8000/ws");
+
+        //如果连接成功, 会打印下面这句话, 否则不会打印
+        ws.onopen = function () {
+            let textarea = document.querySelector("#box textarea")
+            textarea.value = "和服务端成功建立 WebSocket 连接\n"
+        };
+
+        //接收数据, 服务端有数据过来, 会执行
+        ws.onmessage = function (event) {
+            let textarea = document.querySelector("#box textarea")
+            textarea.value += event.data + "\n"
+        };
+
+        //发送数据
+        let submit = document.querySelector("#box #submit")
+        submit.onclick = function () {
+            let value = document.querySelector("#box #message").value
+            ws.send(value)
+        }
+        //服务端主动断开连接, 会执行
+        //客户端主动断开的话, 不执行
+        ws.onclose = function () {  }
+
+    </script>
+</body>
+</html>
