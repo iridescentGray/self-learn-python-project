@@ -2,21 +2,23 @@ import asyncio
 
 
 def commonly_function():
-    print("我是一个普通函数")
+    print("I am a commonly function")
 
 
 async def coroutine_function():
-    print("我是一个协程函数")
+    print("I am a coroutine function")
 
 
 print("---------------------------compatible_judge_function-------------------------------------")
 
 print(f"commonly_function  iscoroutinefunction {asyncio.iscoroutinefunction(commonly_function)}")
-print(f"coroutine_function  iscoroutinefunction {asyncio.iscoroutinefunction(coroutine_function)}")
+print(f"coroutine_function  iscoroutinefunction {asyncio.iscoroutinefunction(coroutine_function)}")  # True
 
-print(f"commonly_function  iscoroutinefunction {asyncio.iscoroutine(commonly_function)}")
-print(f"coroutine_function  iscoroutinefunction {asyncio.iscoroutine(coroutine_function)}")
-print(f"coroutine_function  iscoroutinefunction {asyncio.iscoroutine(coroutine_function())}")
+print(f"commonly_function  iscoroutine {asyncio.iscoroutine(commonly_function)}")
+print(f"coroutine_function  iscoroutine {asyncio.iscoroutine(coroutine_function)}")
+
+print(f"commonly_function()  iscoroutine {asyncio.iscoroutine(commonly_function())}")
+print(f"coroutine_function()  iscoroutine {asyncio.iscoroutine(coroutine_function())}")  # True
 
 print("----------------------------------judge_function_between_running------------------------------")
 
@@ -39,6 +41,7 @@ class TaskRunner:
             elif asyncio.iscoroutine(task):
                 awaitable_tasks.append(asyncio.create_task(task))
             else:
+                # commonly_function
                 self.loop.call_soon(task)
 
         await asyncio.gather(*awaitable_tasks)
