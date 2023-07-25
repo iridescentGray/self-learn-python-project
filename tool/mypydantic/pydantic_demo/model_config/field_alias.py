@@ -38,8 +38,8 @@ voice_with_alias = VoiceWithAliasField(Name='Filiz', lang='tr-TR')
 print(voice_with_alias.language_code)
 print(voice_with_alias.model_dump(by_alias=True))
 
-
 print(f"--------------------------------Allow User Original Name After Set Alias-----------------------------------")
+
 
 class User(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
@@ -53,4 +53,3 @@ print(user)
 # allowed by ConfigDict(populate_by_name=True)
 user = User(name='John Doe', age=20)
 print(user)
-

@@ -15,11 +15,7 @@ network demo
 
 ### Related documents
     scapy：
-        https://scapy.readthedocs.io/en/latest/index.html   
-
-## uninstall
-
-    pyenv virtualenv-delete network
+        https://scapy.readthedocs.io/en/latest/index.html
 
 ## project
 
@@ -32,4 +28,8 @@ my_scapy是一个scapy的使用方法入门项目
 
 #### start-up
     
+
+## uninstall
+
+    pyenv virtualenv-delete network
 

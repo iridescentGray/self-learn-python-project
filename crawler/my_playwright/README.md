@@ -2,7 +2,6 @@
 
 Playwright相关demo
 
-
 ## Environmental construction
 
 ### Used by pyenv virtualenv plugin
@@ -28,7 +27,6 @@ Playwright相关demo
 hello_world_demo是一个playwright的简单入门项目
 
 #### start-up
-
 
 ## uninstall
 

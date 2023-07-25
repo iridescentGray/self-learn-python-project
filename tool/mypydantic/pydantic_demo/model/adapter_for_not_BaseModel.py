@@ -1,5 +1,6 @@
-from pydantic import TypeAdapter, ValidationError, BaseModel
 from typing_extensions import TypedDict
+
+from pydantic import TypeAdapter, ValidationError, BaseModel
 
 """
   Pydantic provides TypeAdapter,

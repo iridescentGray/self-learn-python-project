@@ -2,9 +2,10 @@
 
 set 、read yaml
 
-## Environmental construction 
+## Environmental construction
 
 ### Used by pyenv virtualenv plugin
+
     工具
     pyenv virtualenv  3.10.9 my-pyyaml
     pyenv activate my-pyyaml
@@ -12,11 +13,9 @@ set 、read yaml
     cd tool/yaml
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-
 ### Related documents
 
     pyyaml： https://pyyaml.org/wiki/PyYAMLDocumentation
-
 
 ## project
 
@@ -28,4 +27,7 @@ python yaml 操作入门案例
 
 #### start-up
 
+## uninstall
+
+    pyenv virtualenv-delete my-pyyaml
     

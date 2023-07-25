@@ -12,14 +12,14 @@ scikit-learn correlation demo
     cd machine_learning
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-
 ### Related documents
 
     scikit-learn：scikit-learn.org     
+
+## project
+
 ## uninstall
 
     pyenv virtualenv-delete machine_learning
-
-## project
 
 

@@ -16,5 +16,9 @@
 ## 包含
 
 - cache：缓存模块
-  - cachetools：python缓存第三方工具
-      - 文档：https://cachetools.readthedocs.io/en/latest/
+    - cachetools：python缓存第三方工具
+        - 文档：https://cachetools.readthedocs.io/en/latest/
+
+## uninstall
+
+    pyenv virtualenv-delete smalltool_collection

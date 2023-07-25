@@ -16,13 +16,11 @@ class UserModel(BaseModel):
             raise ValueError('must contain a space')
         return v.title()
 
-
     @field_validator('password2')
     def passwords_match(cls, v, info: FieldValidationInfo):
         if 'password1' in info.data and v != info.data['password1']:
             raise ValueError('passwords do not match')
         return v
-
 
     @field_validator('username')
     def username_alphanumeric(cls, v):

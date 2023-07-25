@@ -50,8 +50,8 @@ class ManhuaguiSpider(scrapy.Spider):
             chapter_item["url"] = chapters_selector.xpath("a[1]/@href").extract_first()
             chapter_item["page_number"] = (
                 chapters_selector.xpath("a[1]/span/i/text()")
-                .extract_first()
-                .removesuffix("p")
+                    .extract_first()
+                    .removesuffix("p")
             )
             chapter_item["web_image_items"] = {}
             chapter_items.append(chapter_item)

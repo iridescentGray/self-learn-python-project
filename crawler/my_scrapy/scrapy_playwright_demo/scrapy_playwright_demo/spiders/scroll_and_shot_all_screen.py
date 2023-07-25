@@ -1,6 +1,7 @@
 import scrapy
 from scrapy_playwright.page import PageMethod
 
+
 # run command: scrapy crawl scroll_and_shot_all_screen
 class ScrollSpider(scrapy.Spider):
     """

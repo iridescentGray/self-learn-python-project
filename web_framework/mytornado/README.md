@@ -11,3 +11,7 @@ tornado相关demo
     python -m pip install --upgrade pip
     cd web_framework/mytornado
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+
+## uninstall
+
+    pyenv virtualenv-delete my-tornado

@@ -10,6 +10,7 @@ class PlaywrightIncludePageDemo(scrapy.Spider):
         },
 
     }
+
     def start_requests(self):
         yield scrapy.Request(url="https://example.org",
                              callback=self.parse,

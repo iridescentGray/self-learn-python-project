@@ -19,5 +19,3 @@ try:
 except ValidationError as err:
     error_locations = [e['loc'] for e in err.errors()]
     print(f"error_locations:{error_locations}")
-
-

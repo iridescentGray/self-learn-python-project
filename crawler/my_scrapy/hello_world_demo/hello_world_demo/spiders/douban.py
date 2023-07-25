@@ -1,7 +1,6 @@
 import scrapy
-from scrapy import Request, Selector
-
 from hello_world_demo.items import DoubanItem
+from scrapy import Request, Selector
 
 
 # run command: scrapy crawl douban

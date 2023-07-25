@@ -46,7 +46,6 @@ try:
 except ValidationError as e:
     print(e)
 
-
 print(f"------------------------------------- nested data parse-----------------------------------")
 
 
