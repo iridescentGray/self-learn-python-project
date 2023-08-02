@@ -8,12 +8,6 @@ logger.add(
     level="INFO",
 )
 
-logger.add(
-    sys.stderr,
-    format="{time} {level} {message}",
-    filter="my_module",
-    level="INFO",
-)
 
 logger.add("tool/loguru/hello_world_loguru/project.log", rotation="12:00")
 
