@@ -10,7 +10,7 @@ emoji,Send email in Python conveniently for mail using emoji
     pyenv virtualenv  3.10.9 emoji
     pyenv activate emoji
     python -m pip install --upgrade pip
-    cd tool/emoji
+    cd acrobatics/emoji
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents
