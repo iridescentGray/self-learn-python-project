@@ -1,6 +1,6 @@
 # thefuzz
 
-thefuzz,Send email in Python conveniently for mail using thefuzz
+thefuzz,Fuzzy String Matching in Python
 
 ## use
 
