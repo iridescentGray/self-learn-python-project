@@ -6,7 +6,6 @@ SQLAlchemy,database orm framework
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 SQLAlchemy
     pyenv activate SQLAlchemy
     python -m pip install --upgrade pip

@@ -6,7 +6,6 @@ control and monitor input devices.
 
 ### Used by pyenv virtualenv pynput
 
-    工具
     pyenv virtualenv  3.10.9 pynput
     pyenv activate pynput
     python -m pip install --upgrade pip

@@ -6,7 +6,6 @@ emoji,Send email in Python conveniently for mail using emoji
 
 ### Used by pyenv virtualenv emoji
 
-    工具
     pyenv virtualenv  3.10.9 emoji
     pyenv activate emoji
     python -m pip install --upgrade pip

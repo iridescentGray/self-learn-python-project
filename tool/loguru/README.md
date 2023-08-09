@@ -6,7 +6,6 @@ loguru,Python logging made (stupidly) simple
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 loguru
     pyenv activate loguru
     python -m pip install --upgrade pip

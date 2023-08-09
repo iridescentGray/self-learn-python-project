@@ -6,7 +6,6 @@ library for rich text and beautiful formatting in the terminal.
 
 ### Used by pyenv virtualenv rich
 
-    工具
     pyenv virtualenv  3.10.9 rich
     pyenv activate rich
     python -m pip install --upgrade pip

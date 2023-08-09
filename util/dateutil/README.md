@@ -6,11 +6,10 @@ library for dateutil text and beautiful formatting in the terminal.
 
 ### Used by pyenv virtualenv dateutil
 
-    工具
     pyenv virtualenv  3.10.9 dateutil
     pyenv activate dateutil
     python -m pip install --upgrade pip
-    cd tool/dateutil
+    cd util/dateutil
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents

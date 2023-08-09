@@ -6,7 +6,6 @@
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 smalltool_collection
     pyenv activate smalltool_collection
     python -m pip install --upgrade pip

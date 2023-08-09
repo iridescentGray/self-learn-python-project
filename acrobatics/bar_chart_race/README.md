@@ -6,7 +6,6 @@ bar_chart_race,Send email in Python conveniently for mail using bar_chart_race
 
 ### Used by pyenv virtualenv bar_chart_race
 
-    工具
     pyenv virtualenv  3.10.9 bar_chart_race
     pyenv activate bar_chart_race
     python -m pip install --upgrade pip

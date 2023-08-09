@@ -6,7 +6,6 @@ yagmail,Send email in Python conveniently for mail using yagmail
 
 ### Used by pyenv virtualenv yagmail
 
-    工具
     pyenv virtualenv  3.10.9 yagmail
     pyenv activate yagmail
     python -m pip install --upgrade pip

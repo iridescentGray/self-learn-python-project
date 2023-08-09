@@ -6,7 +6,6 @@ not say more
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 redis
     pyenv activate redis
     python -m pip install --upgrade pip

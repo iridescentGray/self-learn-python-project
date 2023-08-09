@@ -6,7 +6,6 @@ set 、read yaml
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 my-pyyaml
     pyenv activate my-pyyaml
     python -m pip install --upgrade pip

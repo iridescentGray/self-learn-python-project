@@ -6,7 +6,6 @@ codestyle,此模块中的工具用于：让团队代码风格一致，符合规�
 
 ### Used by pyenv virtualenv plugin
 
-    工具
     pyenv virtualenv  3.10.9 codestyle
     pyenv activate codestyle
     python -m pip install --upgrade pip

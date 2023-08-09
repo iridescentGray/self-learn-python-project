@@ -9,7 +9,6 @@ Features such as:
 
 ### Used by pyenv virtualenv watchdog
 
-    工具
     pyenv virtualenv  3.10.9 watchdog
     pyenv activate watchdog
     python -m pip install --upgrade pip

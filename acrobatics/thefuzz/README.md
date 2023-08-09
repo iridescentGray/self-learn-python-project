@@ -6,7 +6,6 @@ thefuzz,Fuzzy String Matching in Python
 
 ### Used by pyenv virtualenv thefuzz
 
-    工具
     pyenv virtualenv  3.10.9 thefuzz
     pyenv activate thefuzz
     python -m pip install --upgrade pip
