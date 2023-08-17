@@ -45,7 +45,7 @@ if __name__ == "__main__":
     logging.info(f"low 3 : \n {student_df.nsmallest(3, '语文')}")
 
     dataframe_from_excel = pd.read_excel(
-        io="file_for_read/2020_sales_data.xlsx"
+        io="data_analysis/data_analysis_hello_world/dataframe/file_for_read/2020_sales_data.xlsx"
     )
     logging.info(f"dataframe_from_excel: \n{dataframe_from_excel}")
 
@@ -156,7 +156,7 @@ if __name__ == "__main__":
     # 1.两个变量之间是线性关系，都是连续数据
     # 2.两个变量的总体是正态分布，或接近正态的单峰分布
     # 3.两个变量的观测值是成对的，每对观测值之间相互独立
-    boston_df = pd.read_csv('file_for_read/boston_house_price.csv')
+    boston_df = pd.read_csv('data_analysis/data_analysis_hello_world/dataframe/file_for_read/boston_house_price.csv')
     # DataFrame对象的cov方法和corr方法分别用于计算协方差和相关系数
     # corr方法的第一个参数method的默认值是pearson，表示计算皮尔逊相关系数
     logging.info(f"boston_df Pearson: \n{boston_df.corr()}")
