@@ -9,7 +9,7 @@ peewee,Send email in Python conveniently for mail using peewee
     pyenv virtualenv  3.10.12 peewee
     pyenv activate peewee
     python -m pip install --upgrade pip
-    cd database/peewee
+    cd database/my_peewee
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents

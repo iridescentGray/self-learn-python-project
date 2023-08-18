@@ -1,4 +1,3 @@
-from tokenize import Comment
 import peewee
 from connection import db
 

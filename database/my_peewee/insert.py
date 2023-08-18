@@ -1,5 +1,3 @@
-import peewee
-from connection import db
 from model import Girl
 
 # 增加记录有以下几种方式
