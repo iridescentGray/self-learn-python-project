@@ -7,49 +7,29 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     """
-    -索引是重要的基础
+    -DataFrame可以用来表示二维的数据，类似于一个有行有列的表格
+    -DataFrame使用最更为广泛
     """
     logging.info(
-        f"----------------------------范围索引（RangeIndex）------------------------------------------"
+        "-----------------------------构建------------------------------------------"
     )
-    sales_data = np.random.randint(400, 1000, 12)
-    month_index = pd.RangeIndex(1, 13, name='月份')
-    range_idx_ser = pd.Series(data=sales_data, index=month_index)
-    logging.info(f"month_ser index: \n{range_idx_ser}")
-    logging.info(
-        f"----------------------------分类索引（CategoricalIndex）------------------------------------------"
+    # 创建随机的10行3列的二维数组
+    arrays_scores_data = np.random.randint(60, 101, (10, 3))
+    # 列
+    courses_columns = ["语文", "数学", "英语"]
+    # 行
+    arrays_ids_row = [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010]
+    # 通过二维数组创建DataFrame对象
+    df1 = pd.DataFrame(
+        data=arrays_scores_data, columns=courses_columns, index=arrays_ids_row
     )
-    cate_index = pd.CategoricalIndex(
-        ['苹果', '香蕉', '苹果', '苹果', '桃子', '香蕉'],
-        ordered=True,
-        categories=['苹果', '香蕉', '桃子']
-    )
-    categorical_idx_ser = pd.Series(data=range(6), index=cate_index)
-    logging.info(f"categorical_idx_ser: \n{categorical_idx_ser}")
-    # group by index
-    logging.info(f"categorical_idx_ser group by: \n{categorical_idx_ser.groupby(level=0).sum()}")
 
-    logging.info(
-        f"----------------------------多级索引（MultiIndex）------------------------------------------"
-    )
-    # from_product方法通过第一个参数的两组数据的笛卡尔积，构造了多级索引。
-    multi_index = pd.MultiIndex.from_product((np.arange(1001, 1006), ['期中', '期末']), names=['学号', '学期'])
-    multi_index_df = pd.DataFrame(data=np.random.randint(60, 101, (10, 3)), columns=['语文', '数学', '英语'],
-                                  index=multi_index)
+    logging.info(f"df1: \n{df1}")
 
-    logging.info(f"multi_index_df: \n{multi_index_df}")
-    # 计算每个学生的成绩，期中占25%，期末占75%
-    logging.info(
-        f"multi_index_df: \n{multi_index_df.groupby(level=0).agg(lambda x: x.values[0] * 0.25 + x.values[1] * 0.75)}")
+    # 获取语文最高分的index
+    highest_chinese_score_index = df1["语文"].idxmax()
+    logging.info(f"highest_chinese_score_index: \n{highest_chinese_score_index}")
 
-    logging.info(
-        f"----------------------------日期时间索引（DatetimeIndex）------------------------------------------"
-    )
-    # 间隔10天
-    date_range_periods_10 = pd.date_range('2021-1-1', '2021-6-1', periods=10)
-    logging.info(f"Date time Index periods=10: \n{date_range_periods_10}")
-    # 间隔一星期
-    date_range_periods_week = pd.date_range('2021-1-1', '2021-6-1', freq='W')
-
-    logging.info(f"Date time Index, calculate': \n{date_range_periods_week - pd.DateOffset(days=2)}")
-    logging.info(f"Date time Index, calculate': \n{date_range_periods_week + pd.DateOffset(days=2)}")
+    # 找到语文分数等于97的学生所在行的索引的具体数字部分
+    chinese_97_index_numbers = df1[df1["语文"] == 97].index.tolist()
+    logging.info(f"chinese_97_index_numbers: \n{chinese_97_index_numbers}")
