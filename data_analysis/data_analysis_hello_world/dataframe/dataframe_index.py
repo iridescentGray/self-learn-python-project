@@ -25,6 +25,18 @@ if __name__ == "__main__":
     )
 
     logging.info(f"df1: \n{df1}")
+    row_1004 = df1.loc[1004]["语文"]
+    logging.info(f"df1 row_1004.语文: \n{row_1004}")
+
+    row_1004 = df1.loc[1004].语文
+    logging.info(f"df1 row_1004.语文: \n{row_1004}")
+
+    df1_tail = df1.tail(1)
+    logging.info(f"df1_tail type: \n{type(df1_tail)}")
+    # 使用tail获取最后一行的index
+    logging.info(f"df1_tail index[0]: \n{df1_tail.index[0]}")
+    # 使用tail获取最后一行,然后获取一列的值
+    logging.info(f"df1_tail get line value: \n{df1_tail['语文'].values[0]}")
 
     # 获取语文最高分的index
     highest_chinese_score_index = df1["语文"].idxmax()

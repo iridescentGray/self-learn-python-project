@@ -53,6 +53,8 @@ if __name__ == "__main__":
     logging.info(f"df1-row-by-index: \n{df1.iloc[0]}")
     # 根据行名，获取一行
     logging.info(f"df1-row-name: \n{df1.loc[1001]}")
+    # 根据行名和列名，获取行列对应的数据
+    logging.info(f"df1-row-columns-name: \n{df1.loc[1001].语文}")
     # 获取多列
     logging.info(f"df1-mut-row-name: \n{df1.loc[[1001, 1002]]}")
     # 修改某行某列的数据
