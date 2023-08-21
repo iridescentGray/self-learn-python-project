@@ -17,6 +17,7 @@ Playwright相关demo
 
     playwright-python-doc:   https://playwright.dev/python/docs/intro
     playwright-python-api:   https://playwright.dev/python/docs/api/class-playwright
+    playwright-github:   https://github.com/microsoft/playwright
 
 ## introduce
 
