@@ -9,15 +9,14 @@ A Lightweight Face Recognition and Facial Attribute Analysis (Age, Gender, Emoti
     pyenv virtualenv  3.10.12 deepface
     pyenv activate deepface
     python -m pip install --upgrade pip
-    cd deepface
+    cd machine_learning/deepface
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
-### Related documentshttps://github.com/serengil/deepface
+### Related documents
 
     deepface-github：https://github.com/serengil/deepface
 
 ## project
-
 
 ## 注释：人脸检测器
 

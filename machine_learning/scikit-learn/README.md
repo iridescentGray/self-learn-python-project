@@ -21,5 +21,3 @@ scikit-learn correlation demo
 ## uninstall
 
     pyenv virtualenv-delete scikit-learn
-
-
