@@ -12,7 +12,7 @@ running_containers = client.containers.list()
 # 停止匹配目标镜像名称的容器
 for container in running_containers:
     container_image_name = container.image.tags[0] if container.image.tags else ""
-    
+
     if target_image_name in container_image_name:
         container.stop()
         print(f"Stopped container: {container.id} (Image: {container_image_name})")
