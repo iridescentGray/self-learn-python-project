@@ -47,6 +47,8 @@ Base on MacOs ,if you want to use windows run ,it need Specific parameters
 #### celery_from_config
 
     # 通过配置类配置celery
+    # 进入目录
+    cd schedule/my_celery/celery_redis/celery_from_config
     # 同时介绍了一些特殊的创建任务的办法(group+chain),还介绍了一些@app.task的参数
 
     # 创建worker
@@ -64,6 +66,8 @@ Base on MacOs ,if you want to use windows run ,it need Specific parameters
 #### schedules
 
     # celery实现定时任务
+    # 进入目录
+    cd schedule/my_celery/celery_redis/schedules
 
     # 创建worker
     celery  -A celery_app.app worker  -l  info
