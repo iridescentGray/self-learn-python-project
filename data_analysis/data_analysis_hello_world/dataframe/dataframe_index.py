@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     """
-    -DataFrame可以用来表示二维的数据，类似于一个有行有列的表格
+    -DataFrame可以用来表示二维的数据,类似于一个有行有列的表格
     -DataFrame使用最更为广泛
     """
     logging.info(
