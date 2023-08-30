@@ -1,4 +1,3 @@
-from typing import Optional
 import paramiko
 
 # 创建一个 Transport 对象, 使用时会同步创建一个 paramiko.Channel 对象

@@ -38,3 +38,5 @@ stdin, stdout, stderr = client.exec_command("ls /root")
 
 # 打印执行结果
 print(stdout.read().decode("utf-8"))
+
+client.close()

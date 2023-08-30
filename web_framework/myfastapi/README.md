@@ -7,7 +7,7 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.9 my-fastapi  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
+    pyenv virtualenv 3.10.12 my-fastapi  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate my-fastapi
     python -m pip install --upgrade pip
     cd web_framework/myfastapi/
@@ -21,15 +21,15 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
 
 ## project
 
-### fastapi_demo
+### hello_world
 
 #### introduce
 
-fastapi_demo是一个使用了fast-api的简单样例项目
+hello_world是一个使用了fast-api的简单样例项目
 
 #### start-up
 
-    cd fastapi_demo
+    cd hello_world
     uvicorn main:app --reload
     查看项目接口文档： http://127.0.0.1:8000/docs
     另一种接口文档：http://127.0.0.1:8000/redoc
@@ -37,6 +37,17 @@ fastapi_demo是一个使用了fast-api的简单样例项目
 #### Test interface
 
     http://127.0.0.1:8000/
+
+### learn_websocket
+
+#### introduce
+
+learn_websocket是一个使用了fast-api的简单样例项目
+
+#### start-up
+
+    cd learn_websocket
+    uvicorn ws_simple_demo:app --reload
 
 ## uninstall
 
