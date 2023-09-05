@@ -26,5 +26,15 @@ async def path_contain_(file_path: str):
     return {"file_path": file_path}
 
 
+# 带bool 
+# http://127.0.0.1:5555/bool/1  success
+# http://127.0.0.1:5555/bool/true  success
+# http://127.0.0.1:5555/bool/no  success
+# http://127.0.0.1:5555/bool/True  success
+@app.get("/bool/{flag}")
+async def get_flag(flag: bool):
+    return {"flag": flag}
+
+
 if __name__ == "__main__":
     uvicorn.run("path:app", host="127.0.0.1", port=5555)
