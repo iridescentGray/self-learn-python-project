@@ -31,13 +31,33 @@ if __name__ == "__main__":
     row_1004 = df1.loc[1004].语文
     logging.info(f"df1 row_1004.语文: \n{row_1004}")
 
+    logging.info(
+        "-----------------------------get tail by tail()------------------------------------------"
+    )
     df1_tail = df1.tail(1)
-    logging.info(f"df1_tail type: \n{type(df1_tail)}")
+    logging.info(f"df1_tail type: \n{type(df1_tail)}")  # DataFrame
     # 使用tail获取最后一行的index
     logging.info(f"df1_tail index[0]: \n{df1_tail.index[0]}")
     # 使用tail获取最后一行,然后获取一列的值
     logging.info(f"df1_tail get line value: \n{df1_tail['语文'].values[0]}")
 
+    logging.info(
+        "-----------------------------get tail by len()------------------------------------------"
+    )
+    dataframe_by_len_index = len(df1.index) - 1
+    dataframe_by_len = df1.iloc[dataframe_by_len_index]
+    dataframe_by_iloc = df1.iloc[-1]
+
+    logging.info(f"dataframe_by_len_index get line value: \n{dataframe_by_len_index}")
+    logging.info(f"dataframe_by_len is: \n{dataframe_by_len}")
+    logging.info(f"dataframe_by_iloc is: \n{dataframe_by_iloc}")
+
+    logging.info(f"dataframe_by_len type is: \n{type(dataframe_by_len)}")  # Series
+    logging.info(f"dataframe_by_iloc type is: \n{type(dataframe_by_iloc)}")  # Series
+
+    logging.info(
+        "-----------------------------get max id------------------------------------------"
+    )
     # 获取语文最高分的index
     highest_chinese_score_index = df1["语文"].idxmax()
     logging.info(f"highest_chinese_score_index: \n{highest_chinese_score_index}")
