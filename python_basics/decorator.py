@@ -7,7 +7,7 @@ from multiprocessing import RLock
 from typing import Callable, Any
 
 
-def count_execute_time(text=""):
+def count_execute_time():
     """
     方法执行时间统计装饰器
     Args:
@@ -21,12 +21,12 @@ def count_execute_time(text=""):
     def wrapper_func(fn):
         @functools.wraps(fn)
         def wrapper(*args, **kwargs):
-            logging.info(f"{text}  methods: {fn.__name__} 开始执行")
+            logging.info(f"methods: {fn.__name__} 开始执行")
             start = time.perf_counter()
             res = fn(*args, **kwargs)
             end = time.perf_counter()
             logging.info(
-                f"{text}  methods: {fn.__name__} ,运行共计耗时: {end - start} s"
+                f"methods: {fn.__name__} ,运行共计耗时: {end - start} s"
             )
             return res
 

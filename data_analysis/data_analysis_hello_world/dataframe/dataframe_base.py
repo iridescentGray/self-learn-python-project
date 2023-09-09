@@ -72,6 +72,17 @@ if __name__ == "__main__":
     logging.info(f"df1 over 90 points: \n{df1[df1.英语 > 90]}")
     logging.info(f"df1 query over 90 points: \n{df1.query('英语>90')}")
 
+
+
+    logging.info(
+            "-----------------------------修改列------------------------------------------"
+        )
+    
+    # 英语大于90分的，新增两列(good_student和student_tag)，分别是
+    df1.loc[(df1.英语 > 90),["good_student","student_tag"]]=(1,"good_student_tag")
+    logging.info(f"df1 loc: \n{df1}")
+ 
+
     logging.info(
         "-----------------------------拼接/合并------------------------------------------"
     )
