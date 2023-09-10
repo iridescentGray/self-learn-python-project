@@ -81,7 +81,18 @@ if __name__ == "__main__":
     # 英语大于90分的，新增两列(good_student和student_tag)，分别是
     df1.loc[(df1.英语 > 90),["good_student","student_tag"]]=(1,"good_student_tag")
     logging.info(f"df1 loc: \n{df1}")
- 
+    
+
+    logging.info(
+        "-----------------------------限制值------------------------------------------"
+    )
+    
+    # 限制整个dataframe中的最小值和最大值
+    limit_data = {'values': [5, 10, 15, 20, 25]}
+    limit_df = pd.DataFrame(limit_data)
+    limit_df['values'] = limit_df['values'].clip(lower=10, upper=20)
+    logging.info(f"limit_df after change: \n{limit_df}")
+
 
     logging.info(
         "-----------------------------拼接/合并------------------------------------------"
