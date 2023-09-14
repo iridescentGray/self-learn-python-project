@@ -38,3 +38,36 @@ print(rolling_step)
 
 
 
+logging.info("-----------rolling(2) shift-------------------")
+
+data = {'values': [1, 2, 3, 4, 5]}
+df = pd.DataFrame(data)
+
+# 将数据向前移动一个位置
+df['shifted_values'] = df['values'].shift(1)
+print(df)
+rolling_sum = df['shifted_values'].rolling(window=2).sum()
+print(rolling_sum)
+
+
+
+logging.info("-----------rolling(2) max.min------------------")
+
+np.random.seed(0)
+data = {'open': np.random.rand(30),
+        'close': np.random.rand(30)}
+df = pd.DataFrame(data)
+
+# 使用 rolling 计算前 250 根 open 和 close 的最大值
+rolling_max_open = df['open'].shift(1).rolling(window=4).max()
+rolling_max_close = df['close'].shift(1).rolling(window=4).max()
+rolling_min_open = df['open'].shift(1).rolling(window=4).min()
+rolling_min_close = df['close'].shift(1).rolling(window=4).min()
+
+
+# 合并结果为一个新的列 max_price
+
+df['max_price'] = pd.concat([rolling_max_open, rolling_max_close], axis=1).max(axis=1)
+df['min_price'] = pd.concat([rolling_min_open, rolling_min_close], axis=1).min(axis=1)
+
+print(df)
