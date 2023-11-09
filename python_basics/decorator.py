@@ -6,12 +6,13 @@ import time
 from multiprocessing import RLock
 from typing import Callable, Any
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 def count_execute_time():
     """
-    方法执行时间统计装饰器
-    Args:
-        text:  自定义文本
+    方法执行时间统计
 
     Returns:
         装饰器本身
@@ -25,9 +26,7 @@ def count_execute_time():
             start = time.perf_counter()
             res = fn(*args, **kwargs)
             end = time.perf_counter()
-            logging.info(
-                f"methods: {fn.__name__} ,运行共计耗时: {end - start} s"
-            )
+            logging.info(f"methods: {fn.__name__} ,运行共计耗时: {end - start} s")
             return res
 
         return wrapper
@@ -36,6 +35,14 @@ def count_execute_time():
 
 
 def async_timed(func: Callable) -> Callable:
+    """
+    协程方法执行时间统计
+
+    Returns:
+        装饰器本身
+
+    """
+
     @functools.wraps(func)
     async def wrapper(*args, **kwargs) -> Any:
         print(f"coroutine {func.__name__} 开始执行")
@@ -52,7 +59,7 @@ def async_timed(func: Callable) -> Callable:
 
 def singleton(cls):
     """
-    线程安全的单例装饰器，用于装饰class
+    线程安全的单例装饰器
     :param cls: 类
     :return: 单例
     """
@@ -91,7 +98,7 @@ def retry(times, exceptions):
                 except exceptions:
                     attempt += 1
                     logging.info(
-                        f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
+                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}"
                     )
             return func(*args, **kwargs)
 
@@ -125,7 +132,7 @@ def async_retry(times, exceptions):
                 except exceptions:
                     attempt += 1
                     logging.info(
-                        f'Exception thrown when attempting to run {func}, attempt {attempt} of {times}'
+                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}"
                     )
             return await func(*args, **kwargs)
 
@@ -134,22 +141,40 @@ def async_retry(times, exceptions):
     return decorator
 
 
-@retry(times=3, exceptions=(ValueError, TypeError))
-def foo1():
-    print('Some code here ....')
-    print('Oh no, we have exception')
-    raise ValueError('Some error')
+def suppress_errors():
+    """
+    not throw error
+
+    """
+
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                logging.exception(f"Error in {func.__name__}: {e}")
+                return None
+
+        return wrapper
+
+    return decorator
 
 
-@async_retry(times=3, exceptions=(ValueError, TypeError))
-async def foo2(parm, test=2):
-    print('Some code here ....')
-    print(f'Oh no, we have exception{parm} {test}')
-    raise ValueError('Some error')
+def log_param_and_result():
+    """
+    log_param_and_result
 
+    """
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    tasks = [foo2(1, 5)]
-    loop.run_until_complete(asyncio.wait(tasks))
-    loop.close()
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            logging.info(f"execute {func.__name__} param: - args: {args}, kwargs: {kwargs}")
+            result = func(*args, **kwargs)
+            logging.info(f"{func.__name__} return result: {result}")
+            return result
+
+        return wrapper
+
+    return decorator
