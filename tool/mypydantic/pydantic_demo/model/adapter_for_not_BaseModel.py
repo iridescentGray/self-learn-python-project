@@ -8,7 +8,6 @@ from pydantic import TypeAdapter, ValidationError, BaseModel
 
 """
 
-print(f"-------------------------------------------Adapter TypedDict-----------------------------------------")
 
 
 class User(TypedDict):
@@ -16,8 +15,17 @@ class User(TypedDict):
     id: int
 
 
+print(f"-------------------------------------------Best Way Conversion TypedDict To Dict -----------------------------------------")
+
+user=User(name="123",id=1)
+print(dict(user))
+
+
+print(f"-------------------------------------------Adapter TypedDict-----------------------------------------")
+
+
 UserListValidator = TypeAdapter(list[User])
-user_list = UserListValidator.validate_python([{'name': 'Fred', 'id': '3'}])
+user_list = UserListValidator.validate_python([{'name': 'Fred', 'id': '1'},{'name': 'Gray', 'id': '2'}])
 print(f"user_list {repr(user_list)}")
 
 UserTypeAdapter = TypeAdapter(User)
@@ -46,7 +54,7 @@ class Item(BaseModel):
 
 
 # a python data list like Item.class structure
-item_data = [{'id': 1, 'name': 'My Item'}]
+item_data = [{'id': 1, 'name': 'My Item'},{'id': 2, 'name': 'My Item2'}]
 
 items = TypeAdapter(list[Item]).validate_python(item_data)
 print(items)
