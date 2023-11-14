@@ -74,3 +74,21 @@ my_pyecharts是介绍pyecharts用法的项目
 
     pyenv deactivate data_analysis_hello_world
     pyenv virtualenv-delete data_analysis_hello_world
+
+
+### my_plotly
+
+#### introduce
+
+The interactive graphing library for Python
+
+#### start-up
+
+#### Related documents
+
+     plotly: https://github.com/plotly/plotly.py
+     
+## uninstall
+
+    pyenv deactivate data_analysis_hello_world
+    pyenv virtualenv-delete data_analysis_hello_world
