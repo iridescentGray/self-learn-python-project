@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     # 产生10个$[1, 100)$范围的随机整数
     randint_list = np.random.randint(1, 100, 10)
-    logging.info(f" randint_list: {randint_list}")
+    logging.info(f" np.random.randint: {randint_list}")
 
     # 产生10个“标准正态”分布随机数
     randn_list = np.random.randn(10)

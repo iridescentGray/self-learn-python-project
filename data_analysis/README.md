@@ -87,6 +87,7 @@ The interactive graphing library for Python
 #### Related documents
 
      plotly: https://github.com/plotly/plotly.py
+     plotly-doc：https://plotly.com/python/
      
 ## uninstall
 
