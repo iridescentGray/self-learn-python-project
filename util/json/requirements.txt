@@ -1,0 +1,2 @@
+python-rapidjson==1.13
+orjson==3.9.10
