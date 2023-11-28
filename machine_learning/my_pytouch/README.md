@@ -9,19 +9,19 @@ pytorch,Send email in Python conveniently for mail using pytorch
     pyenv virtualenv  3.11.6 pytorch
     pyenv activate pytorch
     python -m pip install --upgrade pip
-    cd tool/pytorch
+    cd machine_learning/my_pytouch
 
 #### install different version
-    pytouch-download: https://pytorch.org/get-started/locally/
-    
-    CPU-Version: pip install torch torchvision torchaudio
 
+    pytouch-download: https://pytorch.org/get-started/locally/
+
+    Windows-CPU-Version: pip install torch torchvision torchaudio
+    Mac-Version:         pip install torch torchvision torchaudio
 
 ### Related documents
 
     pytorch:  https://pytorch.org/
     pytorch-github: https://github.com/pytorch/pytorch
-    
 
 ## project
 
