@@ -1,6 +1,6 @@
 # Cython
 
-generator concise, unambiguous and URL-safe UUIDs
+The most widely used Python to C compiler
 
 ## use
 
