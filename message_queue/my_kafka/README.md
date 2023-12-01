@@ -4,7 +4,7 @@ kafka
 
 ## use
 
-### Used by pyenv virtualenv kafka
+### Used by pyenv virtualenv
 
     pyenv virtualenv  3.11.6 kafka
     pyenv activate kafka
@@ -12,9 +12,21 @@ kafka
     cd message_queue/my_kafka
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+### docker-compose run kafka
+
+    see this github repository,and get docker-compose;
+    https://github.com/bitnami/containers/tree/main/bitnami/kafka
+    https://github.com/bitnami/containers/blob/main/bitnami/kafka/docker-compose.yml
+    https://github.com/bitnami/containers/blob/main/bitnami/kafka/docker-compose-cluster.yml
+
+    then execute commond:
+    docker-compose up -d
+
 ### Related documents
 
-    kafka: https://github.com/apache/kafka
+    kafka-github: https://github.com/apache/kafka
+    kafka-doc: https://kafka.apache.org/documentation/
+
 
 ## project
 
