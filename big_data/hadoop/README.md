@@ -11,6 +11,7 @@ hadoop
 
 ### docker-compose run hadoop
 
+    cd big_data/hadoop/hadoop_base_demo
     docker-compose up -d
 
 ### Related documents
