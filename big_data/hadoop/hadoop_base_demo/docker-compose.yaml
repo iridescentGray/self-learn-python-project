@@ -13,6 +13,8 @@ services:
    datanode:
       image: apache/hadoop:3.3.6
       command: ["hdfs", "datanode"]
+      ports:
+        - 9864:9864
       env_file:
         - ./config      
    resourcemanager:
@@ -20,7 +22,7 @@ services:
       hostname: resourcemanager
       command: ["yarn", "resourcemanager"]
       ports:
-         - 8089:8088
+         - 8088:8088
       env_file:
         - ./config
       volumes:

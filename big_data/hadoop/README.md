@@ -14,6 +14,10 @@ hadoop
     cd big_data/hadoop/hadoop_base_demo
     docker-compose up -d
 
+### attiontion
+
+    docker-hadoop not support Arm64,If you use Arm64,there will happend something error
+
 ### Related documents
 
     hadoop-github: https://github.com/apache/hadoop
