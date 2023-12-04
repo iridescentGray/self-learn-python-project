@@ -26,7 +26,11 @@ kafka
 
     kafka-github: https://github.com/apache/kafka
     kafka-doc: https://kafka.apache.org/documentation/
+    kafka-python-github: https://kafka.apache.org/documentation/
 
+### attention
+
+     kafka-python No update for a long time,don't use newest kafka
 
 ## project
 
