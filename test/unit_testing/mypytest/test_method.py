@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 def string_upper(s: str) -> str:
-    """将某个字符串里的所有英文字母，由小写转换为大写"""
+    """将某个字符串里的所有英文字母,由小写转换为大写"""
     chars = []
     for ch in s:
         if "a" <= ch <= "z":

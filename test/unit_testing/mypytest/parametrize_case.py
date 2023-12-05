@@ -3,7 +3,7 @@ import pytest
 from test_method import string_upper
 
 
-# 这段测试较为复杂，可以被下面的pytest.mark.parametrize 完全替代
+# 这段测试较为复杂,可以被下面的pytest.mark.parametrize 完全替代
 # def test_string_upper():
 #     assert string_upper('foo') == 'FOO'
 #
