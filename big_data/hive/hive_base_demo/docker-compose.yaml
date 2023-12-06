@@ -1,0 +1,19 @@
+version: "3"
+services:
+   metastore-standalone:
+      image: apache/hive:3.1.3
+      ports:
+        - 9083:9083
+      environment:
+          SERVICE_NAME: metastore
+      volumes:
+        - "./warehouse:/opt/hive/data/warehouse"
+   hive3:
+      image: apache/hive:3.1.3
+      ports:
+        - 10000:10000
+        - 10002:10002
+      environment:
+          SERVICE_NAME: hiveserver2
+      volumes:
+        - "./warehouse:/opt/hive/data/warehouse"
