@@ -1,6 +1,6 @@
-# network
+# d2l
 
-network demo
+d2l notebook
 
 ## Environmental construction
 
