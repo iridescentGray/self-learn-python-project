@@ -11,13 +11,17 @@ flink
 
 ### docker-compose run flink
 
-    then execute commond:
-    docker-compose up -d
+1. docker build -f PyFlink-DockerFile --tag pyflink:latest .
+2. run docker-compose common
+   - docker-compose -f docker-compose-application-mode.yaml up -d
+   - docker-compose -f docker-compose-session-mode.yaml up -d
 
 ### Related documents
 
     flink-github: https://github.com/apache/flink
     flink-doc: https://flink.apache.org/documentation/
+    flink-python-sdk-doc: https://nightlies.apache.org/flink/flink-docs-release-1.18/docs/dev/python/overview/\
+    flink-python-sdk-zh_doc:https://nightlies.apache.org/flink/flink-docs-release-1.18/zh/docs/ops/rest_api/
 
 ## project
 
