@@ -26,14 +26,6 @@
 
 ## project
 
-### data_analysis_hello_world
-
-#### introduce
-
-data_analysis_hello_world 是一个数据分析的入门项目,介绍基础 Api 的使用
-
-#### start-up
-
 ### my_seaborn
 
 #### introduce
