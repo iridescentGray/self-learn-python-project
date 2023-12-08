@@ -9,7 +9,7 @@
     pyenv virtualenv  3.10.9 data_analysis_hello_world  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
     pyenv activate data_analysis_hello_world
     python -m pip install --upgrade pip
-    cd data_analysis/data_analysis_hello_world
+    cd data_analysis
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents
