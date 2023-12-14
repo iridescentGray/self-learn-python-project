@@ -1,1 +1,1 @@
-pypika==0.48.9
+SQLAlchemy==2.0.23
