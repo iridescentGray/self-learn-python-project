@@ -1,6 +1,6 @@
 # SQLAlchemy
 
-SQLAlchemy,database orm framework
+SQLAlchemy orm framework
 
 ## Environmental construction
 

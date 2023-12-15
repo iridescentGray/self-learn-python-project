@@ -77,7 +77,7 @@ def singleton(cls):
     return wrapper
 
 
-def retry(times, exceptions):
+def retry(times: int = 3, exceptions=Exception):
     """
     Retry Decorator
 
@@ -95,10 +95,10 @@ def retry(times, exceptions):
             while attempt < times:
                 try:
                     return func(*args, **kwargs)
-                except exceptions:
+                except exceptions as e:
                     attempt += 1
-                    logging.info(
-                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}"
+                    logging.error(
+                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
                     )
             return func(*args, **kwargs)
 
@@ -107,7 +107,7 @@ def retry(times, exceptions):
     return decorator
 
 
-def async_retry(times, exceptions):
+def async_retry(times: int = 3, exceptions=Exception):
     """
     Retry Decorator
 
@@ -129,10 +129,10 @@ def async_retry(times, exceptions):
                     logging.info(args_name)
 
                     return await func(*args, **kwargs)
-                except exceptions:
+                except exceptions as e:
                     attempt += 1
-                    logging.info(
-                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}"
+                    logging.error(
+                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
                     )
             return await func(*args, **kwargs)
 

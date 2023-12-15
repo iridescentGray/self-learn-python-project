@@ -1,6 +1,6 @@
 # peewee
 
-peewee,Send email in Python conveniently for mail using peewee
+peewee orm framework
 
 ## use
 
