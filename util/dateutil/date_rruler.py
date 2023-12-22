@@ -1,5 +1,7 @@
 from dateutil import rrule, parser
 
+"""生成多个连续的日期
+"""
 
 print(
     list(
