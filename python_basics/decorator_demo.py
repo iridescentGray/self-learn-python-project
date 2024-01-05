@@ -97,9 +97,14 @@ def retry(times: int = 3, exceptions=Exception):
                     return func(*args, **kwargs)
                 except exceptions as e:
                     attempt += 1
-                    logging.error(
-                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
-                    )
+                    if attempt < times:
+                        logging.error(
+                            f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
+                        )
+                    else:
+                        logging.exception(
+                            f"Exception thrown when attempting to run {func} after {times} attempts, error:{e}"
+                        )
             return func(*args, **kwargs)
 
         return wrapper
@@ -131,9 +136,14 @@ def async_retry(times: int = 3, exceptions=Exception):
                     return await func(*args, **kwargs)
                 except exceptions as e:
                     attempt += 1
-                    logging.error(
-                        f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
-                    )
+                    if attempt < times:
+                        logging.error(
+                            f"Exception thrown when attempting to run {func}, attempt {attempt} of {times}, error:{e}"
+                        )
+                    else:
+                        logging.exception(
+                            f"Exception thrown when attempting to run {func} after {times} attempts, error:{e}"
+                        )
             return await func(*args, **kwargs)
 
         return wrapper
@@ -170,7 +180,9 @@ def log_param_and_result():
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            logging.info(f"execute {func.__name__} param: - args: {args}, kwargs: {kwargs}")
+            logging.info(
+                f"execute {func.__name__} param: - args: {args}, kwargs: {kwargs}"
+            )
             result = func(*args, **kwargs)
             logging.info(f"{func.__name__} return result: {result}")
             return result
