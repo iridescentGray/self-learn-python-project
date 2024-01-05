@@ -1,6 +1,6 @@
 # pytorch
 
-pytorch,Send email in Python conveniently for mail using pytorch
+pytorch
 
 ## use
 
@@ -23,16 +23,6 @@ pytorch,Send email in Python conveniently for mail using pytorch
     pytorch: https://pytorch.org/
     pytorch-github: https://github.com/pytorch/pytorch
     pytorch-doc: https://pytorch.org/docs/stable/index.html
-
-## project
-
-### hello_world_pytorch
-
-#### introduce
-
-pytorch Introduction to Operation Cases
-
-#### start-up
 
 ## uninstall
 

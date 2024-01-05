@@ -6,7 +6,7 @@ scikit-learn correlation demo
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.9 scikit-learn 
+    pyenv virtualenv  3.10.11 scikit-learn 
     pyenv activate scikit-learn
     python -m pip install --upgrade pip
     cd machine_learning/scikit-learn

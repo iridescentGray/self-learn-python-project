@@ -5,9 +5,9 @@ from deepface import DeepFace
 import cv2
 
 print("-------------------------------分析图片---------------------------------")
-image = cv2.imread(r"machine_learning/deepface/data/face/yu1.jpg")
+image = cv2.imread(r"machine_learning/computer_vision/deepface/data/face/yu1.jpg")
 # defalut analyze actions=("emotion", "age", "gender", "race")
-results = DeepFace.analyze(image,detector_backend="mtcnn", enforce_detection=False)
+results = DeepFace.analyze(image, detector_backend="mtcnn", enforce_detection=False)
 
 pprint(results)
 
@@ -36,7 +36,7 @@ for result in results:
     cv2.putText(
         image,
         f"age: {age}, emotion: {emotion}, gender: {gender}, race: {race}",
-        (region["x"] - 600, region["y"]-500),
+        (region["x"] - 600, region["y"] - 500),
         cv2.MARKER_CROSS,
         2.5,
         (300, 1, 300),
