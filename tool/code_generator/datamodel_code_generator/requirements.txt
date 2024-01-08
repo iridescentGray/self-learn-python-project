@@ -1,0 +1,3 @@
+datamodel-code-generator==0.25.2
+datamodel-code-generator[http]
+datamodel-code-generator[graphql]

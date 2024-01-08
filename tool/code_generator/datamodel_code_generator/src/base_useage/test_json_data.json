@@ -1,0 +1,18 @@
+{
+  "pets": [
+    {
+      "name": "dog",
+      "age": 2
+    },
+    {
+      "name": "cat",
+      "age": 1
+    },
+    {
+      "name": "snake",
+      "age": 3,
+      "nickname": "python"
+    }
+  ],
+  "status": 200
+}
