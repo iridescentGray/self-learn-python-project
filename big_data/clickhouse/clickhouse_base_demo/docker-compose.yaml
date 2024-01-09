@@ -1,0 +1,14 @@
+version: '2'
+services:
+  clickhouse:
+    image: docker.io/bitnami/clickhouse:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '8123:8123'      # http port
+      - '9000:9000'      # tcp port
+    volumes:
+      - ./clickhouse_data:/bitnami/clickhouse
+volumes:
+  clickhouse_data:
+    driver: local
