@@ -11,11 +11,14 @@ class Name(str, Enum):
     marisa = "fish3"
 
 
-# http://127.0.0.1:5555/users/test1 success
-# http://127.0.0.1:5555/users/name2 success
-# http://127.0.0.1:5555/users/2     error
 @app.get("/users/{user_name}")
 async def get_user(user_name: Name):
+    """枚举参数
+
+    http://127.0.0.1:5555/users/test1 success
+    http://127.0.0.1:5555/users/name2 success
+    http://127.0.0.1:5555/users/2     error
+    """
     return {"user_id": user_name}
 
 

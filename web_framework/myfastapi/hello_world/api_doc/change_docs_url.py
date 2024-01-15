@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 import uvicorn
 
 # doc: http://127.0.0.1:5555/my_docs
@@ -14,6 +14,12 @@ app = FastAPI(
 @app.get("/apple/{item_id}")
 async def get_item(item_id: int):
     return {"item_id": item_id}
+
+
+@app.get("/user")
+async def get_user(password: str = Query("test", min_length=3, max_length=5)):
+    """指定参数限制,会显示到api_doc中"""
+    return {"password": password}
 
 
 if __name__ == "__main__":
