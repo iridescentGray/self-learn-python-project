@@ -11,7 +11,7 @@ Scrapy相关demo
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.9 my-scrapy  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
+    pyenv virtualenv  3.10.9 my-scrapy
     pyenv activate my-scrapy
     python -m pip install --upgrade pip
     cd crawler/my_scrapy
