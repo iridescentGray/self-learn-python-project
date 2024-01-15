@@ -1,12 +1,12 @@
 # selenium
 
-selenium相关demo
+selenium 相关 demo
 
 ## Environmental construction
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.12 my_selenium 
+    pyenv virtualenv  3.10.12 my_selenium
     pyenv activate my_selenium
     python -m pip install --upgrade pip
     cd crawler/my_selenium
@@ -16,16 +16,7 @@ selenium相关demo
 
     selenium-python-doc:   https://www.selenium.dev/
     selenium-python-api:   https://github.com/SeleniumHQ/selenium
-
-## introduce
-
-### hello_world_demo
-
-#### introduce
-
-hello_world_demo是一个selenium的简单入门项目
-
-#### start-up
+    webdriver_manager:     https://github.com/SergeyPirogov/webdriver_manager
 
 ## uninstall
 
