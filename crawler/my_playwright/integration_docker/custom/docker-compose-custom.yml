@@ -1,0 +1,8 @@
+version: '3'
+services:
+  playwright_service:
+    image: playwright_python:1.0.0
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    ipc: host

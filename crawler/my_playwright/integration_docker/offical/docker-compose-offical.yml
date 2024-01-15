@@ -1,0 +1,8 @@
+version: '3'
+services:
+  playwright_service:
+    image: mcr.microsoft.com/playwright:v1.40.0-jammy
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    ipc: host

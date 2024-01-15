@@ -6,7 +6,7 @@ Playwright相关demo
 
 ### Used by pyenv virtualenv plugin
 
-    pyenv virtualenv  3.10.9 my_playwright  //此外，还需要使用编译器的Add Interpreter功能把这个虚拟环境识别了
+    pyenv virtualenv  3.10.9 my_playwright
     pyenv activate my_playwright
     python -m pip install --upgrade pip
     cd crawler/my_playwright
@@ -18,16 +18,6 @@ Playwright相关demo
     playwright-python-doc:   https://playwright.dev/python/docs/intro
     playwright-python-api:   https://playwright.dev/python/docs/api/class-playwright
     playwright-github:   https://github.com/microsoft/playwright
-
-## introduce
-
-### hello_world_demo
-
-#### introduce
-
-hello_world_demo是一个playwright的简单入门项目
-
-#### start-up
 
 ## uninstall
 
