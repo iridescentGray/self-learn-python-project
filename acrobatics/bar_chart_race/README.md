@@ -1,6 +1,6 @@
 # bar_chart_race
 
-bar_chart_race,Send email in Python conveniently for mail using bar_chart_race
+Create animated bar chart races in Python with matplotlib
 
 ## use
 

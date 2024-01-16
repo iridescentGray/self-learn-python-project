@@ -1,6 +1,6 @@
 # apscheduler
 
-apscheduler,Send email in Python conveniently for mail using apscheduler
+apscheduler Task scheduling library for Python
 
 ## use
 

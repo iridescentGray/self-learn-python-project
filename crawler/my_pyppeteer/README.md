@@ -1,6 +1,6 @@
 # pyppeteer
 
-pyppeteer,Send email in Python conveniently for mail using pyppeteer
+Node.js API for Chrome
 
 ## use
 

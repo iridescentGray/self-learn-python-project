@@ -1,6 +1,6 @@
 # emoji
 
-emoji,Send email in Python conveniently for mail using emoji
+emoji terminal output for Python
 
 ## use
 
@@ -14,7 +14,7 @@ emoji,Send email in Python conveniently for mail using emoji
 
 ### Related documents
 
-    emoji: https://github.com/kootenpv/emoji
+    emoji: https://github.com/carpedm20/emoji
 
 ## uninstall
 
