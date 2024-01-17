@@ -9,7 +9,7 @@ rabbitmq
     pyenv virtualenv  3.10.9 rabbitmq
     pyenv activate rabbitmq
     python -m pip install --upgrade pip
-    cd message_queue/my_rabbitmq
+    cd  message\my_rabbitmq
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents

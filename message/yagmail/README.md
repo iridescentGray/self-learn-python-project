@@ -9,7 +9,7 @@ yagmail,Send email in Python conveniently for mail using yagmail
     pyenv virtualenv  3.10.9 yagmail
     pyenv activate yagmail
     python -m pip install --upgrade pip
-    cd tool/yagmail
+    cd message\yagmail
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents

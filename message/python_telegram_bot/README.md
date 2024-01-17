@@ -9,7 +9,7 @@ a python-telegram-bot wrapper you can't refuse
     pyenv virtualenv  3.10.9 python-telegram-bot
     pyenv activate python-telegram-bot
     python -m pip install --upgrade pip
-    cd tool/python-telegram-bot
+    cd  message\python_telegram_bot
     pip install -r requirements.txt
 
 ### Related documents

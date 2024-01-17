@@ -9,7 +9,7 @@ kafka
     pyenv virtualenv  3.11.6 kafka
     pyenv activate kafka
     python -m pip install --upgrade pip
-    cd message_queue/my_kafka
+    cd  message\my_kafka
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### docker-compose run kafka
