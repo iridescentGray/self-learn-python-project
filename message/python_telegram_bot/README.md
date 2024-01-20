@@ -18,13 +18,6 @@ a python-telegram-bot wrapper you can't refuse
     doc: https://python-telegram-bot.org/
 
 
-### start-up
-
-#### hello_world
-    cd message\python_telegram_bot
-    python hello_world_bot.py
-    sned tg message:  /hello
-
 ## uninstall
 
     pyenv virtualenv-delete python-telegram-bot
