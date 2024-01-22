@@ -10,6 +10,10 @@ plotly==5.18.0
 
 # polars
 polars==0.20.3
+# polars-excel
+xlsx2csv==0.8.2
+xlsxwriter==3.1.9
+
 
 # streamlit
 streamlit==1.29.0

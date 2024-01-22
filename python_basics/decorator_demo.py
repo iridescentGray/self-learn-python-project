@@ -1,7 +1,7 @@
-import asyncio
 import functools
 import inspect
 import logging
+from threading import Lock
 import time
 from multiprocessing import RLock
 from typing import Callable, Any
@@ -190,3 +190,24 @@ def log_param_and_result():
         return wrapper
 
     return decorator
+
+
+def synchronized(member):
+    @functools.wraps(member)
+    def wrapper(*args, **kwargs):
+        lock = vars(member).get("_synchronized_lock", None)
+        if lock is None:
+            lock = vars(member).setdefault("_synchronized_lock", Lock())
+        with lock:
+            return member(*args, **kwargs)
+
+    return wrapper
+
+
+class Foo(object):
+    def perform_mutation(self, bytes):
+        print(bytes)
+
+    @synchronized
+    def write(self, bytes):
+        self.perform_mutation(bytes)
