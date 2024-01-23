@@ -17,8 +17,6 @@ library for arrow text and beautiful formatting in the terminal.
     arrow-github: https://github.com/arrow-py/arrow
     arrow-doc:    https://arrow.readthedocs.io/en/latest/
 
-    # arrow maybe is Better dates library
-    arrow-github: https://github.com/arrow-py/arrow
 
 ## uninstall
 
