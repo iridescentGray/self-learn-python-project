@@ -8,7 +8,7 @@
 ## 方法2
     python run.py
 
-# init database
+## init database
     # 第一次初始化时使用
     flask db init
     # 后面每次修改数据库字段时使用
@@ -16,7 +16,7 @@
     flask db upgrade
 
 
-### docker run
+# docker run
     # build image
     docker build --no-cache -t flask_service_image .
     # 启动
