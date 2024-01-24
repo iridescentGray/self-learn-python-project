@@ -10,7 +10,6 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
     pyenv virtualenv 3.10.12 my-fastapi
     pyenv activate my-fastapi
     python -m pip install --upgrade pip
-    cd web_framework/myfastapi/
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents
@@ -18,36 +17,6 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
     FastAPI： https://fastapi.tiangolo.com/zh/
     pydantic：https://docs.pydantic.dev/
     starlette：https://www.starlette.io/
-
-## project
-
-### hello_world
-
-#### introduce
-
-hello_world是一个使用了fast-api的简单样例项目
-
-#### start-up
-
-    cd hello_world
-    uvicorn main:app --reload
-    查看项目接口文档： http://127.0.0.1:8000/docs
-    另一种接口文档：http://127.0.0.1:8000/redoc
-
-#### Test interface
-
-    http://127.0.0.1:8000/
-
-### learn_websocket
-
-#### introduce
-
-learn_websocket是一个使用了fast-api的简单样例项目
-
-#### start-up
-
-    cd learn_websocket
-    uvicorn ws_simple_demo:app --reload
 
 ## uninstall
 

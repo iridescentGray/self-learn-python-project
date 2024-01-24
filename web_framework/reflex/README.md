@@ -9,7 +9,6 @@ Web apps in pure Python
     pyenv virtualenv  3.10.11 reflex
     pyenv activate reflex
     python -m pip install --upgrade pip
-    cd web_framework/reflex
     pip install -r requirements.txt
 
 ### Related documents

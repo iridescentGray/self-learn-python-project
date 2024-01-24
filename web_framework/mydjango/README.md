@@ -9,7 +9,6 @@ django相关demo
     pyenv virtualenv  3.10.9 my-django
     pyenv activate my-django
     python -m pip install --upgrade pip
-    cd web_framework/mydjango/
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 ### Related documents
