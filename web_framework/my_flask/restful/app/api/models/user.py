@@ -21,7 +21,7 @@ class UserModel(db.Model):
     # 用户名
     username = db.Column(db.String(40), nullable=False, default="", comment="用户姓名")
     # 密码
-    pwd = db.Column(db.String(102), comment="密码")
+    pwd = db.Column(db.String(200), comment="密码")
     # salt
     salt = db.Column(db.String(32), comment="salt")
     # 创建时间

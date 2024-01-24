@@ -20,9 +20,7 @@ class Register(Resource):
         else:
             try:
                 data["salt"] = uuid.uuid4().hex
-                data["pwd"] = generate_password_hash(
-                    "{}{}".format(data["salt"], data["pwd"])
-                )
+                data["pwd"] = generate_password_hash(f"{data['salt']}{data['pwd']}")
                 user = UserModel(**data)
                 user.addUser()
                 return res(message="Register succeed!")
