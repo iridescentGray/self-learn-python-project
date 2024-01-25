@@ -19,6 +19,16 @@ Playwright相关demo
     playwright-python-api:   https://playwright.dev/python/docs/api/class-playwright
     playwright-github:   https://github.com/microsoft/playwright
 
+
+## ohter topic
+
+
+### install browsers and dependencies
+    browsers: https://playwright.dev/python/docs/browsers#google-chrome--microsoft-edge
+    dependencies: https://playwright.dev/python/docs/browsers#install-system-dependencies
+
+    get some help: playwright install --help
+
 ## uninstall
 
     pyenv virtualenv-delete my_playwright
