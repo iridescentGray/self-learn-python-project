@@ -19,17 +19,12 @@ async def run(playwright: Playwright):
     context = await browser.new_context(base_url="https://api.github.com")
     api_request_context = context.request
     page = await context.new_page()
-
-    # Alternatively you can create a APIRequestContext manually without having a browser context attached:
-    # api_request_context = await playwright.request.new_context(base_url="https://api.github.com")
-
     # Create a repository.
     response = await api_request_context.post(
         # not need prefix
         "/user/repos",
         headers={
             "Accept": "application/vnd.github.v3+json",
-            # Add GitHub personal access token.
             "Authorization": f"token {API_TOKEN}",
         },
         data={"name": REPO},
@@ -41,7 +36,6 @@ async def run(playwright: Playwright):
         f"/repos/{USER}/{REPO}",
         headers={
             "Accept": "application/vnd.github.v3+json",
-            # Add GitHub personal access token.
             "Authorization": f"token {API_TOKEN}",
         },
     )

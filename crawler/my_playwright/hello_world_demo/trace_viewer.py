@@ -5,7 +5,10 @@ from playwright.async_api import async_playwright
 """
 playwright-doc:
 https://playwright.dev/python/docs/trace-viewer-intro
+https://playwright.dev/python/docs/trace-viewer
 
+web-trace-view:
+https://trace.playwright.dev/
 """
 
 
