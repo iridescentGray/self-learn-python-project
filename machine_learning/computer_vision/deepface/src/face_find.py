@@ -1,4 +1,3 @@
-from pickle import FALSE
 from pprint import pprint
 
 from deepface import DeepFace

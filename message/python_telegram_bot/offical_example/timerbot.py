@@ -9,7 +9,18 @@ logging.basicConfig(
 )
 
 
-# https://docs.python-telegram-bot.org/en/v20.7/examples.timerbot.html
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.timerbot.html
+
+
+feature:
+1.job schedule(add/remove)
+2.reply_text
+
+"""
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Sends explanation on how to use the bot."""
     await update.message.reply_text("Hi! Use /set <seconds> to set a timer")

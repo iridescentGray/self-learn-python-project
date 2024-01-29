@@ -10,7 +10,18 @@ from telegram.ext import (
     filters,
 )
 
-# https://docs.python-telegram-bot.org/en/v20.7/examples.html
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.echobot.html
+
+
+feature:
+1.reply_html
+2.reply_text
+3.ForceReply
+4.update.effective_user.mention_html
+
+"""
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )

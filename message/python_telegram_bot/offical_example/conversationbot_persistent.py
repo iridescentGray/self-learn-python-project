@@ -13,7 +13,16 @@ from telegram.ext import (
 )
 from tg_config import token
 
-# https://docs.python-telegram-bot.org/en/v20.7/examples.persistentconversationbot.html
+
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.persistentconversationbot.html
+
+feature:
+1.base conversation
+2.persistent context.user_data
+
+"""
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
@@ -32,13 +41,11 @@ markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
 
 def facts_to_str(user_data: Dict[str, str]) -> str:
-    """Helper function for formatting the gathered user info."""
     facts = [f"{key} - {value}" for key, value in user_data.items()]
     return "\n".join(facts).join(["\n", "\n"])
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Start the conversation, display any stored data and ask user for input."""
     reply_text = "Hi! My name is Doctor Botter."
     if context.user_data:
         reply_text += (
@@ -56,7 +63,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 async def regular_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Ask the user for info about the selected predefined choice."""
     text = update.message.text.lower()
     context.user_data["choice"] = text
     if context.user_data.get(text):
@@ -69,7 +75,6 @@ async def regular_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
 
 async def custom_choice(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Ask the user for a description of a custom category."""
     await update.message.reply_text(
         'Alright, please send me the category first, for example "Most impressive skill"'
     )
@@ -116,10 +121,8 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 def main() -> None:
-    persistence = PicklePersistence(filepath="conversationbot")
+    persistence = PicklePersistence(filepath="conversationbot_persistent")
     application = Application.builder().token(token).persistence(persistence).build()
-
-    # Add conversation handler with the states CHOOSING, TYPING_CHOICE and TYPING_REPLY
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={

@@ -19,6 +19,18 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
+
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.conversationbot2.html
+
+feature:
+1.loop conversation
+2.content.user_data save/read
+3.ReplyKeyboard
+
+"""
+
 CHOOSING, TYPING_REPLY, TYPING_CHOICE = range(3)
 
 reply_keyboard = [

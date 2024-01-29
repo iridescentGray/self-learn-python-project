@@ -17,7 +17,18 @@ logging.basicConfig(
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
-# https://docs.python-telegram-bot.org/en/v20.7/examples.conversationbot.html
+
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.conversationbot.html
+
+feature:
+1.base conversation
+2.recive use photo
+3.ReplyKeyboard
+4.get user info
+
+"""
 GENDER, PHOTO, LOCATION, BIO = range(4)
 
 

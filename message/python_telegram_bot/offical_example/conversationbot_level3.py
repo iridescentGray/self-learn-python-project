@@ -14,7 +14,21 @@ from telegram.ext import (
 
 from tg_config import token
 
-# https://docs.python-telegram-bot.org/en/v20.7/examples.nestedconversationbot.html
+
+"""
+doc:
+https://docs.python-telegram-bot.org/en/v20.7/examples.nestedconversationbot.html
+
+
+feature:
+1.complex nested conversation
+2.loop conversation
+3.InlineKeyboard
+4.get user info
+5.CallbackQueryHandler,ConversationHandler,CommandHandler,MessageHandler
+
+"""
+
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
@@ -135,14 +149,12 @@ async def show_data(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
 
 
 async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """End Conversation by command."""
     await update.message.reply_text("Okay, bye.")
 
     return END
 
 
 async def end(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """End conversation from InlineKeyboardButton."""
     await update.callback_query.answer()
 
     text = "See you around!"
@@ -153,7 +165,6 @@ async def end(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 # Second level conversation callbacks
 async def select_level(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-    """Choose to add a parent or a child."""
     text = "You may add a parent or a child. Also you can show the gathered data or go back."
     buttons = [
         [
@@ -174,7 +185,6 @@ async def select_level(update: Update, context: ContextTypes.DEFAULT_TYPE) -> st
 
 
 async def select_gender(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-    """Choose to add mother or father."""
     level = update.callback_query.data
     context.user_data[CURRENT_LEVEL] = level
 
@@ -201,7 +211,6 @@ async def select_gender(update: Update, context: ContextTypes.DEFAULT_TYPE) -> s
 
 
 async def end_second_level(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    """Return to top level conversation."""
     context.user_data[START_OVER] = True
     await start(update, context)
 
@@ -210,7 +219,6 @@ async def end_second_level(update: Update, context: ContextTypes.DEFAULT_TYPE) -
 
 # Third level callbacks
 async def select_feature(update: Update, context: ContextTypes.DEFAULT_TYPE) -> str:
-    """Select a feature to update for the person."""
     buttons = [
         [
             InlineKeyboardButton(text="Name", callback_data=str(NAME)),
