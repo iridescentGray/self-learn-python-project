@@ -6,7 +6,6 @@ import json
 import logging
 import datetime
 from copy import deepcopy
-from dataclasses import dataclass
 from threading import Thread
 from typing import Any, Callable, Coroutine, Dict, List, Optional, Union
 
@@ -25,9 +24,11 @@ from telegram.ext import (
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
+    TypeHandler,
 )
+from rpc_types import RPCSendMsg
 
-from message.python_telegram_bot.advanced.message_types import RPCSendMsg
+from message_types import RPCMessageType
 
 MAX_MESSAGE_LENGTH = MessageLimit.MAX_TEXT_LENGTH
 
@@ -35,22 +36,11 @@ MAX_MESSAGE_LENGTH = MessageLimit.MAX_TEXT_LENGTH
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class TimeunitMappings:
-    header: str
-    message: str
-    message2: str
-    callback: str
-    default: int
-    dateformat: str
-
-
 class Telegram:
-    """This class handles all telegram communication"""
-
-    def __init__(self) -> None:
-        self._config: dict
+    def __init__(self, config: dict) -> None:
+        self._config: dict = config
         self._app: Application
+        self.__is_running: bool
         self._loop: asyncio.AbstractEventLoop
         self._init_keyboard()
         self._start_thread()
@@ -75,9 +65,6 @@ class Telegram:
         return Application.builder().token(self._config["telegram"]["token"]).build()
 
     def _init(self) -> None:
-        """
-        Initializes this module
-        """
         try:
             self._loop = asyncio.get_running_loop()
         except RuntimeError:
@@ -86,14 +73,18 @@ class Telegram:
 
         self._app = self._init_telegram_app()
 
-        handles = [
+        types_handles = []
+        command_handles = [
             CommandHandler("status", self._status),
             CommandHandler("start", self._start),
             CommandHandler("stop", self._stop),
             CommandHandler("help", self._help),
         ]
         callbacks = []
-        for handle in handles:
+        for handle in types_handles:
+            self._app.add_handler(handle)
+
+        for handle in command_handles:
             self._app.add_handler(handle)
 
         for callback in callbacks:
@@ -101,7 +92,7 @@ class Telegram:
 
         logger.info(
             "telegram is listening for following commands: %s",
-            [[x for x in sorted(h.commands)] for h in handles],
+            [[x for x in sorted(h.commands)] for h in command_handles],
         )
         self._loop.run_until_complete(self._startup_telegram())
 
@@ -116,6 +107,7 @@ class Telegram:
                 drop_pending_updates=True,
                 # stop_signals=[],  # Necessary as we don't run on the main thread
             )
+            self.__is_running = True
             while True:
                 await asyncio.sleep(3)
                 if not self._app.updater.running:
@@ -136,13 +128,29 @@ class Telegram:
         asyncio.run_coroutine_threadsafe(self._cleanup_telegram(), self._loop)
         self._thread.join()
 
+    def compose_message(
+        self, msg: Dict[str, Any], msg_type: RPCMessageType
+    ) -> Optional[tuple]:
+        message = msg
+        parse_mode = ParseMode.MARKDOWN
+        if msg_type == RPCMessageType.STATUS:
+            message = f"*Status:* `{msg['status']}`"
+        elif msg_type == RPCMessageType.GETCODE:
+            message = "input the code:"
+            parse_mode = ParseMode.HTML
+        return message, parse_mode
+
     def send_msg(self, msg: RPCSendMsg) -> None:
         """Send a message to telegram channel"""
-
-        message = self.compose_message(deepcopy(msg), msg_type)  # type: ignore
+        msg_type = msg["type"]
+        message, parse_mode = self.compose_message(deepcopy(msg), msg_type)  # type: ignore
         if message:
             asyncio.run_coroutine_threadsafe(
-                self._send_msg(message, disable_notification=False),
+                self._send_msg(
+                    message,
+                    parse_mode=parse_mode,
+                    disable_notification=False,
+                ),
                 self._loop,
             )
 
@@ -154,8 +162,8 @@ class Telegram:
         :param update: message update
         :return: None
         """
-
-        await self._send_msg("ok")
+        status = "is running" if self.__is_running else "not run"
+        await self._send_msg(f"bot {status}")
 
     async def _start(self, update: Update, context: CallbackContext) -> None:
         """
@@ -164,6 +172,7 @@ class Telegram:
         :param update: message update
         :return: None
         """
+        self.__is_running = True
         await self._send_msg(f"bot run")
 
     async def _stop(self, update: Update, context: CallbackContext) -> None:
@@ -173,6 +182,7 @@ class Telegram:
         :param update: message update
         :return: None
         """
+        self.__is_running = False
         await self._send_msg(f"bot stop")
 
     async def _help(self, update: Update, context: CallbackContext) -> None:
@@ -188,8 +198,8 @@ class Telegram:
             "------------\n"
             "*/start:* `Starts the bot`\n"
             "*/stop:* Stops the bot\n"
-            "*/status  list staus`\n"
-            "*/help:* `This help message`\n"
+            "*/status:* `show bot status`\n"
+            "*/help:* `This help message`"
         )
 
         await self._send_msg(message, parse_mode=ParseMode.MARKDOWN)
@@ -251,25 +261,17 @@ class Telegram:
         :param parse_mode: telegram parse mode
         :return: None
         """
-        reply_markup: Union[InlineKeyboardMarkup, ReplyKeyboardMarkup]
-        if query:
-            await self._update_msg(
-                query=query,
-                msg=msg,
-                parse_mode=parse_mode,
-                callback_path=callback_path,
-                reload_able=reload_able,
-            )
-            return
-        if reload_able:
-            reply_markup = InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Refresh", callback_data=callback_path)]]
-            )
-        else:
-            if keyboard is not None:
-                reply_markup = InlineKeyboardMarkup(keyboard)
-            else:
-                reply_markup = ReplyKeyboardMarkup(self._keyboard, resize_keyboard=True)
+        # reply_markup: Union[InlineKeyboardMarkup, ReplyKeyboardMarkup]
+        # if query:
+        #     await self._update_msg(
+        #         query=query,
+        #         msg=msg,
+        #         parse_mode=parse_mode,
+        #         callback_path=callback_path,
+        #         reload_able=reload_able,
+        #     )
+        #     return
+        reply_markup = ReplyKeyboardMarkup(self._keyboard, resize_keyboard=True)
         try:
             try:
                 await self._app.bot.send_message(
@@ -296,3 +298,13 @@ class Telegram:
             logger.warning(
                 "TelegramError: %s! Giving up on that message.", telegram_err.message
             )
+
+
+if __name__ == "__main__":
+    config = {
+        "telegram": {
+            "chat_id": "",
+            "token": "",
+        }
+    }
+    bot = Telegram(config)

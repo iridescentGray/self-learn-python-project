@@ -1,22 +1,13 @@
-import typing
+from enum import Enum
 
 
-class RPCSendMsgBase(typing.TypedDict):
-    pass
+class RPCMessageType(str, Enum):
+    STATUS = "status"
+    WARNING = "warning"
+    GETCODE = "get_code"
 
+    def __repr__(self):
+        return self.value
 
-class RPCStatusMsg(RPCSendMsgBase):
-    """Used for Status, Startup and Warning messages"""
-
-    type: int
-    status: str
-
-
-class RPCHtmlMsg(RPCSendMsgBase):
-    """Used for Status, Startup and Warning messages"""
-
-    type: int
-    html: str
-
-
-RPCSendMsg = typing.Union[RPCStatusMsg, RPCHtmlMsg]
+    def __str__(self):
+        return self.value
