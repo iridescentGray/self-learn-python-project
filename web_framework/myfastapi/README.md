@@ -10,7 +10,7 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
     pyenv virtualenv 3.10.12 my-fastapi
     pyenv activate my-fastapi
     python -m pip install --upgrade pip
-    pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+    pip install -r requirements.txt
 
 ### Related documents
 
