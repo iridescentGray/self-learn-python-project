@@ -1,7 +1,7 @@
 import asyncio
 from pprint import pprint
 
-from python_basics.decorator import async_timed
+from python_basics.decorator_demo import async_timed
 
 
 async def delay(seconds):
@@ -9,7 +9,9 @@ async def delay(seconds):
     return f"我睡了 {seconds} 秒"
 
 
-print(f"-------------------------------use_create_task_create_batch_await_task------------------------------------")
+print(
+    f"-------------------------------use_create_task_create_batch_await_task------------------------------------"
+)
 
 
 @async_timed
@@ -25,7 +27,9 @@ async def use_create_task_create_batch_await_task():
 
 asyncio.run(use_create_task_create_batch_await_task())
 
-print(f"----------------------------------use_gather_create_batch_await_task-------------------------------------")
+print(
+    f"----------------------------------use_gather_create_batch_await_task-------------------------------------"
+)
 
 
 @async_timed
@@ -38,15 +42,19 @@ async def use_gather_create_batch_await_task():
 
 asyncio.run(use_gather_create_batch_await_task())
 
-print(f"------------------------------------------gather_task_group---------------------------------------------")
+print(
+    f"------------------------------------------gather_task_group---------------------------------------------"
+)
 
 
 @async_timed
 async def gather_task_group():
-    gather1 = asyncio.gather(*[asyncio.sleep(second, result=f"我睡了 {second} 秒")
-                               for second in (3, 1, 2)])
-    gather2 = asyncio.gather(*[asyncio.sleep(second, result=f"我睡了 {second} 秒")
-                               for second in (1, 1, 1)])
+    gather1 = asyncio.gather(
+        *[asyncio.sleep(second, result=f"我睡了 {second} 秒") for second in (3, 1, 2)]
+    )
+    gather2 = asyncio.gather(
+        *[asyncio.sleep(second, result=f"我睡了 {second} 秒") for second in (1, 1, 1)]
+    )
     # 多个gather可以拼接，执行结果也是分组的
     results = await asyncio.gather(gather1, gather2, asyncio.sleep(3, "我睡了 3 秒"))
     pprint(results)
@@ -54,7 +62,9 @@ async def gather_task_group():
 
 asyncio.run(gather_task_group())
 
-print(f"----------------------------------use_as_completed_create_task------------------------------------------")
+print(
+    f"----------------------------------use_as_completed_create_task------------------------------------------"
+)
 
 
 @async_timed
@@ -70,13 +80,14 @@ async def use_as_completed_create_task():
 
 asyncio.run(use_as_completed_create_task())
 
-print(f"-------------------------------timeout_for_as_completed_task-----------------------------------------")
+print(
+    f"-------------------------------timeout_for_as_completed_task-----------------------------------------"
+)
 
 
 @async_timed
 async def timeout_for_as_completed_task():
-    tasks = [asyncio.create_task(delay(seconds))
-             for seconds in (1, 3, 4)]
+    tasks = [asyncio.create_task(delay(seconds)) for seconds in (1, 3, 4)]
     for finished_task in asyncio.as_completed(tasks, timeout=2):
         try:
             print(await finished_task)
@@ -87,7 +98,9 @@ async def timeout_for_as_completed_task():
 
 asyncio.run(timeout_for_as_completed_task())
 
-print(f"-------------------------------use_wait_batch_wait_task-----------------------------------------")
+print(
+    f"-------------------------------use_wait_batch_wait_task-----------------------------------------"
+)
 
 
 async def use_wait_batch_wait_task():
@@ -103,12 +116,16 @@ async def use_wait_batch_wait_task():
 
 asyncio.run(use_wait_batch_wait_task())
 
-print(f"-------------------------------wait_first_task_done_then-----------------------------------------")
+print(
+    f"-------------------------------wait_first_task_done_then-----------------------------------------"
+)
+
 
 async def wait_first_task_done_then():
     tasks = [asyncio.create_task(delay(seconds)) for seconds in range(1, 4)]
     done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
     print(f"已完成的任务数: {len(done)}")
     print(f"未完成的任务数: {len(pending)}")
+
 
 asyncio.run(wait_first_task_done_then())

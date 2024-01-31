@@ -1,6 +1,7 @@
 import asyncio
 
-from python_basics.decorator import async_timed
+
+from python_basics.decorator_demo import async_timed
 
 """
 以下场景使用协程却得不到提升:

@@ -3,7 +3,7 @@ import asyncio
 import aiohttp
 from aiohttp import ClientSession
 
-from python_basics.decorator import async_timed
+from python_basics.decorator_demo import async_timed
 
 """
 会话级别设置了一个超时，那么它会作用在所有的请求上。

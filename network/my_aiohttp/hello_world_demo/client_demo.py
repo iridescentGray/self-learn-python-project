@@ -3,7 +3,7 @@ import asyncio
 import aiohttp
 from aiohttp import ClientSession
 
-from python_basics.decorator import async_timed
+from python_basics.decorator_demo import async_timed
 
 """
 大多数基于 aiohttp 的应用程序在整个应用程序内都只使用一个会话，然后将此会话对象传递给需要的函数。
