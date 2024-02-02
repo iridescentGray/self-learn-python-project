@@ -1,39 +1,71 @@
-"""
-This module manage Telegram communication
-"""
 import asyncio
-import json
 import logging
-import datetime
-from copy import deepcopy
-from threading import Thread
-from typing import Any, Callable, Coroutine, Dict, List, Optional, Union
+import copy
+import threading
+from typing import Any, Dict, List, Optional, Union
 
 from telegram import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
     KeyboardButton,
+    PhotoSize,
     ReplyKeyboardMarkup,
     Update,
 )
-from telegram.constants import MessageLimit, ParseMode
+from telegram.constants import ParseMode
 from telegram.error import BadRequest, NetworkError, TelegramError
 from telegram.ext import (
     Application,
     CallbackContext,
     CallbackQueryHandler,
     CommandHandler,
-    TypeHandler,
+    ContextTypes,
+    AIORateLimiter,
 )
-from rpc_types import RPCSendMsg
+from telegram.error import (
+    BadRequest,
+    ChatMigrated,
+    Conflict,
+    Forbidden,
+    InvalidToken,
+    NetworkError,
+    PassportDecryptionError,
+    RetryAfter,
+    TelegramError,
+    TimedOut,
+)
+from telegram._utils.types import DVInput, FileInput, ODVInput, ReplyMarkup
+from telegram._utils.defaultvalue import DEFAULT_NONE
 
 from message_types import RPCMessageType
-
-MAX_MESSAGE_LENGTH = MessageLimit.MAX_TEXT_LENGTH
-
+from rpc_types import RPCSendMsg
 
 logger = logging.getLogger(__name__)
+
+
+async def tlg_error_callback(update, context: ContextTypes.DEFAULT_TYPE):
+    del update
+    # Handle error
+    try:
+        raise context.error  # type: ignore
+    except BadRequest:
+        logger.error("TLG Error: Bad Request")
+    except ChatMigrated:
+        logger.error("TLG Error: Chat Migrated")
+    except Conflict:
+        logger.error("TLG Error: Conflict")
+    except Forbidden:
+        logger.error("TLG Error: Forbidden/Unauthorized")
+    except InvalidToken:
+        logger.error("TLG Error: Invalid Token")
+    except TimedOut:
+        logger.error("TLG Error: Timeout (slow connection issue)")
+    except NetworkError:
+        logger.error("TLG Error: Network Problem")
+    except PassportDecryptionError:
+        logger.error("TLG Error: Passport Decryption Error")
+    except RetryAfter:
+        logger.error("TLG Error: Retry After")
+    except TelegramError as error:
+        logger.error("TLG Error: %s", str(error))
 
 
 class Telegram:
@@ -49,7 +81,7 @@ class Telegram:
         """
         Creates and starts the polling thread
         """
-        self._thread = Thread(target=self._init, name="MyTelegram")
+        self._thread = threading.Thread(target=self._init, name="MyTelegram")
         self._thread.start()
 
     def _init_keyboard(self) -> None:
@@ -61,8 +93,27 @@ class Telegram:
             ["/status", "/start", "/stop", "/help"],
         ]
 
+    async def post_init(self, application: Application):
+        ...
+
+    async def post_stop(self, application: Application):
+        ...
+
+    async def post_shutdown(self, application: Application):
+        ...
+
     def _init_telegram_app(self):
-        return Application.builder().token(self._config["telegram"]["token"]).build()
+        return (
+            Application.builder()
+            .token(self._config["telegram"]["token"])
+            .rate_limiter(AIORateLimiter(max_retries=3))
+            .http_version("1.1")
+            .get_updates_http_version("1.1")
+            .post_init(self.post_init)
+            .post_stop(self.post_stop)
+            .post_shutdown(self.post_shutdown)
+            .build()
+        )
 
     def _init(self) -> None:
         try:
@@ -72,21 +123,24 @@ class Telegram:
             asyncio.set_event_loop(self._loop)
 
         self._app = self._init_telegram_app()
+        self._app.add_error_handler(tlg_error_callback)
 
         types_handles = []
         command_handles = [
-            CommandHandler("status", self._status),
             CommandHandler("start", self._start),
             CommandHandler("stop", self._stop),
+            CommandHandler("status", self._status),
             CommandHandler("help", self._help),
         ]
+        message_handles = []
         callbacks = []
+
         for handle in types_handles:
             self._app.add_handler(handle)
-
         for handle in command_handles:
             self._app.add_handler(handle)
-
+        for handle in message_handles:
+            self._app.add_handler(handle)
         for callback in callbacks:
             self._app.add_handler(callback)
 
@@ -105,6 +159,7 @@ class Telegram:
                 timeout=20,
                 # read_latency=60,  # Assumed transmission latency
                 drop_pending_updates=True,
+                allowed_updates=Update.ALL_TYPES,
                 # stop_signals=[],  # Necessary as we don't run on the main thread
             )
             self.__is_running = True
@@ -112,6 +167,22 @@ class Telegram:
                 await asyncio.sleep(3)
                 if not self._app.updater.running:
                     break
+
+    async def user_is_admin(
+        self, chat_id: Union[str, int], user_id: Union[str, int]
+    ) -> bool:
+        """
+        Check if the specified user is an Administrator of a group given by IDs
+        """
+        try:
+            group_admins = await self._app.bot.get_chat_administrators(chat_id=chat_id)
+        except Exception as error:
+            logger.error("[%s] %s", str(chat_id), str(error))
+            return False
+        for admin in group_admins:
+            if user_id == admin.user.id:
+                return True
+        return False
 
     async def _cleanup_telegram(self) -> None:
         if self._app.updater:
@@ -124,7 +195,6 @@ class Telegram:
         Stops all running telegram threads.
         :return: None
         """
-        # This can take up to `timeout` from the call to `start_polling`.
         asyncio.run_coroutine_threadsafe(self._cleanup_telegram(), self._loop)
         self._thread.join()
 
@@ -143,10 +213,11 @@ class Telegram:
     def send_msg(self, msg: RPCSendMsg) -> None:
         """Send a message to telegram channel"""
         msg_type = msg["type"]
-        message, parse_mode = self.compose_message(deepcopy(msg), msg_type)  # type: ignore
+        message, parse_mode = self.compose_message(copy.deepcopy(msg), msg_type)  # type: ignore
         if message:
             asyncio.run_coroutine_threadsafe(
                 self._send_msg(
+                    self._config["telegram"]["chat_id"],
                     message,
                     parse_mode=parse_mode,
                     disable_notification=False,
@@ -163,7 +234,7 @@ class Telegram:
         :return: None
         """
         status = "is running" if self.__is_running else "not run"
-        await self._send_msg(f"bot {status}")
+        await self._send_msg(self._config["telegram"]["chat_id"], f"bot {status}")
 
     async def _start(self, update: Update, context: CallbackContext) -> None:
         """
@@ -173,7 +244,10 @@ class Telegram:
         :return: None
         """
         self.__is_running = True
-        await self._send_msg(f"bot run")
+        keyboard = ReplyKeyboardMarkup(keyboard=self._keyboard, resize_keyboard=True)
+        await self._send_msg(
+            self._config["telegram"]["chat_id"], f"bot run", reply_markup=keyboard
+        )
 
     async def _stop(self, update: Update, context: CallbackContext) -> None:
         """
@@ -183,7 +257,7 @@ class Telegram:
         :return: None
         """
         self.__is_running = False
-        await self._send_msg(f"bot stop")
+        await self._send_msg(self._config["telegram"]["chat_id"], f"bot stop")
 
     async def _help(self, update: Update, context: CallbackContext) -> None:
         """
@@ -201,58 +275,21 @@ class Telegram:
             "*/status:* `show bot status`\n"
             "*/help:* `This help message`"
         )
-
-        await self._send_msg(message, parse_mode=ParseMode.MARKDOWN)
-
-    async def _update_msg(
-        self,
-        query: CallbackQuery,
-        msg: str,
-        callback_path: str = "",
-        reload_able: bool = False,
-        parse_mode: str = ParseMode.MARKDOWN,
-    ) -> None:
-        if reload_able:
-            reply_markup = InlineKeyboardMarkup(
-                [
-                    [InlineKeyboardButton("Refresh", callback_data=callback_path)],
-                ]
-            )
-        else:
-            reply_markup = InlineKeyboardMarkup([[]])
-        msg += f"\nUpdated: {datetime.datetime.now().ctime()}"
-        if not query.message:
-            return
-        chat_id = query.message.chat_id
-        message_id = query.message.message_id
-
-        try:
-            await self._app.bot.edit_message_text(
-                chat_id=chat_id,
-                message_id=message_id,
-                text=msg,
-                parse_mode=parse_mode,
-                reply_markup=reply_markup,
-            )
-        except BadRequest as e:
-            if "not modified" in e.message.lower():
-                pass
-            else:
-                logger.warning("TelegramError: %s", e.message)
-        except TelegramError as telegram_err:
-            logger.warning(
-                "TelegramError: %s! Giving up on that message.", telegram_err.message
-            )
+        update.edited_message
+        await self._send_msg(
+            self._config["telegram"]["chat_id"], message, parse_mode=ParseMode.MARKDOWN
+        )
 
     async def _send_msg(
         self,
+        chat_id: Union[str, int],
         msg: str,
         parse_mode: str = ParseMode.MARKDOWN,
+        disable_web_page_preview: ODVInput[bool] = DEFAULT_NONE,
         disable_notification: bool = False,
-        keyboard: Optional[List[List[InlineKeyboardButton]]] = None,
-        callback_path: str = "",
-        reload_able: bool = True,
-        query: Optional[CallbackQuery] = None,
+        reply_markup: Optional[ReplyMarkup] = None,
+        reply_to_message_id: Optional[int] = None,
+        protect_content: bool = True,
     ) -> None:
         """
         Send given markdown message
@@ -261,25 +298,18 @@ class Telegram:
         :param parse_mode: telegram parse mode
         :return: None
         """
-        # reply_markup: Union[InlineKeyboardMarkup, ReplyKeyboardMarkup]
-        # if query:
-        #     await self._update_msg(
-        #         query=query,
-        #         msg=msg,
-        #         parse_mode=parse_mode,
-        #         callback_path=callback_path,
-        #         reload_able=reload_able,
-        #     )
-        #     return
-        reply_markup = ReplyKeyboardMarkup(self._keyboard, resize_keyboard=True)
+
         try:
             try:
                 await self._app.bot.send_message(
-                    self._config["telegram"]["chat_id"],
+                    chat_id,
                     text=msg,
                     parse_mode=parse_mode,
                     reply_markup=reply_markup,
+                    disable_web_page_preview=disable_web_page_preview,
                     disable_notification=disable_notification,
+                    reply_to_message_id=reply_to_message_id,
+                    protect_content=protect_content,
                 )
             except NetworkError as network_err:
                 # Sometimes the telegram server resets the current connection,
@@ -288,23 +318,108 @@ class Telegram:
                     f"Telegram NetworkError: {network_err.message}! Trying one more time."
                 )
                 await self._app.bot.send_message(
-                    self._config["telegram"]["chat_id"],
+                    chat_id,
                     text=msg,
                     parse_mode=parse_mode,
                     reply_markup=reply_markup,
+                    disable_web_page_preview=disable_web_page_preview,
                     disable_notification=disable_notification,
+                    reply_to_message_id=reply_to_message_id,
+                    protect_content=protect_content,
                 )
         except TelegramError as telegram_err:
             logger.warning(
                 "TelegramError: %s! Giving up on that message.", telegram_err.message
             )
 
+    async def _delete_msg(self, chat_id: Union[int, str], msg_id: int):
+        """Try to remove a telegram message"""
+        delete_result: dict = {}
+        if msg_id is not None:
+            try:
+                await self._app.bot.delete_message(chat_id=chat_id, message_id=msg_id)
+            except Exception as error:
+                delete_result.update(error=str(error))
+                logger.error(f"[%s] %s", str(chat_id), error)
+        return delete_result
 
-if __name__ == "__main__":
-    config = {
-        "telegram": {
-            "chat_id": "",
-            "token": "",
-        }
-    }
-    bot = Telegram(config)
+    async def tlg_send_image(
+        self,
+        chat_id: Union[int, str],
+        photo: Union[FileInput, PhotoSize],
+        caption: Optional[str] = None,
+        disable_notification: DVInput[bool] = DEFAULT_NONE,
+        reply_to_message_id: Optional[int] = None,
+        reply_markup: Optional[ReplyMarkup] = None,
+        parse_mode: ODVInput[str] = DEFAULT_NONE,
+        topic_id: Optional[int] = None,
+        **kwargs,
+    ):
+        """Bot try to send an image message."""
+        sent_result: dict = {}
+        try:
+            msg = await self._app.bot.send_photo(
+                chat_id=chat_id,
+                photo=photo,
+                caption=caption,
+                disable_notification=disable_notification,
+                reply_to_message_id=reply_to_message_id,
+                reply_markup=reply_markup,
+                parse_mode=parse_mode,
+                message_thread_id=topic_id,
+                **kwargs,
+            )
+            sent_result.update(msg=msg)
+        except TelegramError as error:
+            sent_result.update(error=str(error))
+            logger.error("[%s] %s", str(chat_id), str(error))
+        return sent_result
+
+    async def _is_message_from_owner(self, update: Update) -> bool:
+        """
+        is message send from owner
+        """
+        owner_id = self._config.get("telegram", {}).get("owner_id", None)
+        if not owner_id:
+            return False
+        message = update.message
+        if message is None:
+            return False
+        user = message.from_user
+        if user is None:
+            return False
+        return user.id == owner_id
+
+    def get_any_msg(update: Update):
+        """
+        Get Telegram message data from Update.
+        there are three type of message inupdate
+        """
+        msg = getattr(update, "message", None)
+        if msg is None:
+            msg = getattr(update, "edited_message", None)
+        if msg is None:
+            msg = getattr(update, "channel_post", None)
+        return msg
+
+    async def is_bot_mentioned(update: Update, context: CallbackContext):
+        try:
+            message = update.message
+            if message == None:
+                return False
+            if message.chat.type == "private":
+                return True
+
+            if (
+                message.text is not None
+                and ("@" + context.bot.username) in message.text
+            ):
+                return True
+
+            if message.reply_to_message is not None:
+                if message.reply_to_message.from_user.id == context.bot.id:
+                    return True
+        except:
+            return True
+        else:
+            return False
