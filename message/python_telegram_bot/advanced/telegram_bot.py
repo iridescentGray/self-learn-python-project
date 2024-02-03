@@ -93,14 +93,11 @@ class Telegram:
             ["/status", "/start", "/stop", "/help"],
         ]
 
-    async def post_init(self, application: Application):
-        ...
+    async def post_init(self, application: Application): ...
 
-    async def post_stop(self, application: Application):
-        ...
+    async def post_stop(self, application: Application): ...
 
-    async def post_shutdown(self, application: Application):
-        ...
+    async def post_shutdown(self, application: Application): ...
 
     def _init_telegram_app(self):
         return (
@@ -343,7 +340,7 @@ class Telegram:
                 logger.error(f"[%s] %s", str(chat_id), error)
         return delete_result
 
-    async def tlg_send_image(
+    async def _send_image(
         self,
         chat_id: Union[int, str],
         photo: Union[FileInput, PhotoSize],
