@@ -93,11 +93,14 @@ class Telegram:
             ["/status", "/start", "/stop", "/help"],
         ]
 
-    async def post_init(self, application: Application): ...
+    async def post_init(self, application: Application):
+        ...
 
-    async def post_stop(self, application: Application): ...
+    async def post_stop(self, application: Application):
+        ...
 
-    async def post_shutdown(self, application: Application): ...
+    async def post_shutdown(self, application: Application):
+        ...
 
     def _init_telegram_app(self):
         return (
@@ -387,7 +390,8 @@ class Telegram:
             return False
         return user.id == owner_id
 
-    def get_any_msg(update: Update):
+    @classmethod
+    def get_any_msg(cls, update: Update):
         """
         Get Telegram message data from Update.
         there are three type of message inupdate
@@ -399,7 +403,8 @@ class Telegram:
             msg = getattr(update, "channel_post", None)
         return msg
 
-    async def is_bot_mentioned(update: Update, context: CallbackContext):
+    @classmethod
+    async def is_bot_mentioned(cls, update: Update, context: CallbackContext):
         try:
             message = update.message
             if message == None:
