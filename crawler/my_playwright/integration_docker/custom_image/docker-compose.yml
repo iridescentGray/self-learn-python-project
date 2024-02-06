@@ -1,0 +1,8 @@
+version: '3'
+services:
+  playwright_service:
+    image: self_playwright:v1
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    ipc: host
