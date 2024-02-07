@@ -35,8 +35,8 @@ from telegram.error import (
 from telegram._utils.types import DVInput, FileInput, ODVInput, ReplyMarkup
 from telegram._utils.defaultvalue import DEFAULT_NONE
 
-from message_types import RPCMessageType
-from rpc_types import RPCSendMsg
+from message.python_telegram_bot.advanced.message_type import RPCMessageType
+from message.python_telegram_bot.advanced.message_model import SendMsgModel
 
 logger = logging.getLogger(__name__)
 
@@ -210,7 +210,7 @@ class Telegram:
             parse_mode = ParseMode.HTML
         return message, parse_mode
 
-    def send_msg(self, msg: RPCSendMsg) -> None:
+    def send_msg(self, msg: SendMsgModel) -> None:
         """Send a message to telegram channel"""
         msg_type = msg["type"]
         message, parse_mode = self.compose_message(copy.deepcopy(msg), msg_type)  # type: ignore
