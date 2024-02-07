@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class RPCMessageType(str, Enum):
-    COMMON = "common" 
+    COMMON = "common"
     STATUS = "status"
     WARNING = "warning"
     GETCODE = "get_code"
