@@ -1,12 +1,14 @@
 import asyncio
 
-print(f"-----------------------------------------create task ------------------------------------------")
+print(
+    f"-----------------------------------------create task ------------------------------------------"
+)
 
 
 async def delay(seconds):
     print(f"Start Sleep {seconds} 秒")
     await asyncio.sleep(seconds)
-    print(f"Sleep completed")
+    print(f"Sleep {seconds} completed")
     return seconds
 
 
@@ -22,13 +24,15 @@ async def create_task():
 
 asyncio.run(create_task())
 
-print(f"-----------------------------------------task Simultaneous execution------------------------------------------")
+print(
+    f"-----------------------------------------task Simultaneous execution------------------------------------------"
+)
 
 
 async def simultaneous_execution():
     sleep_for_three = asyncio.create_task(delay(2))
-    sleep_again = asyncio.create_task(delay(2))
-    sleep_once_more = asyncio.create_task(delay(2))
+    sleep_again = asyncio.create_task(delay(3))
+    sleep_once_more = asyncio.create_task(delay(1))
 
     await sleep_for_three
     await sleep_again
