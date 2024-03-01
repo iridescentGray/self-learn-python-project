@@ -12,6 +12,10 @@ data_analysis demo
     cd data_analysis
     pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
+### Used by poetry
+    poetry install
+    poetry shell
+
 ## uninstall
 
     pyenv deactivate data_analysis_hello_world
