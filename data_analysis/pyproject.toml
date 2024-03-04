@@ -6,7 +6,7 @@ authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.7"
+python = "3.11.8"
 jupyter = "^1.0.0"
 numpy = "^1.26.4"
 numpy-financial = "^1.0.0"
@@ -18,7 +18,7 @@ plotly = "^5.19.0"
 streamlit = "^1.31.1"
 pygwalker = "^0.4.6"
 pyarrow = "^15.0.0"
-tables = "^3.9.2"
+
 xlsx2csv = "^0.8.2"
 xlsxwriter = "^3.2.0"
 polars = "^0.20.10"
