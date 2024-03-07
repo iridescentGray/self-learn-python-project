@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "myfastapi"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi= "0.109.2"
+uvicorn = {extras = ["standard"], version = "^0.27.1"}
+ujson = "^5.9.0"
+jinja2 = "^3.1.3"
+fastcrud = "^0.7.0"
+sqlalchemy = "^2.0.28"
+aiosqlite = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
