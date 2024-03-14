@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "test"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.1.1"
+pytest-mock = "^3.12.0"
+pytest-asyncio = "^0.23.5.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
