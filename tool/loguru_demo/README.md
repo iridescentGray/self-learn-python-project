@@ -16,16 +16,6 @@ loguru,Python logging made (stupidly) simple
 
     loguru: https://loguru.readthedocs.io/en/stable/index.html
 
-## project
-
-### hello_world_loguru
-
-#### introduce
-
-loguru Introduction to Operation Cases
-
-#### start-up
-
 ## uninstall
 
     pyenv virtualenv-delete loguru
