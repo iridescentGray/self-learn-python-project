@@ -2,7 +2,7 @@
 
 loguru,Python logging made (stupidly) simple
 
-## 使用
+## use
 
 ### Used by pyenv virtualenv plugin
 
