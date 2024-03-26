@@ -2,6 +2,10 @@ import os
 
 
 def test_mocker_patch(mocker):
+    """mocker.patch
+
+    mock整个object
+    """
     filename = "test.file"
     # 创建假的os.remove,并不会真正执行remove
     print(type(os.remove))  # builtin_function_or_method

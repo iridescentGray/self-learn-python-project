@@ -1,6 +1,3 @@
-from fastapi.background import P
-
-
 class ForTest:
     field = "origin"
 
@@ -9,6 +6,11 @@ class ForTest:
 
 
 def test_for_test(mocker):
+    """mocker.patch
+
+    mock一个object里的method/field
+    """
+
     test = ForTest()
     mock_method = mocker.patch.object(test, "a_method")
     print(test.a_method)  # MagicMock name='a_method'

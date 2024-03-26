@@ -16,6 +16,7 @@
 
     pytest git： https://github.com/pytest-dev/pytest
     pytest-doc： https://docs.pytest.org/en/stable/
+    mock-doc: https://pytest-mock.readthedocs.io/en/latest/
 
     
 ## uninstall
