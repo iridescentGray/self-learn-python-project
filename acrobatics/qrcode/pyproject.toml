@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "qrcode_related"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+qrcode = "^7.4.2"
+amzqr = "^0.0.1"
+pyzbar = "^0.1.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
