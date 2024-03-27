@@ -10,7 +10,7 @@ python = "^3.11"
 qrcode = "^7.4.2"
 amzqr = "^0.0.1"
 pyzbar = "^0.1.9"
-
+pillow= "^10.2.0"
 
 [build-system]
 requires = ["poetry-core"]
