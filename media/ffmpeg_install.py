@@ -65,16 +65,32 @@ def ffmpeg_install_windows():
 
 def ffmpeg_install_linux():
     try:
-        subprocess.run(
-            "sudo apt install ffmpeg",
+        out = subprocess.run(
+            "apt",
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
+        stdout_msg = out.stdout
+
+        if stdout_msg:
+            # Deb System
+            subprocess.run(
+                "sudo apt update&&sudo apt install ffmpeg",
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+        else:
+            # rpmSystem
+            subprocess.run(
+                "yum install ffmpeg&&yum install ffmpeg",
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
     except Exception as e:
-        print(
-            "An error occurred while trying to install FFmpeg. Please try again. Otherwise, please install FFmpeg manually and try again."
-        )
+        print("An error occurred while trying to install FFmpeg.")
         print(e)
         exit()
     print("FFmpeg installed successfully! Please re-run the program.")
@@ -90,9 +106,7 @@ def ffmpeg_install_mac():
             stderr=subprocess.PIPE,
         )
     except FileNotFoundError:
-        print(
-            "Homebrew is not installed. Please install it and try again. Otherwise, please install FFmpeg manually and try again."
-        )
+        print("Homebrew is not installed. ")
         exit()
     print("FFmpeg installed successfully! Please re-run the program.")
     exit()
@@ -107,13 +121,12 @@ def ffmpeg_install():
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
+        print("FFmpeg is installed!")
     except FileNotFoundError as e:
         # Check if there's ffmpeg.exe in the current directory
         if os.path.exists("./ffmpeg.exe"):
-            print(
-                "FFmpeg is installed on this system! If you are seeing this error for the second time, restart your computer."
-            )
-        print("FFmpeg is not installed on this system.")
+            print("fmpeg.exe is installed!")
+        print("FFmpeg is not installed.")
         resp = input(
             "We can try to automatically install it for you. Would you like to do that? (y/n): "
         )
@@ -134,8 +147,9 @@ def ffmpeg_install():
             print("Please install FFmpeg manually and try again.")
             exit()
     except Exception as e:
-        print(
-            "Welcome fellow traveler! You're one of the few who have made it this far. We have no idea how you got at this error, but we're glad you're here. Please report this error to the developer, and we'll try to fix it as soon as possible. Thank you for your patience!"
-        )
+        print("error happend,please propose issus for this project")
         print(e)
     return None
+
+
+ffmpeg_install()
