@@ -2,6 +2,7 @@ import zipfile
 import requests
 import os
 import subprocess
+from tqdm import tqdm
 
 
 def ffmpeg_install_windows():
@@ -15,9 +16,13 @@ def ffmpeg_install_windows():
             os.remove(ffmpeg_zip_filename)
 
         # Download FFmpeg
-        r = requests.get(ffmpeg_url)
-        with open(ffmpeg_zip_filename, "wb") as f:
-            f.write(r.content)
+        r = requests.get(ffmpeg_url, stream=True)
+        total_size = int(r.headers.get("content-length", 0))
+        with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
+            with open(ffmpeg_zip_filename, "wb") as file:
+                for data in r.iter_content(chunk_size=1024):
+                    file.write(data)
+                    progress_bar.update(len(data))
 
         # Check if the extracted folder already exists
         if os.path.exists(ffmpeg_extracted_folder):
@@ -147,9 +152,9 @@ def ffmpeg_install():
             print("Please install FFmpeg manually and try again.")
             exit()
     except Exception as e:
-        print("error happend,please propose issus for this project")
+        print("ffmpeg install error,please propose issus for this project")
         print(e)
-    return None
+        raise e
 
 
 ffmpeg_install()
