@@ -12,6 +12,7 @@ class C(object):
     def f(self):
         super(C, self)
 
+
 def f(y: list):
     for x in y:
         yield x

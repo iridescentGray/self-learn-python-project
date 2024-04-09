@@ -18,7 +18,11 @@ class PlaywrightMultipleContextsDemo(scrapy.Spider):
         "CONCURRENT_REQUESTS": 16,
         "PLAYWRIGHT_MAX_CONTEXTS": 4,
         "FEEDS": {
-            "playwright_multiple_contexts_demo.json": {"format": "json", "encoding": "utf-8", "indent": 4},
+            "playwright_multiple_contexts_demo.json": {
+                "format": "json",
+                "encoding": "utf-8",
+                "indent": 4,
+            },
         },
         "PLAYWRIGHT_CONTEXTS": {
             "first": {

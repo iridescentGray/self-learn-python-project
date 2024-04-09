@@ -23,8 +23,8 @@ print(t.result)  # result()在任务还没有执行完时，会直接返回None
 print(t.get())  # get()会阻塞直到任务完成
 
 # 再次查看状态和执行时间
-print(f"t.status  {t.status}")  
-print(f"t.date_done  {t.date_done}") 
+print(f"t.status  {t.status}")
+print(f"t.date_done  {t.date_done}")
 
 # 查看任务状态，任务执行完成返回True，否则为False
 print(f"t.ready()  {t.ready()}")  # 只要任务没有处于阻塞状态就会返回True, 比如执行成功、执行失败

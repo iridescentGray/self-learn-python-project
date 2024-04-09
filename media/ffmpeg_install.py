@@ -1,7 +1,8 @@
-import zipfile
-import requests
 import os
 import subprocess
+import zipfile
+
+import requests
 from tqdm import tqdm
 
 

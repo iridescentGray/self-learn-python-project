@@ -8,8 +8,7 @@ print(os.access("1.png", os.X_OK))
 
 print(os.access("python_basics/os/1.png", os.F_OK))
 
-# chmod 
+# chmod
 print(os.chmod("python_basics/os/1.png", 0o777))
 
 os.chmod("python_basics/os/1.png", stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR)
-

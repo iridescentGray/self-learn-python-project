@@ -1,6 +1,4 @@
 import os
-import time
-
 
 print(os.times())
 # nt.times_result(user=0.09375, system=0.109375, children_user=0.0, children_system=0.0, elapsed=0.0)

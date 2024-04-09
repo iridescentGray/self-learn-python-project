@@ -7,7 +7,9 @@ from pprint import pprint
   如果将抛出的异常捕获，其它任务不会受到影响
 """
 
-print(f"------------------------catch_error_will_not_affect_other_task-------------------------------------------")
+print(
+    f"------------------------catch_error_will_not_affect_other_task-------------------------------------------"
+)
 
 
 async def normal_running():
@@ -25,19 +27,27 @@ async def catch_error_will_not_affect_other_task():
     except Exception as e:
         pprint(f"run error is {e}")
 
-    results = await asyncio.gather(*[task for task in asyncio.all_tasks()
-                                     if task.get_coro().__name__ != "catch_error_will_not_affect_other_task"])
+    results = await asyncio.gather(
+        *[
+            task
+            for task in asyncio.all_tasks()
+            if task.get_coro().__name__ != "catch_error_will_not_affect_other_task"
+        ]
+    )
     print(results)
 
 
 asyncio.run(catch_error_will_not_affect_other_task())
 
-print(f"----------------------------------handle_gather_error-------------------------------------------")
+print(
+    "----------------------------------handle_gather_error-------------------------------------------"
+)
 
 
 async def handle_gather_error():
-    results = await asyncio.gather(normal_running(), raise_error(),
-                                   return_exceptions=True)
+    results = await asyncio.gather(
+        normal_running(), raise_error(), return_exceptions=True
+    )
     # Collect both results and exception
     for result in results:
         print(result)
@@ -46,7 +56,9 @@ async def handle_gather_error():
 
 asyncio.run(handle_gather_error())
 
-print(f"----------------------------------handle_wait_error-------------------------------------------")
+print(
+    "----------------------------------handle_wait_error-------------------------------------------"
+)
 
 
 async def error_delay(seconds):

@@ -1,5 +1,5 @@
-from task import add, sub
 from celery import group
+from task import add, sub
 
 # 可以调用signature方法，变成一个signature对象
 t1 = add.signature(args=(2, 3))

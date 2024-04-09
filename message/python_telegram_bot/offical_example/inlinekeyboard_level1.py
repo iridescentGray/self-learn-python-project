@@ -2,7 +2,6 @@ import logging
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes
-
 from tg_config import token
 
 logging.basicConfig(

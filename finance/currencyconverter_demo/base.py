@@ -1,4 +1,5 @@
 from datetime import date
+
 from currency_converter import CurrencyConverter
 
 c = CurrencyConverter()

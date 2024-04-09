@@ -2,12 +2,10 @@ import uuid
 
 from flask_restful import Resource, reqparse
 from werkzeug.security import generate_password_hash
+
 from ..common.utils import res
 from ..models.user import UserModel
 from ..schema.register_sha import reg_args_valid
-
-
-from ..models.user import UserModel
 
 
 class Register(Resource):

@@ -4,7 +4,9 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field, PrivateAttr
 
-print(f"------------------------------------dynamic field values-------------------------------------")
+print(
+    "------------------------------------dynamic field values-------------------------------------"
+)
 
 
 class Model(BaseModel):
@@ -17,7 +19,9 @@ m2 = Model()
 print(m1)
 print(m2)
 
-print(f"------------------------------------Class Variables-------------------------------------")
+print(
+    "------------------------------------Class Variables-------------------------------------"
+)
 
 
 class ClassModel(BaseModel):
@@ -30,7 +34,9 @@ m = ClassModel()
 print(m)
 print(ClassModel.y)
 
-print(f"------------------------------------Private Variables-------------------------------------")
+print(
+    "------------------------------------Private Variables-------------------------------------"
+)
 
 
 class TimeAwareModel(BaseModel):

@@ -8,10 +8,11 @@ from scrapy_playwright.page import PageMethod
 # run command: scrapy crawl playwright_handling_headers_demo
 class PlaywrightHandlingHeadersDemo(scrapy.Spider):
     """
-       Control how requests headers are handled via the PLAYWRIGHT_PROCESS_REQUEST_HEADERS setting.
-       If PLAYWRIGHT_PROCESS_REQUEST_HEADERS=None, neither USER_AGENT、cookies will be sent to the
-       website
+    Control how requests headers are handled via the PLAYWRIGHT_PROCESS_REQUEST_HEADERS setting.
+    If PLAYWRIGHT_PROCESS_REQUEST_HEADERS=None, neither USER_AGENT、cookies will be sent to the
+    website
     """
+
     name = "playwright_handling_headers_demo"
 
     custom_settings = {
@@ -29,7 +30,9 @@ class PlaywrightHandlingHeadersDemo(scrapy.Spider):
                 "playwright": True,
                 "playwright_page_methods": [
                     PageMethod(
-                        "screenshot", path=Path(__file__).parent / "headers.png", full_page=True
+                        "screenshot",
+                        path=Path(__file__).parent / "headers.png",
+                        full_page=True,
                     ),
                 ],
             },

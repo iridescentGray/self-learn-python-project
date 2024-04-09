@@ -1,8 +1,8 @@
 import logging
-from tg_config import token
 
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
+from tg_config import token
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO

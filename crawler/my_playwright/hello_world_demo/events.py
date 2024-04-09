@@ -1,6 +1,6 @@
 import asyncio
-from playwright.async_api import async_playwright
 
+from playwright.async_api import async_playwright
 
 """
 playwright-doc:
@@ -22,8 +22,8 @@ async def common_expect_request():
         context = await browser.new_context()
         page = await context.new_page()
 
-        async with page.expect_request("**/*logo*.png") as first:
-            async with page.expect_response("**/*wikipedia.ico") as response_info:
+        async with page.expect_request("**/*logo*.png"):
+            async with page.expect_response("**/*wikipedia.ico"):
                 await page.goto("https://wikipedia.org")
                 await page.get_by_label("Search Wikipedia").fill("hello")
                 await page.get_by_role("button", name="Search").click()

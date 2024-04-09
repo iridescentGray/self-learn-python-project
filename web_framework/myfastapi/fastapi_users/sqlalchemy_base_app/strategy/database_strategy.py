@@ -3,7 +3,6 @@ from fastapi_users.authentication.strategy.db import (
     AccessTokenDatabase,
     DatabaseStrategy,
 )
-
 from sqlalchemy_base_app.db import AccessToken, get_access_token_db
 
 

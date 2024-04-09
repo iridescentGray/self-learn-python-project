@@ -6,8 +6,7 @@ import traceback
 from telegram import Update
 from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, ContextTypes
-from tg_config import token
-from tg_config import chat_id
+from tg_config import chat_id, token
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO

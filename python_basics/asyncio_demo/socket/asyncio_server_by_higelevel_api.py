@@ -4,7 +4,6 @@ from asyncio import StreamReader, StreamWriter
 
 
 class ServerState:
-
     def __init__(self):
         self._writers = []
 

@@ -1,4 +1,5 @@
 import time
+
 from selenium import webdriver
 
 with webdriver.Chrome() as driver:

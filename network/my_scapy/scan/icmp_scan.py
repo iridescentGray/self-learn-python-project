@@ -1,7 +1,7 @@
-from scapy.layers.inet import IP, ICMP
+from scapy.layers.inet import ICMP, IP
 from scapy.sendrecv import sr
 
-ip_scan = '172.18.20.0/28'
+ip_scan = "172.18.20.0/28"
 
 
 def scan_by_icmp():
@@ -9,6 +9,6 @@ def scan_by_icmp():
     return ans
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ans = scan_by_icmp()
     ans.summary(lambda s, r: r.sprintf("%IP.src% is alive"))

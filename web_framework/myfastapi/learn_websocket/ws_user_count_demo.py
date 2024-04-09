@@ -10,7 +10,7 @@ class UserCounter:
 
     async def on_connect(self, ws: WebSocket):
         await ws.accept()
-        print(f"连接已成功建立")
+        print("连接已成功建立")
         # 当新客户端连接时，将其添加到 clients 中
         self.clients.append(ws)
         # 并通知其它用户新的在线计数
@@ -35,7 +35,9 @@ class UserCounter:
         if count == 0:
             return
         message = f"当前在线人数: {count}"
-        task_to_client = {asyncio.create_task(self.on_send(ws, message)): ws for ws in self.clients}
+        task_to_client = {
+            asyncio.create_task(self.on_send(ws, message)): ws for ws in self.clients
+        }
         done, pending = await asyncio.wait(task_to_client)
         # 任务正常结束和出现异常都表示任务完成，如果要是出现异常，那么就将连接移除
         for task in done:

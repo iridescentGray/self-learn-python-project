@@ -1,6 +1,5 @@
-from deepface import DeepFace
 import cv2
-
+from deepface import DeepFace
 
 im = cv2.imread(r"machine_learning/computer_vision/deepface/data/face/3.jpg")
 

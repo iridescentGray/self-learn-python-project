@@ -1,16 +1,15 @@
 import os
 
 from flask import Flask
-from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 
-from .config import config
-from .api.models import db
 from .api import api_blueprint
-from .manage import migrate
-
+from .api.models import db
 from .api.models.revoked_token import RevokedTokenModel
 from .api.models.user import UserModel
+from .config import config
+from .manage import migrate
 
 
 def registerJwtHooks(jwt):

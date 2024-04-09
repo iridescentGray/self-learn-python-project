@@ -1,10 +1,11 @@
 import asyncio
 
-print(f"-----------------------------------------use async with------------------------------------------")
+print(
+    f"-----------------------------------------use async with------------------------------------------"
+)
 
 
 class Conn:
-
     async def __aenter__(self):
         print("创建连接")
         return self

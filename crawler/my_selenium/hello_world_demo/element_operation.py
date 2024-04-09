@@ -1,7 +1,7 @@
 import time
-from selenium.webdriver.common.by import By
-from selenium import webdriver
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 with webdriver.Chrome() as driver:
     driver.get("http://www.baidu.com")

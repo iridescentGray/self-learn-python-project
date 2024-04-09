@@ -9,8 +9,9 @@ playwright-doc:
 https://playwright.dev/python/docs/library
 
 """
-from playwright.sync_api import sync_playwright
 from threading import Thread
+
+from playwright.sync_api import sync_playwright
 
 
 def run1():

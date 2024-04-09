@@ -1,4 +1,5 @@
-from pypika import Query, Field, Table, functions as fn
+from pypika import Field, Query, Table
+from pypika import functions as fn
 
 girl = Table("girl")
 

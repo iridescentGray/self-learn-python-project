@@ -1,6 +1,5 @@
 from playwright.sync_api import sync_playwright
 
-
 """
 playwright-doc:
 https://playwright.dev/python/docs/debug

@@ -15,7 +15,9 @@ async def error_delay(seconds):
     return f"我睡了 {seconds} 秒"
 
 
-print(f"-----------------------------------------cancel task-------------------------------------------------")
+print(
+    "-----------------------------------------cancel task-------------------------------------------------"
+)
 
 
 async def cancel_task():
@@ -38,7 +40,9 @@ async def cancel_task():
 
 asyncio.run(cancel_task())
 
-print(f"---------------------------------wait_task_time_out_the_auto_cancel------------------------------------------")
+print(
+    "---------------------------------wait_task_time_out_the_auto_cancel------------------------------------------"
+)
 
 
 async def wait_task_time_out_the_auto_cancel():
@@ -53,7 +57,9 @@ async def wait_task_time_out_the_auto_cancel():
 
 asyncio.run(wait_task_time_out_the_auto_cancel())
 
-print(f"------------------------------time_out_shield_for_not_auto_cancel----------------------------------------")
+print(
+    "------------------------------time_out_shield_for_not_auto_cancel----------------------------------------"
+)
 
 
 async def time_out_shield_for_not_auto_cancel():

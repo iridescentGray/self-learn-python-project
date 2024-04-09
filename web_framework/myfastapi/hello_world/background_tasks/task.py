@@ -1,6 +1,7 @@
 import time
-from fastapi import FastAPI, BackgroundTasks
+
 import uvicorn
+from fastapi import BackgroundTasks, FastAPI
 
 app = FastAPI()
 

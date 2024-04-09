@@ -9,10 +9,9 @@ def task(name, age, n):
 
 executor = ThreadPoolExecutor()
 
-results = executor.map(task,
-                       ["t1", "t2", "t3", "t4", "t5"],
-                       [16, 16, 15, 19, 16],
-                       [5, 2, 4, 3, 1])
+results = executor.map(
+    task, ["t1", "t2", "t3", "t4", "t5"], [16, 16, 15, 19, 16], [5, 2, 4, 3, 1]
+)
 
 print(results)
 

@@ -1,6 +1,5 @@
 from pypika import Query, Table
 
-
 table1 = Table("t1")
 table2 = Table("t2")
 

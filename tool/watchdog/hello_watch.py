@@ -1,7 +1,7 @@
 import os
 
-from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
 
 
 class CodeEventHandler(FileSystemEventHandler):
@@ -23,7 +23,8 @@ def main():
     watch_path = os.path.dirname(os.path.abspath(__file__))  # watch current file dir
     observer.schedule(CodeEventHandler(), watch_path, True)
     observer.start()  # 启了一个守护线程启动监听,若程序结束, 该线程也会停止
-    while True: 
+    while True:
         ...
+
 
 main()

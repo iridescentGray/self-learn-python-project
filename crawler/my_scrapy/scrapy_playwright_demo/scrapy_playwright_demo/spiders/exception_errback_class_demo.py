@@ -1,12 +1,11 @@
 import logging
 from pathlib import Path
 
-from scrapy import Spider, Request
+from scrapy import Request, Spider
 from scrapy_playwright.page import PageMethod
 
 
 class HandleTimeoutClass:
-
     def process_exception(self, request, exception, spider):
         new_url = "https://httpbin.org/get"
         logging.info(
@@ -21,7 +20,9 @@ class HandleTimeoutClass:
                 "playwright": True,
                 "playwright_page_methods": [
                     PageMethod(
-                        "screenshot", path=Path(__file__).parent / "recovered.png", full_page=True
+                        "screenshot",
+                        path=Path(__file__).parent / "recovered.png",
+                        full_page=True,
                     ),
                 ],
             },

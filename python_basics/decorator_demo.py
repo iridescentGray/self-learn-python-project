@@ -1,10 +1,10 @@
 import functools
 import inspect
 import logging
-from threading import Lock
 import time
 from multiprocessing import RLock
-from typing import Callable, Any
+from threading import Lock
+from typing import Any, Callable
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)

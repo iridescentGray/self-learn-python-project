@@ -1,7 +1,4 @@
-from .inner_model import all_package_list
-from .inner_model import all_package_dict
-from .inner_model import all_package_set
-
+from .inner_model import all_package_dict, all_package_list, all_package_set
 
 _all_package_init_list = []
 

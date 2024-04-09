@@ -1,11 +1,15 @@
-import schedule
 import time
+
+import schedule
+
 
 def job():
     print("I'm working...")
 
+
 def job_with_argument(name):
     print(f"I am {name}")
+
 
 schedule.every(10).seconds.do(job)
 schedule.every(10).seconds.do(job_with_argument, name="Peter")

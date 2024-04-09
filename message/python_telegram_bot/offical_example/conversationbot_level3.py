@@ -11,9 +11,7 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
-
 from tg_config import token
-
 
 """
 doc:

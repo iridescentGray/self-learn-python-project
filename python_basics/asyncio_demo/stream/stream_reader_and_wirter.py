@@ -11,16 +11,16 @@ async def read_until_empty(stream_reader: StreamReader) -> AsyncGenerator[bytes,
 
 async def main():
     host = "www.baidu.com"
-    request = ("GET / HTTP/1.1\r\n"
-               "Connection: close\r\n"
-               f"Host: {host}\r\n\r\n")
+    request = "GET / HTTP/1.1\r\n" "Connection: close\r\n" f"Host: {host}\r\n\r\n"
 
     stream_reader, stream_write = await asyncio.open_connection(host, 80)
     try:
         stream_write.write(request.encode("utf-8"))
         # Block the coroutine until all queued data is sent to the socket
         await stream_write.drain()
-        response = b"".join([response_byte async for response_byte in read_until_empty(stream_reader)])
+        response = b"".join(
+            [response_byte async for response_byte in read_until_empty(stream_reader)]
+        )
         print(response)
     finally:
         # 关闭 writer

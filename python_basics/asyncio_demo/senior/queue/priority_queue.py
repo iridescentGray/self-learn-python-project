@@ -1,9 +1,11 @@
 import asyncio
-from asyncio import Queue, PriorityQueue
+from asyncio import PriorityQueue, Queue
 from dataclasses import dataclass, field
 from typing import Tuple
 
-print("-----------------------------------naive_data_type_in_priority_queue-----------------------------------")
+print(
+    "-----------------------------------naive_data_type_in_priority_queue-----------------------------------"
+)
 
 
 async def worker(queue: Queue):
@@ -24,7 +26,9 @@ async def naive_data_type_in_queue():
 
 asyncio.run(naive_data_type_in_queue())
 
-print("-----------------------------------dataclass_in_priority_queue-----------------------------------")
+print(
+    "-----------------------------------dataclass_in_priority_queue-----------------------------------"
+)
 
 
 @dataclass(order=True)

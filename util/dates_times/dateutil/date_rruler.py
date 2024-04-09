@@ -1,4 +1,4 @@
-from dateutil import rrule, parser
+from dateutil import parser, rrule
 
 # 生成时间跨度
 

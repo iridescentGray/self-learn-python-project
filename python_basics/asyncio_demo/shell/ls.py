@@ -1,8 +1,10 @@
 import asyncio
 from asyncio.streams import StreamReader
-from asyncio.subprocess import Process, PIPE
+from asyncio.subprocess import PIPE, Process
 
-print("-----------------------------------------ls_print_to_stdout------------------------------------------")
+print(
+    "-----------------------------------------ls_print_to_stdout------------------------------------------"
+)
 
 
 async def ls_print_to_stdout():
@@ -15,12 +17,13 @@ async def ls_print_to_stdout():
 
 asyncio.run(ls_print_to_stdout())
 
-print("-----------------------------------------ls_print_in_control------------------------------------------")
+print(
+    "-----------------------------------------ls_print_in_control------------------------------------------"
+)
 
 
 async def ls_print_in_control():
-    process: Process = await asyncio.create_subprocess_exec(
-        "ls", "-l", stdout=PIPE)
+    process: Process = await asyncio.create_subprocess_exec("ls", "-l", stdout=PIPE)
     print(f"进程的 pid: {process.pid}")
     await process.wait()
     # 当子进程执行完毕时，拿到它的 stdout 属性

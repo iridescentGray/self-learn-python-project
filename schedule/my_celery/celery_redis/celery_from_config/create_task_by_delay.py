@@ -1,4 +1,4 @@
-from task import add, sub,bind_test,base_callback
+from task import add, base_callback, bind_test, sub
 
 print(add.delay(2, 3).get())  # 5
 print(sub.delay(3, 2).get())  # 1

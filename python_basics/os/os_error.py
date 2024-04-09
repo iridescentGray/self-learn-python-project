@@ -12,4 +12,5 @@ print(os.strerror(100))  # 如果是不存在的错误码，那么会返Protocol
 
 # 将每一个错误码都赋值给了一个变量
 import errno
-print(os.strerror(errno.EHOSTUNREACH)) 
+
+print(os.strerror(errno.EHOSTUNREACH))

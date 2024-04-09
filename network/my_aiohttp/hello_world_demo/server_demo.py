@@ -12,11 +12,7 @@ routes = web.RouteTableDef()
 @routes.get("/time")
 async def time(request: Request) -> Response:
     now = datetime.datetime.now()
-    result = {
-        "month": now.month,
-        "day": now.day,
-        "time": str(now.time())
-    }
+    result = {"month": now.month, "day": now.day, "time": str(now.time())}
     return Response(body=orjson.dumps(result), content_type="application/json")
 
 
@@ -38,8 +34,9 @@ async def time(request: Request) -> Response:
         "request.headers（请求头，像字典一样操作即可）": str(request.headers.__class__),
         "request.keep_alive（是否开启了长连接）": request.keep_alive,
         "request.cookies（cookie 信息，像字典一样操作即可）": str(request.cookies.__class__),
-        "request.content（原始的字节流信息，针对 POST 和 PUT）": (await request.content.read()).decode("utf-8"),
-
+        "request.content（原始的字节流信息，针对 POST 和 PUT）": (
+            await request.content.read()
+        ).decode("utf-8"),
     }
     return Response(body=orjson.dumps(result), content_type="application/json")
 

@@ -1,5 +1,6 @@
 import time
 import uuid
+
 import uvicorn
 from fastapi import BackgroundTasks, FastAPI, HTTPException
 
@@ -17,7 +18,7 @@ def very_long_task(task_id):
     try:
         time.sleep(5)
         status_dict[str(task_id)] = "completed"
-    except Exception as e:
+    except Exception:
         status_dict[str(task_id)] = "failed"
     print("Ending very long task")
 

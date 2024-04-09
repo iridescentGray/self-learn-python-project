@@ -1,7 +1,7 @@
 from pprint import pprint
 
-from deepface import DeepFace
 import cv2
+from deepface import DeepFace
 
 print("-------------------------------分析图片---------------------------------")
 image = cv2.imread(r"machine_learning/computer_vision/deepface/data/face/yu1.jpg")

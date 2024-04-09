@@ -1,8 +1,8 @@
-import pandas as pd
-import bar_chart_race as bcr
 from pprint import pprint
-from bar_chart_race._colormaps import colormaps
 
+import bar_chart_race as bcr
+import pandas as pd
+from bar_chart_race._colormaps import colormaps
 
 df = pd.read_csv("acrobatics/bar_chart_race/covid19_tutorial.csv", index_col=["date"])
 

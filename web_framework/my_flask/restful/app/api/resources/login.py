@@ -1,16 +1,15 @@
-from flask_restful import Resource, reqparse
 from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
-    jwt_required,
     get_jwt_identity,
+    jwt_required,
 )
-
+from flask_restful import Resource, reqparse
 from werkzeug.security import check_password_hash
 
-from ..schema.register_sha import reg_args_valid
-from ..models.user import UserModel
 from ..common.utils import res
+from ..models.user import UserModel
+from ..schema.register_sha import reg_args_valid
 
 
 # 生成token

@@ -9,7 +9,6 @@
 import playwright
 import scrapy
 
-from playwright.async_api import Request
 BOT_NAME = "scrapy_playwright_demo"
 
 SPIDER_MODULES = ["scrapy_playwright_demo.spiders"]
@@ -150,7 +149,6 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 # You can specify keyword arguments to be passed to Browser.new_context in the playwright_context_kwargs meta key:
 
 
-
 # Type Optional[int], default None，Maximum concurrent Playwright limit，unset or None meas no limit
 PLAYWRIGHT_MAX_CONTEXTS = 8
 # Type Optional[float], default None
@@ -159,14 +157,15 @@ PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30 * 1000  # 30 seconds
 
 
 def custom_headers(
-        browser_type: str,
-        playwright_request: playwright.async_api.Request,
-        scrapy_headers: scrapy.http.headers.Headers,
+    browser_type: str,
+    playwright_request: playwright.async_api.Request,
+    scrapy_headers: scrapy.http.headers.Headers,
 ) -> dict:
     if browser_type == "firefox":
         return {"User-Agent": "foo"}
     return {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"}
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
+    }
 
 
 # Type Optional[Union[Callable, str]]

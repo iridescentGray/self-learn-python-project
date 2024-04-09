@@ -9,22 +9,31 @@ async def coroutine_function():
     print("I am a coroutine function")
 
 
-print("---------------------------compatible_judge_function-------------------------------------")
+print(
+    "---------------------------compatible_judge_function-------------------------------------"
+)
 
-print(f"commonly_function  iscoroutinefunction {asyncio.iscoroutinefunction(commonly_function)}")
-print(f"coroutine_function  iscoroutinefunction {asyncio.iscoroutinefunction(coroutine_function)}")  # True
+print(
+    f"commonly_function  iscoroutinefunction {asyncio.iscoroutinefunction(commonly_function)}"
+)
+print(
+    f"coroutine_function  iscoroutinefunction {asyncio.iscoroutinefunction(coroutine_function)}"
+)  # True
 
 print(f"commonly_function  iscoroutine {asyncio.iscoroutine(commonly_function)}")
 print(f"coroutine_function  iscoroutine {asyncio.iscoroutine(coroutine_function)}")
 
 print(f"commonly_function()  iscoroutine {asyncio.iscoroutine(commonly_function())}")
-print(f"coroutine_function()  iscoroutine {asyncio.iscoroutine(coroutine_function())}")  # True
+print(
+    f"coroutine_function()  iscoroutine {asyncio.iscoroutine(coroutine_function())}"
+)  # True
 
-print("----------------------------------judge_function_between_running------------------------------")
+print(
+    "----------------------------------judge_function_between_running------------------------------"
+)
 
 
 class TaskRunner:
-
     def __init__(self):
         self.loop = asyncio.new_event_loop()
         self.tasks = []

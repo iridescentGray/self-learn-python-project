@@ -1,7 +1,7 @@
-from pypika import Query, Table, Schema
+from pypika import Query, Schema, Table
 
 print(
-    f"------------------------------------------must declare table-----------------------------------------"
+    "------------------------------------------must declare table-----------------------------------------"
 )
 
 try:
@@ -12,7 +12,7 @@ except Exception as e:
 
 
 print(
-    f"-------------------------------------------Use Table Obj Build SQL-----------------------------------------"
+    "-------------------------------------------Use Table Obj Build SQL-----------------------------------------"
 )
 
 table = Table("t")
@@ -21,7 +21,7 @@ sql = Query.from_(table).select(table.id, table.name, table.age)
 print(str(sql))  # SELECT "id","name","age" FROM "t"
 
 print(
-    f"-------------------------------------------Table Alias-----------------------------------------"
+    "-------------------------------------------Table Alias-----------------------------------------"
 )
 
 table = Table("user").as_("t1")
@@ -29,7 +29,7 @@ sql = Query.from_(table).select(table.id, table.name, table.age)
 print(str(sql))  # SELECT "t1"."id","t1"."name","t1"."age" FROM "t" "t1"
 
 print(
-    f"-------------------------------------------PostgreSQL Schema-----------------------------------------"
+    "-------------------------------------------PostgreSQL Schema-----------------------------------------"
 )
 sch = Schema("my_schema")
 # 对 Schema 对象直接通过属性引用的方式即可指定表名，比如 sch.t 就表示从 my_schema 下寻找名称为 t 的表

@@ -1,4 +1,5 @@
 from pprint import pprint
+
 import psutil
 
 print("----------------------------disk_partitions------------------------------")
@@ -14,5 +15,3 @@ pprint(psutil.disk_io_counters())
 
 #  perdisk=True，代表分别列出每一个磁盘的统计信息
 pprint(psutil.disk_io_counters(perdisk=True))
-
-

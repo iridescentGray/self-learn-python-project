@@ -1,7 +1,7 @@
 from scapy.layers.inet import IP
 from scapy.sendrecv import sr
 
-ip_scan = '172.18.20.0/24'
+ip_scan = "172.18.20.0/24"
 
 
 def scan_by_ip():

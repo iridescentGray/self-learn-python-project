@@ -1,6 +1,6 @@
 import time
-from pynput.mouse import Controller
 
+from pynput.mouse import Controller
 
 mouse = Controller()  # Objects for manipulating the mouse
 time.sleep(1)

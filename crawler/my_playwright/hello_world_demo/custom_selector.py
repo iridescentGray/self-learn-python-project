@@ -1,5 +1,6 @@
 import asyncio
-from playwright.async_api import async_playwright, Playwright
+
+from playwright.async_api import Playwright, async_playwright
 
 """
 playwright-doc:
@@ -26,7 +27,7 @@ async def run(playwright: Playwright):
     browser = await playwright.chromium.launch(headless=False)
     page = await browser.new_page()
     await page.set_content(
-        f"<div><button onclick='console.log(1111111)'>Click me</button></div>"
+        "<div><button onclick='console.log(1111111)'>Click me</button></div>"
     )
 
     button = await page.query_selector("tag=button")

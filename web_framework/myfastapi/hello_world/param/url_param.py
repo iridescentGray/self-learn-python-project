@@ -1,6 +1,7 @@
 from typing import Optional, Union
-from fastapi import FastAPI
+
 import uvicorn
+from fastapi import FastAPI
 
 app = FastAPI()
 

@@ -3,8 +3,7 @@ import socket
 from asyncio import AbstractEventLoop
 
 
-async def echo(conn: socket.socket,
-               loop: AbstractEventLoop):
+async def echo(conn: socket.socket, loop: AbstractEventLoop):
     # 无限循环等待来自客户端连接的数据
     while data := await loop.sock_recv(conn, 1024):
         # 收到数据之后再将其发送给客户端,在结尾加一个 b"~"

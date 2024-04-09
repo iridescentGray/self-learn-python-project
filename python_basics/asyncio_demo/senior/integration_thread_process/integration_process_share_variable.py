@@ -18,7 +18,9 @@ def unlock_increment():
 async def process_unlock_share_variable():
     counter = Value("i", 0)
     # 告诉进程池，创建进程的时候使用参数 counter 执行 init_lock_shared_counter 函数
-    with ProcessPoolExecutor(initializer=init_unlock_shared_counter, initargs=(counter,)) as pool:
+    with ProcessPoolExecutor(
+        initializer=init_unlock_shared_counter, initargs=(counter,)
+    ) as pool:
         loop = asyncio.get_running_loop()
         tasks = [loop.run_in_executor(pool, unlock_increment) for n in range(0, 1000)]
         await asyncio.gather(*tasks)
@@ -38,15 +40,21 @@ def lock_increment():
 async def process_lock_share_variable():
     counter = Value("i", 0)
     # 告诉进程池，创建进程的时候使用参数 counter 执行 init_lock_shared_counter 函数
-    with ProcessPoolExecutor(initializer=init_lock_shared_counter, initargs=(counter,)) as pool:
+    with ProcessPoolExecutor(
+        initializer=init_lock_shared_counter, initargs=(counter,)
+    ) as pool:
         loop = asyncio.get_running_loop()
         tasks = [loop.run_in_executor(pool, lock_increment) for n in range(0, 1000)]
         await asyncio.gather(*tasks)
         print(counter.value)
 
 
-if __name__ == '__main__':
-    print(f"----------------------------------process_unlock_share_variable------------------------------------")
+if __name__ == "__main__":
+    print(
+        "----------------------------------process_unlock_share_variable------------------------------------"
+    )
     asyncio.run(process_unlock_share_variable())
-    print(f"----------------------------------process_lock_share_variable------------------------------------")
+    print(
+        "----------------------------------process_lock_share_variable------------------------------------"
+    )
     asyncio.run(process_lock_share_variable())

@@ -1,13 +1,11 @@
-import uvicorn
-
 from typing import AsyncGenerator
+
+import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
-from fastcrud import crud_router
+from fastcrud import FastCRUD, crud_router
+from item import Base, Item, ItemCreateSchema, ItemUpdateSchema
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from fastcrud import FastCRUD
-from item import Base, Item, ItemCreateSchema, ItemUpdateSchema
-
 
 # Database setup (Async SQLAlchemy)
 DATABASE_URL = "sqlite+aiosqlite:///./test.db"

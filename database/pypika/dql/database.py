@@ -1,4 +1,4 @@
-from pypika import Query, Table, Database
+from pypika import Database, Query, Table
 
 print(
     f"------------------------------------------must declare table-----------------------------------------"

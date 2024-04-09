@@ -254,7 +254,6 @@ class CalculatorApp(UserControl):
             return num
 
     def calculate(self, operand1, operand2, operator):
-
         if operator == "+":
             return self.format_number(operand1 + operand2)
 

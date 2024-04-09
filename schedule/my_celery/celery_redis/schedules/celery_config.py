@@ -5,9 +5,9 @@ timezone = "Asia/Shanghai"
 CELERY_ENABLE_UTC = False
 
 
-from celery.schedules import crontab
 from datetime import timedelta
 
+from celery.schedules import crontab
 
 # 导入任务所在文件
 imports = ["task"]

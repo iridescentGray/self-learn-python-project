@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Query
 import uvicorn
+from fastapi import FastAPI, Query
 
 app = FastAPI()
 

@@ -5,7 +5,9 @@ async def raise_exc():
     raise ValueError("出错啦")
 
 
-print("-----------------------------------not_throw_exception_if_only_create_task-----------------------------------")
+print(
+    "-----------------------------------not_throw_exception_if_only_create_task-----------------------------------"
+)
 
 
 async def not_throw_exception_if_only_create_task():
@@ -16,7 +18,9 @@ async def not_throw_exception_if_only_create_task():
 
 asyncio.run(not_throw_exception_if_only_create_task())
 print("----------print error but not influence execute-----------")
-print("-----------------------------------not_throw_exception_if_invoke_exception-----------------------------------")
+print(
+    "-----------------------------------not_throw_exception_if_invoke_exception-----------------------------------"
+)
 
 
 async def not_throw_exception_if_invoke_exception():
@@ -28,7 +32,9 @@ async def not_throw_exception_if_invoke_exception():
 
 asyncio.run(not_throw_exception_if_invoke_exception())
 
-print("-----------------------------------throw_exception_if_await-----------------------------------")
+print(
+    "-----------------------------------throw_exception_if_await-----------------------------------"
+)
 
 
 async def throw_exception_if_await():

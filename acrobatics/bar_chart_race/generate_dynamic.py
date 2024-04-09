@@ -1,6 +1,6 @@
-import pandas as pd
 import bar_chart_race as bcr
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # 设置字体，否则无法显示中文
 plt.rcParams["font.sans-serif"] = ["SimHei"]  # Windows

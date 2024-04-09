@@ -4,9 +4,11 @@ from pydantic import BaseModel, ValidationError
 
 # 泛型
 
-print(f"------------------------------------------------Create Generic--------------------------------------------")
+print(
+    "------------------------------------------------Create Generic--------------------------------------------"
+)
 
-DataT = TypeVar('DataT')
+DataT = TypeVar("DataT")
 
 
 class DataModel(BaseModel):
@@ -21,17 +23,19 @@ class Response(BaseModel, Generic[DataT]):
 data = DataModel(numbers=[1, 2, 3], people=[])
 
 print(Response[int](data=1))
-print(Response[str](data='value'))
+print(Response[str](data="value"))
 print(Response[DataModel](data=data).model_dump())
 
 try:
-    Response[int](data='value')
+    Response[int](data="value")
 except ValidationError as e:
     print(e)
 
-print(f"------------------------------------------------Subclass Generic--------------------------------------------")
+print(
+    "------------------------------------------------Subclass Generic--------------------------------------------"
+)
 # To inherit from a generic model , subclass must also inherit from typing.Generic
-TypeX = TypeVar('TypeX')
+TypeX = TypeVar("TypeX")
 
 
 class BaseClassX(BaseModel, Generic[TypeX]):
@@ -45,10 +49,12 @@ class ChildClass(BaseClassX[TypeX], Generic[TypeX]):
 
 print(ChildClass[int](X=1))
 
-print(f"------------------------------------------Subclass Change Generic------------------------------------------")
-TypeA = TypeVar('TypeA')
-TypeB = TypeVar('TypeB')
-TypeC = TypeVar('TypeC')
+print(
+    "------------------------------------------Subclass Change Generic------------------------------------------"
+)
+TypeA = TypeVar("TypeA")
+TypeB = TypeVar("TypeB")
+TypeC = TypeVar("TypeC")
 
 
 class BaseClassAB(BaseModel, Generic[TypeA, TypeB]):
@@ -61,11 +67,13 @@ class ChildClassACB(BaseClassAB[int, TypeB], Generic[TypeB, TypeC]):
 
 
 # Replace TypeB by str
-print(ChildClassACB[str, int](a=1, b='y', c=3))
+print(ChildClassACB[str, int](a=1, b="y", c=3))
 
-print(f"---------------------------------------------Nested Generic--------------------------------------------------")
+print(
+    "---------------------------------------------Nested Generic--------------------------------------------------"
+)
 # Using the same TypeVar in nested models allows you to enforce typing relationships at different points in your model:
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class InnerT(BaseModel, Generic[T]):
@@ -79,6 +87,6 @@ class OuterT(BaseModel, Generic[T]):
 
 print(OuterT[int](outer=1, nested=InnerT[int](inner=1)))
 try:
-    print(OuterT[int](outer='a', nested=InnerT[str](inner='a')))
+    print(OuterT[int](outer="a", nested=InnerT[str](inner="a")))
 except ValidationError as e:
     print(e)

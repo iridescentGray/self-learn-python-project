@@ -1,13 +1,13 @@
-from tg_config import token
 from telegram import InlineQueryResultArticle, InputTextMessageContent, Update
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     ContextTypes,
+    InlineQueryHandler,
     MessageHandler,
     filters,
-    InlineQueryHandler,
 )
+from tg_config import token
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):

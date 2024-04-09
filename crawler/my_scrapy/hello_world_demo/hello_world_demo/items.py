@@ -12,6 +12,7 @@ class DoubanItem(BaseModel):
     score: str
     motto: str | None
 
+
 # scrapy Native Item
 # class DoubanItem(scrapy.Item):
 #     title = scrapy.Field()

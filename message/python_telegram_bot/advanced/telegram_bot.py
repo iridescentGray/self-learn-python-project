@@ -1,25 +1,13 @@
 import asyncio
-import logging
 import copy
+import logging
 import threading
 from typing import Any, Dict, List, Optional, Union
 
-from telegram import (
-    KeyboardButton,
-    PhotoSize,
-    ReplyKeyboardMarkup,
-    Update,
-)
+from telegram import KeyboardButton, PhotoSize, ReplyKeyboardMarkup, Update
+from telegram._utils.defaultvalue import DEFAULT_NONE
+from telegram._utils.types import DVInput, FileInput, ODVInput, ReplyMarkup
 from telegram.constants import ParseMode
-from telegram.error import BadRequest, NetworkError, TelegramError
-from telegram.ext import (
-    Application,
-    CallbackContext,
-    CallbackQueryHandler,
-    CommandHandler,
-    ContextTypes,
-    AIORateLimiter,
-)
 from telegram.error import (
     BadRequest,
     ChatMigrated,
@@ -32,11 +20,16 @@ from telegram.error import (
     TelegramError,
     TimedOut,
 )
-from telegram._utils.types import DVInput, FileInput, ODVInput, ReplyMarkup
-from telegram._utils.defaultvalue import DEFAULT_NONE
+from telegram.ext import (
+    AIORateLimiter,
+    Application,
+    CallbackContext,
+    CommandHandler,
+    ContextTypes,
+)
 
-from message.python_telegram_bot.advanced.message_type import RPCMessageType
 from message.python_telegram_bot.advanced.message_model import SendMsgModel
+from message.python_telegram_bot.advanced.message_type import RPCMessageType
 
 logger = logging.getLogger(__name__)
 
@@ -246,7 +239,7 @@ class Telegram:
         self.__is_running = True
         keyboard = ReplyKeyboardMarkup(keyboard=self._keyboard, resize_keyboard=True)
         await self._send_msg(
-            self._config["telegram"]["chat_id"], f"bot run", reply_markup=keyboard
+            self._config["telegram"]["chat_id"], "bot run", reply_markup=keyboard
         )
 
     async def _stop(self, update: Update, context: CallbackContext) -> None:
@@ -407,7 +400,7 @@ class Telegram:
     async def is_bot_mentioned(cls, update: Update, context: CallbackContext):
         try:
             message = update.message
-            if message == None:
+            if message is None:
                 return False
             if message.chat.type == "private":
                 return True
@@ -421,7 +414,7 @@ class Telegram:
             if message.reply_to_message is not None:
                 if message.reply_to_message.from_user.id == context.bot.id:
                     return True
-        except:
-            return True
+        except Exception as e:
+            raise e
         else:
             return False

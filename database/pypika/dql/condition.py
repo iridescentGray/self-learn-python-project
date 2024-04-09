@@ -1,4 +1,4 @@
-from pypika import Query, Field, Table, Criterion
+from pypika import Criterion, Field, Query, Table
 
 girl = Table("girl")
 

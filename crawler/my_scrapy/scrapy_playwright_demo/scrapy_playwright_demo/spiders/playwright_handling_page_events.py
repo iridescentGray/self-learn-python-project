@@ -1,5 +1,6 @@
 import scrapy
-from playwright.async_api import Dialog, Response as PlaywrightResponse
+from playwright.async_api import Dialog
+from playwright.async_api import Response as PlaywrightResponse
 from scrapy_playwright.page import PageMethod
 
 
@@ -11,7 +12,6 @@ class PlaywrightHandlingPageEvents(scrapy.Spider):
         "DOWNLOAD_HANDLERS": {
             "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
         },
-
     }
 
     def start_requests(self):

@@ -9,9 +9,7 @@ from telegram.ext import (
     ContextTypes,
     PicklePersistence,
 )
-
 from tg_config import token
-
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO

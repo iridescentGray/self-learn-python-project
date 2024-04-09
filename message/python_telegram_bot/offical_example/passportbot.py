@@ -3,7 +3,6 @@ from pathlib import Path
 
 from telegram import Update
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
-
 from tg_config import token
 
 logging.basicConfig(

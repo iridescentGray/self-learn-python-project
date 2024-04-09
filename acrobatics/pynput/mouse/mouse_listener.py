@@ -1,6 +1,6 @@
-from threading import Thread
 import threading
-from pynput.mouse import Listener, Button
+
+from pynput.mouse import Button, Listener
 
 
 def on_move(x, y):

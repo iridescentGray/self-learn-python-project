@@ -1,5 +1,6 @@
 import asyncio
-from playwright.async_api import async_playwright, Playwright
+
+from playwright.async_api import Playwright, async_playwright
 
 REPO = "test-github-repo1"
 USER = ""
@@ -40,6 +41,7 @@ async def run(playwright: Playwright):
         },
     )
     assert response.ok
+    page.close()
 
 
 async def main():

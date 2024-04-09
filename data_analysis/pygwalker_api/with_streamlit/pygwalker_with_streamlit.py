@@ -1,6 +1,6 @@
-from pygwalker.api.streamlit import StreamlitRenderer, init_streamlit_comm
 import pandas as pd
 import streamlit as st
+from pygwalker.api.streamlit import StreamlitRenderer, init_streamlit_comm
 
 # 调整Streamlit页面的宽度
 st.set_page_config(page_title="在Streamlit中使用PyGWalker", layout="wide")

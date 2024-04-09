@@ -1,10 +1,10 @@
 import asyncio
+import functools
 import os
 import typing
-import functools
-
 from contextlib import asynccontextmanager
-from playwright.async_api import async_playwright, BrowserContext
+
+from playwright.async_api import BrowserContext, async_playwright
 
 """
 playwright-doc:
@@ -99,7 +99,7 @@ async def login_and_save_status(
                 wait_until="domcontentloaded",
             )
             break
-        except Exception as e:
+        except Exception:
             continue
 
     await browser_context.storage_state(path="state.json")

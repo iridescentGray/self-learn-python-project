@@ -1,12 +1,12 @@
 from pydantic import BaseModel
 
-
 # Model methods and properties: see  https://docs.pydantic.dev/latest/usage/models/#model-methods-and-properties
 # Model Api: see https://docs.pydantic.dev/latest/api/main/#pydantic.main.BaseModel
 
+
 class User(BaseModel):
     id: int
-    name: str = 'Jane Doe'
+    name: str = "Jane Doe"
     friends: list[int] = []
 
 
@@ -15,23 +15,31 @@ external_data = {
     "friends": [1, 2, "3"],
 }
 
-print(f"-----------------------------------------create instance------------------------------------------")
+print(
+    f"-----------------------------------------create instance------------------------------------------"
+)
 # arguments passed to the constructor will be copied
 create_user_with_default_value = User(id=1, friends=[1, 2])
 print(f"create_user_with_default_value:  {create_user_with_default_value}")
 create_user_by_dict = User(**external_data)
 print(f"create_user_by_dict:  {create_user_by_dict}")
 
-print(f"----------------------------Create instance without validation-------------------------------------")
+print(
+    f"----------------------------Create instance without validation-------------------------------------"
+)
 # Creating instance models without validation
 print(f"model_construct: {User.model_construct()}")
 
-print(f"-----------------------------------------dict----------------------------------------------")
+print(
+    f"-----------------------------------------dict----------------------------------------------"
+)
 user = User(id=123)
 print(f"user: {user}")
 print(f"dict view: user.model_dump: {user.model_dump()}")
 print(f"dict view: user.model_dump: {type(user.model_dump())}")
-print(f"-----------------------------------------json----------------------------------------------")
+print(
+    f"-----------------------------------------json----------------------------------------------"
+)
 user_json = create_user_by_dict.model_dump_json()
 print(f"user_json  {user_json}")
 print(f"user_json object type {type(user_json)}")
@@ -49,14 +57,18 @@ print(f"user==user_from_json  {create_user_by_dict == user_from_json}")
 # returns a dictionary representing the model as JSON Schema
 print(f"user.model_json_schema: {user.model_json_schema()}")
 
-print(f"-------------------------------------------Model Shallow Copy---------------------------------------------")
+print(
+    "-------------------------------------------Model Shallow Copy---------------------------------------------"
+)
 # shallow_copy
 user_shallow_copy = user.model_copy()
 print(f"user_shallow_model_copy: {user_shallow_copy}")
 print(f"user_shallow_model_copy is user: {user_shallow_copy is user}")
 print(f"user_shallow_model_copy == user: {user_shallow_copy == user}")
 
-print(f"--------------------------------------------properties-----------------------------------------------------")
+print(
+    "--------------------------------------------properties-----------------------------------------------------"
+)
 
 # all fields
 print(f"model_fields: {user.model_fields}")

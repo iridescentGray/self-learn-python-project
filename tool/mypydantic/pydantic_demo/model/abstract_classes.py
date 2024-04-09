@@ -13,7 +13,6 @@ class FooBarModel(BaseModel, abc.ABC):
 
 
 class SubClass(FooBarModel):
-
     def my_abstract_method(self):
         print(f"a: {self.a}, b:{self.b}")
 

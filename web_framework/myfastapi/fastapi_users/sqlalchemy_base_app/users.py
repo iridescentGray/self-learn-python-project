@@ -1,10 +1,11 @@
-import typing
 import os
+import typing
+
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, IntegerIDMixin, InvalidPasswordException
-from sqlalchemy_base_app.model import UserCreate
-from sqlalchemy_base_app.db import User, get_user_db
 from fastapi_users.authentication import AuthenticationBackend, BearerTransport
+from sqlalchemy_base_app.db import User, get_user_db
+from sqlalchemy_base_app.model import UserCreate
 
 SECRET = "SECRET"
 

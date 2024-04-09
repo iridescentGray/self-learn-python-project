@@ -1,7 +1,8 @@
+from flask_jwt_extended import get_jwt, jwt_required
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required, get_jwt
-from ..models.revoked_token import RevokedTokenModel
+
 from ..common.utils import res
+from ..models.revoked_token import RevokedTokenModel
 
 
 class Logout(Resource):
@@ -13,5 +14,5 @@ class Logout(Resource):
             revoked_token = RevokedTokenModel(jti=jti)  # type: ignore
             revoked_token.add()
             return res()
-        except:
+        except Exception:
             return res(success=False, message="服务器繁忙！", code=500)

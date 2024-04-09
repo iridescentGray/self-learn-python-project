@@ -1,7 +1,8 @@
-from flask_restful import Resource
 from flask_jwt_extended import jwt_required
-from ..models.user import UserModel
+from flask_restful import Resource
+
 from ..common.utils import res
+from ..models.user import UserModel
 
 
 class UserService(Resource):

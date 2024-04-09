@@ -1,4 +1,4 @@
-from pypika import Table, Query
+from pypika import Query, Table
 
 table = Table("t")
 sql = Query.update(table).set(table.name, "u1")

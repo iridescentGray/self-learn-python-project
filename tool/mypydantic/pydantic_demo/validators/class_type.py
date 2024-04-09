@@ -1,7 +1,7 @@
 from pydantic import BaseModel, InstanceOf, ValidationError
 
-
 # use InstanceOf to check class type
+
 
 class Fruit:
     def __repr__(self):
@@ -22,6 +22,6 @@ class Basket(BaseModel):
 
 print(Basket(fruits=[Banana(), Apple()]))
 try:
-    Basket(fruits=[Banana(), 'Apple'])
+    Basket(fruits=[Banana(), "Apple"])
 except ValidationError as e:
     print(e)

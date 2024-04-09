@@ -1,4 +1,3 @@
-import logging
 import os
 from itertools import islice
 
@@ -85,7 +84,6 @@ class IconBrowser(UserControl):
                     yield icon_name
 
         def display_icons(search_term: str):
-
             # clean search results
             search_query.disabled = True
             self.update()

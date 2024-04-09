@@ -1,10 +1,9 @@
 import json
-
-from fastapi import FastAPI
-from fastapi.responses import StreamingResponse
 import time
 
 import uvicorn
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 
 app = FastAPI()
 """Response

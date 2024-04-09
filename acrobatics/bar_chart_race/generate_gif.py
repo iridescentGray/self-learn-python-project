@@ -1,5 +1,5 @@
-import pandas as pd
 import bar_chart_race as bcr
+import pandas as pd
 
 # 获取数据
 df = pd.read_csv("acrobatics/bar_chart_race/covid19_tutorial.csv", index_col=["date"])

@@ -1,5 +1,4 @@
 import logging
-from tg_config import token
 
 from telegram import ForceReply, Update
 from telegram.ext import (
@@ -9,6 +8,7 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
+from tg_config import token
 
 """
 doc:

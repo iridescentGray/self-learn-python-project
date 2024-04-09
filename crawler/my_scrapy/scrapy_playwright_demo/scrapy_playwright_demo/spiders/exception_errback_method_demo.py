@@ -1,7 +1,6 @@
 import logging
 
-from scrapy import Request
-from scrapy import Spider
+from scrapy import Request, Spider
 
 
 # run command: scrapy crawl handle_exception_errback_demo
@@ -29,7 +28,9 @@ class HandleExceptionInErrbackSpider(Spider):
 
     async def errback(self, failure):
         logging.info(
-            "Handling failure in errback, request=%r, exception=%r", failure.request, failure.value
+            "Handling failure in errback, request=%r, exception=%r",
+            failure.request,
+            failure.value,
         )
         # you can tru to reload the page
         # page = failure.request.meta["playwright_page"]

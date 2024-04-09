@@ -1,6 +1,7 @@
 import re
-import pytest
 from pathlib import Path
+
+import pytest
 from playwright.sync_api import Page, expect
 
 """

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scrapy import Spider, FormRequest
+from scrapy import FormRequest, Spider
 from scrapy_playwright.page import PageMethod
 
 
@@ -27,7 +27,9 @@ class PostSpider(Spider):
                 "playwright_page_methods": [
                     PageMethod(
                         # 给请求截图
-                        "screenshot", path=Path(__file__).parent / "send_post_request.png", full_page=True
+                        "screenshot",
+                        path=Path(__file__).parent / "send_post_request.png",
+                        full_page=True,
                     ),
                 ],
             },

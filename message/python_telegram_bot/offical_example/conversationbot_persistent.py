@@ -13,7 +13,6 @@ from telegram.ext import (
 )
 from tg_config import token
 
-
 """
 doc:
 https://docs.python-telegram-bot.org/en/v20.7/examples.persistentconversationbot.html

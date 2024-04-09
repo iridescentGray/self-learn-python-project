@@ -1,5 +1,5 @@
-from pypika import Query, Table, functions as fn
-
+from pypika import Query, Table
+from pypika import functions as fn
 
 table1 = Table("t1")
 table2 = Table("t2")

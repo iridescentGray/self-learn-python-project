@@ -4,6 +4,7 @@ import weakref
 测试弱引用
 """
 
+
 class SimpleObject:
     def __del__(self):
         print("SimpleObject __del__")

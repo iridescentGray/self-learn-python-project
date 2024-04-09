@@ -1,5 +1,6 @@
 import asyncio
-from playwright.async_api import async_playwright, expect, Route
+
+from playwright.async_api import Route, async_playwright, expect
 
 """
 playwright-doc:

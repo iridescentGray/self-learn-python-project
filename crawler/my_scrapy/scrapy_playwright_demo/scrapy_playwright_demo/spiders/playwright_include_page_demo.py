@@ -8,20 +8,18 @@ class PlaywrightIncludePageDemo(scrapy.Spider):
         "DOWNLOAD_HANDLERS": {
             "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
         },
-
     }
 
     def start_requests(self):
-        yield scrapy.Request(url="https://example.org",
-                             callback=self.parse,
-                             dont_filter=True)
+        yield scrapy.Request(
+            url="https://example.org", callback=self.parse, dont_filter=True
+        )
 
     def parse(self, response, **kwargs):
         yield scrapy.Request(
             url="https://example.org",
             callback=self.parse_next,
-            meta={"playwright": True,
-                  "playwright_include_page": True},
+            meta={"playwright": True, "playwright_include_page": True},
             errback=self.errback_close_page,
         )
 

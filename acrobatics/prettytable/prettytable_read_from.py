@@ -1,6 +1,5 @@
 from prettytable import from_csv
 
-
 print(
     "\n---------------------------------read from csv---------------------------------------\n"
 )

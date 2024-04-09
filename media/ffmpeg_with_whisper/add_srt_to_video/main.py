@@ -1,7 +1,8 @@
-from datetime import timedelta
 import os
-import whisperx
 import subprocess
+from datetime import timedelta
+
+import whisperx
 
 
 def transcribe_video(input_video):
@@ -38,7 +39,7 @@ def transcribe_video(input_video):
         print(text)
         segment = f"{index + 1}\n{startTime} --> {endTime}\n{text[1:] if text[0] == ' ' else text}\n\n"
 
-        srtFilename = os.path.join(f"subtitles.srt")
+        srtFilename = os.path.join("subtitles.srt")
         with open(srtFilename, "a", encoding="utf-8") as srtFile:
             srtFile.write(segment)
 
@@ -46,7 +47,6 @@ def transcribe_video(input_video):
 
 
 def add_srt_to_video(input_video, output_file):
-
     # FFmpeg command
     subtitles_file = "subtitles.srt"
 

@@ -1,5 +1,5 @@
 import asyncio
-from asyncio import Transport, AbstractEventLoop
+from asyncio import AbstractEventLoop, Transport
 from typing import Optional
 
 """
@@ -10,7 +10,6 @@ from typing import Optional
 
 
 class HTTPGetClientProtocol(asyncio.Protocol):
-
     def __init__(self, host: str, loop: AbstractEventLoop):
         self._host = host
         self._future = loop.create_future()
@@ -22,9 +21,9 @@ class HTTPGetClientProtocol(asyncio.Protocol):
         return await self._future
 
     def _get_request_bytes(self) -> bytes:
-        request = ("GET / HTTP/1.1\r\n"
-                   "Connection: close\r\n"
-                   f"Host: {self._host}\r\n\r\n")
+        request = (
+            "GET / HTTP/1.1\r\n" "Connection: close\r\n" f"Host: {self._host}\r\n\r\n"
+        )
         return request.encode("utf-8")
 
     def connection_made(self, transport: Transport) -> None:
@@ -73,7 +72,9 @@ async def make_request(host: str, port: int, loop: AbstractEventLoop):
     # create_connection 将创建到给定主机的套接字连接，并将其包装在适当的传输中
     # 当建立连接之后，会自动调用协议的 connection_made，在该方法中会向目的主机发送请求
     # 当数据达到时，会自动协议的 data_received，数据返回完毕时自动调用协议的 eof_received
-    transport, protocol = await loop.create_connection(protocol_factory, host=host, port=port)
+    transport, protocol = await loop.create_connection(
+        protocol_factory, host=host, port=port
+    )
     # 将数据写入 future 之后，调用 get_response 得到响应数据
     # 在 create_connection 里面我们传入了一个协议工厂，在里面会自动调用
     # 返回的 transport 就是传输，protocol 就是内部的创建协议实例，但传输这里我们不需要

@@ -1,10 +1,9 @@
-from typing import Annotated
-from typing import TypeVar
+from typing import Annotated, TypeVar
 
 from pydantic import BaseModel
 from pydantic.functional_validators import AfterValidator
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 SortedList = Annotated[list[T], AfterValidator(lambda x: sorted(x))]
 
@@ -16,4 +15,4 @@ class DemoModel(BaseModel):
     name_list: SortedList[Name]
 
 
-print(DemoModel(int_list=[3, 2, 1], name_list=['adrian g', 'David']))
+print(DemoModel(int_list=[3, 2, 1], name_list=["adrian g", "David"]))

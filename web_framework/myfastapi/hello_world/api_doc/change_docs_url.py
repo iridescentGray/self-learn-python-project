@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Query
 import uvicorn
+from fastapi import FastAPI, Query
 
 # api-doc: http://127.0.0.1:8000/openapi.json
 # defualt-Swagger UI: http://127.0.0.1:8000/docs

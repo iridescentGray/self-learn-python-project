@@ -1,9 +1,7 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
-
 import math
 
+import matplotlib.pyplot as plt
+import numpy as np
 
 n = 800
 A = 1.995653

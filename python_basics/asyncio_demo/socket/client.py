@@ -1,8 +1,7 @@
 import socket
 
 # 返回主动套接字
-client = socket.socket(socket.AF_INET,
-                       socket.SOCK_STREAM)
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # 连接服务端
 client.connect(("localhost", 12345))
 while True:

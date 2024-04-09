@@ -7,6 +7,7 @@ class ScrollSpider(scrapy.Spider):
     """
     scroll and then shot_all_screen
     """
+
     name = "scroll_and_shot_all_screen"
     custom_settings = {
         "TWISTED_REACTOR": "twisted.internet.asyncioreactor.AsyncioSelectorReactor",

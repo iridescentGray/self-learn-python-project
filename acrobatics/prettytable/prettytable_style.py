@@ -1,5 +1,5 @@
-from prettytable import PrettyTable
 import prettytable
+from prettytable import PrettyTable
 
 x = PrettyTable(["City name", "Area", "Population", "Annual Rainfall"])
 

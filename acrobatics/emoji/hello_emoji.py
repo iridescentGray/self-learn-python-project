@@ -9,7 +9,7 @@ print(f"peach code is {peach}")
 print(
     "----------------------------Forward parsing phrase------------------------------"
 )
-emoji_grammar = emoji.emojize(f"emoji_grammar_test: 你在想 :peach: 吃")
+emoji_grammar = emoji.emojize("emoji_grammar_test: 你在想 :peach: 吃")
 print(emoji_grammar)
 
 print("*" * 80)

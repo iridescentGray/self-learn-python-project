@@ -1,4 +1,4 @@
-from pypika import Table, Query, Field
+from pypika import Field, Query, Table
 
 table = Table("t")
 sql = Query.into(table).insert(1, "u1", 16, "p1")

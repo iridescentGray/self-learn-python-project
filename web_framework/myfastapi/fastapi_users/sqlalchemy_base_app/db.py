@@ -3,23 +3,23 @@ import typing
 
 from fastapi import Depends
 from fastapi_users.db import (
+    SQLAlchemyBaseOAuthAccountTable,
     SQLAlchemyBaseUserTable,
     SQLAlchemyUserDatabase,
-    SQLAlchemyBaseOAuthAccountTable,
 )
 from fastapi_users_db_sqlalchemy.access_token import (
     SQLAlchemyAccessTokenDatabase,
     SQLAlchemyBaseAccessTokenTable,
 )
+from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
+    declared_attr,
     mapped_column,
     relationship,
-    declared_attr,
 )
-from sqlalchemy import Integer, ForeignKey
 
 DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 

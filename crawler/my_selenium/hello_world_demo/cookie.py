@@ -1,6 +1,5 @@
 from selenium import webdriver
 
-
 with webdriver.Chrome() as driver:
     driver.get("http://www.baidu.com")
 

@@ -7,7 +7,9 @@ class User(BaseModel):
     friends: list[int] = []
 
 
-print(f"------------------------------------------error_test-----------------------------------------------")
+print(
+    f"------------------------------------------error_test-----------------------------------------------"
+)
 try:
     User(friends=[1, 2, "not number"])
 except ValidationError as e:

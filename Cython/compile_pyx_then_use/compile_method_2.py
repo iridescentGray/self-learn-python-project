@@ -2,7 +2,7 @@
 
 编译Cython的第二种方法(推荐)
 
-执行命令 
+执行命令
 python compile_method_2.py build_ext --inplace
 即可完成上述两步
 
@@ -11,7 +11,8 @@ python compile_method_2.py build_ext --inplace
 """
 
 import os
-from distutils.core import setup, Extension
+from distutils.core import Extension, setup
+
 from Cython.Build import cythonize
 
 cython_file = os.path.join(os.path.abspath("."), "fib.pyx")

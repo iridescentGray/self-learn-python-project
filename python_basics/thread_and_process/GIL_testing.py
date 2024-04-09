@@ -39,7 +39,7 @@ def thread_test():
     print(f"thread_test在 {end - start} 秒内完成")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     process_test()
     # because of GIL lock,thread_test() performance is Far behind than process_test()
     thread_test()

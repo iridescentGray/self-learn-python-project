@@ -8,7 +8,9 @@ async def delay(seconds):
     return seconds
 
 
-print("-----------------------------------------create event loop------------------------------------------")
+print(
+    "-----------------------------------------create event loop------------------------------------------"
+)
 
 new_loop = asyncio.new_event_loop()
 try:
@@ -16,7 +18,9 @@ try:
 finally:
     new_loop.close()
 
-print("----------------------------------get running loop mode 1：get_running_loop------------------------------")
+print(
+    "----------------------------------get running loop mode 1：get_running_loop------------------------------"
+)
 
 
 def some_func():
@@ -37,26 +41,36 @@ finally:
     running_loop_case_loop.close()
 
 
-print("----------------------------------get running loop mode2：get_event_loop------------------------------")
+print(
+    "----------------------------------get running loop mode2：get_event_loop------------------------------"
+)
 get_event_loop_method_loop = asyncio.get_event_loop()
 get_event_loop_method_loop.close()
-print("----------------------------------View unfinished tasks in event loop------------------------------")
+print(
+    "----------------------------------View unfinished tasks in event loop------------------------------"
+)
+
 
 async def main1():
     await asyncio.sleep(1)
     print("我是 main1")
 
+
 async def main2():
     await asyncio.sleep(2)
     print("我是 main2")
+
 
 async def main3():
     await asyncio.sleep(3)
     print("我是 main3")
 
+
 view_unfinished_tasks_in_event_loop = asyncio.new_event_loop()
 try:
-    view_unfinished_tasks_in_event_loop.create_task(main1(), name="main1")  # 创建任务时可以给任务起个名字
+    view_unfinished_tasks_in_event_loop.create_task(
+        main1(), name="main1"
+    )  # 创建任务时可以给任务起个名字
     view_unfinished_tasks_in_event_loop.create_task(main2(), name="main2")
     view_unfinished_tasks_in_event_loop.create_task(main3(), name="main3")
 
@@ -79,6 +93,3 @@ try:
 
 finally:
     view_unfinished_tasks_in_event_loop.close()
-
-
-

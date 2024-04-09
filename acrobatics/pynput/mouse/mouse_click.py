@@ -1,6 +1,6 @@
 import time
-from pynput.mouse import Button, Controller
 
+from pynput.mouse import Button, Controller
 
 mouse = Controller()  # Objects for manipulating the mouse
 

@@ -1,9 +1,9 @@
 from pprint import pprint
 
-# deep 库的所有功能都在 deep.DeepFace 子模块下面
-from deepface import DeepFace
 import cv2
 
+# deep 库的所有功能都在 deep.DeepFace 子模块下面
+from deepface import DeepFace
 
 print("-------------------------------对比两张图片----：-----------------------------")
 result = DeepFace.verify(

@@ -24,6 +24,6 @@ def async_apply_pool():
         print(hi2.get())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     hello_world_pool()
     async_apply_pool()

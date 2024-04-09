@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Request, Response
-import uvicorn
 import orjson
+import uvicorn
+from fastapi import FastAPI, Request, Response
 
 app = FastAPI()
 

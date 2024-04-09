@@ -36,11 +36,17 @@ class BooksSpider(Spider):
         logging.getLogger("scrapy.core.engine").setLevel(logging.WARNING)
         logging.getLogger("scrapy.core.scraper").setLevel(logging.WARNING)
 
-    def parse(self, response: Response, current_page: Optional[int] = None) -> Generator:
-        page_count = response.css(".pager .current::text").re_first(r"Page \d+ of (\d+)")
+    def parse(
+        self, response: Response, current_page: Optional[int] = None
+    ) -> Generator:
+        page_count = response.css(".pager .current::text").re_first(
+            r"Page \d+ of (\d+)"
+        )
         page_count = int(page_count)
         for page in range(2, page_count + 1):
-            yield response.follow(f"/catalogue/page-{page}.html", cb_kwargs={"current_page": page})
+            yield response.follow(
+                f"/catalogue/page-{page}.html", cb_kwargs={"current_page": page}
+            )
 
         current_page = current_page or 1
         for book in response.css("article.product_pod a"):
@@ -58,7 +64,9 @@ class BooksSpider(Spider):
         url_sha256 = hashlib.sha256(response.url.encode("utf-8")).hexdigest()
         page = response.meta["playwright_page"]
         await page.wait_for_load_state("domcontentloaded")
-        await page.screenshot(path=Path(__file__).parent / "books" / f"{url_sha256}.png", full_page=True)
+        await page.screenshot(
+            path=Path(__file__).parent / "books" / f"{url_sha256}.png", full_page=True
+        )
         await page.close()
         return {
             "url": response.url,

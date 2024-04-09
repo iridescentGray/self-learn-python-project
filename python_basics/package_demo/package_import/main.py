@@ -1,6 +1,6 @@
 import inner_package_1
-from inner_package_2 import a_model
 from __all__package import *
+from inner_package_2 import a_model
 from underscores_package import *
 
 """总结

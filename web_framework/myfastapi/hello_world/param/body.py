@@ -1,7 +1,8 @@
-from typing import Optional, List
-from fastapi import FastAPI, Request, Response
-from pydantic import BaseModel
+from typing import List, Optional
+
 import uvicorn
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
 
 app = FastAPI()
 

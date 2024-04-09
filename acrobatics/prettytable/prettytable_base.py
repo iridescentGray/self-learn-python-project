@@ -1,7 +1,4 @@
-from re import T
-from prettytable import PrettyTable, from_csv
-import prettytable
-
+from prettytable import PrettyTable
 
 print(
     "---------------------------------base useage---------------------------------------"

@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 
-print(f"-----------------------------------------Recursive Models------------------------------------------")
+print(
+    f"-----------------------------------------Recursive Models------------------------------------------"
+)
 
 
 class Foo(BaseModel):
@@ -9,8 +11,8 @@ class Foo(BaseModel):
 
 
 class Bar(BaseModel):
-    apple: str = 'x'
-    banana: str = 'y'
+    apple: str = "x"
+    banana: str = "y"
 
 
 class Spam(BaseModel):
@@ -18,7 +20,7 @@ class Spam(BaseModel):
     bars: list[Bar]
 
 
-recursive_spam = Spam(foo={'count': 4}, bars=[{'apple': 'x1'}, {'apple': 'x2'}])
+recursive_spam = Spam(foo={"count": 4}, bars=[{"apple": "x1"}, {"apple": "x2"}])
 
 print(f"recursive_spam: {recursive_spam}")
 print(f"recursive_spam: {recursive_spam.model_dump()}")

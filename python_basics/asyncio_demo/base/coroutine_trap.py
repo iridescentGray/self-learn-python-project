@@ -1,12 +1,10 @@
 import asyncio
 
-
 from python_basics.decorator_demo import async_timed
 
 """
 以下场景使用协程却得不到提升:
-	第一: 代码是 CPU 密集
-    第二：代码虽然是 IO 密集，但 IO 是阻塞 IO，而不是非阻塞 IO
+第二：代码虽然是 IO 密集，但 IO 是阻塞 IO，而不是非阻塞 IO
 """
 
 

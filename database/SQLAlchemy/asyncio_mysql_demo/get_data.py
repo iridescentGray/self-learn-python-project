@@ -1,8 +1,7 @@
 import asyncio
 
-from sqlalchemy import text
-
 from engine import mysql_engine as engine
+from sqlalchemy import text
 
 
 async def get_data():

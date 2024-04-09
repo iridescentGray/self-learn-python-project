@@ -6,7 +6,7 @@ try:
     sys.exit(100)
 except SystemExit:
     print("程序想要退出，被捕获了")
-    
+
 print(123)
 
 

@@ -1,14 +1,13 @@
 from fastapi import Depends, FastAPI
-
+from sqlalchemy_base_app.db import User, create_db_and_tables
 from sqlalchemy_base_app.model import UserCreate, UserRead, UserUpdate
 from sqlalchemy_base_app.users import (
-    jwt_auth_backend,
+    SECRET,
     current_active_user,
     fastapi_users,
     google_oauth_client,
-    SECRET,
+    jwt_auth_backend,
 )
-from sqlalchemy_base_app.db import User, create_db_and_tables
 
 app = FastAPI()
 

@@ -1,6 +1,6 @@
-from curses import A_ALTCHARSET
 import time
-from pynput.keyboard import Key, Controller
+
+from pynput.keyboard import Controller, Key
 
 keyboard: Controller = Controller()
 

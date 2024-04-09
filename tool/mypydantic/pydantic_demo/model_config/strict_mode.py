@@ -3,7 +3,9 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 """
 By default, pydantic always open the Strict Mode
 """
-print(f"-----------------------------------------strict mode open------------------------------------------")
+print(
+    f"-----------------------------------------strict mode open------------------------------------------"
+)
 
 
 class StrictModel(BaseModel):
@@ -22,7 +24,9 @@ try:
 except ValidationError as e:
     print(e)
 
-print(f"-----------------------------------------strict mode close------------------------------------------")
+print(
+    f"-----------------------------------------strict mode close------------------------------------------"
+)
 
 
 class UnStrictModel(BaseModel):

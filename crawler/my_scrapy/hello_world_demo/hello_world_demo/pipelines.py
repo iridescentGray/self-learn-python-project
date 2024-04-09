@@ -9,5 +9,5 @@
 
 class HelloWorldDemoPipeline:
     def process_item(self, item, spider):
-        print(f'process_item is {item}')
+        print(f"process_item is {item}")
         return item

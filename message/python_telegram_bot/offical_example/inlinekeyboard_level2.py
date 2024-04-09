@@ -8,7 +8,6 @@ from telegram.ext import (
     ContextTypes,
     ConversationHandler,
 )
-
 from tg_config import token
 
 logging.basicConfig(

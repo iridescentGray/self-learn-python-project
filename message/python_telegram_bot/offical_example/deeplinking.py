@@ -9,7 +9,6 @@ from telegram.ext import (
     ContextTypes,
     filters,
 )
-
 from tg_config import token
 
 logging.basicConfig(

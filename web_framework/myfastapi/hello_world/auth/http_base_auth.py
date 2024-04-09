@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Depends
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
 import uvicorn
+from fastapi import Depends, FastAPI
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 app = FastAPI()
 

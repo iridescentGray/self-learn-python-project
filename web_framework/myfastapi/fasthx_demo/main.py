@@ -1,12 +1,11 @@
 import os
 from typing import Annotated, Any
 
+import uvicorn
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
 from fasthx import Jinja, hx
-import uvicorn
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 

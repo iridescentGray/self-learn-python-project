@@ -1,6 +1,6 @@
 import time
-from pynput.mouse import Controller
 
+from pynput.mouse import Controller
 
 mouse = Controller()  # Objects for manipulating the mouse
 print(f"当前鼠标位置: {mouse.position}")

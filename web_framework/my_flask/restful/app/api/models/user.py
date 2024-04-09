@@ -1,6 +1,7 @@
 from datetime import datetime
-from ..models import db
+
 from ..common.utils import format_datetime_to_json
+from ..models import db
 
 
 class UserModel(db.Model):

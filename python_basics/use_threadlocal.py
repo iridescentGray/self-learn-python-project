@@ -1,6 +1,5 @@
 import threading
 
-
 # 创建一个 local 对象
 thread_local = threading.local()
 
