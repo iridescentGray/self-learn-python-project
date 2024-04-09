@@ -47,13 +47,9 @@ def transcribe_video(input_video):
 
 
 def add_srt_to_video(input_video, output_file):
-    # FFmpeg command
     subtitles_file = "subtitles.srt"
-
-    # FFmpeg command
     ffmpeg_command = f"""ffmpeg -i {input_video} -vf "subtitles={subtitles_file}:force_style='FontName=Arial,FontSize=10,PrimaryColour=&HFFFFFF,OutlineColour=&H000000,BorderStyle=3,Outline=1,Shadow=1,Alignment=2,MarginV=10'" -c:a copy {output_file} -y """
 
-    # Run the FFmpeg command
     subprocess.run(ffmpeg_command, shell=True)
 
 
