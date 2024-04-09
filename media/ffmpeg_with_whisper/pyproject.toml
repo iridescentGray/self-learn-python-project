@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "ffmpeg-with-whisper"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+whisperx = {git = "https://github.com/m-bain/whisperx.git", branch = "main"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

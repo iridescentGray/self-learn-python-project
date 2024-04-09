@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "fast_whisper_demo"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+faster-whisper = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
