@@ -1,7 +1,7 @@
 # FastAPI
 
-FastAPI相关demo
-FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的Web框架，基于Python 3.6+， 使用了Python中的类型提示进行类型检查，非常符合工程化开发的需求，在业界有非常好的口碑。
+FastAPI 相关 demo
+FastAPI 是一个用于构建 API（网络数据接口）的现代、高性能的 Web 框架，基于 Python 3.6+， 使用了 Python 中的类型提示进行类型检查，非常符合工程化开发的需求，在业界有非常好的口碑。
 
 ## Environmental construction
 
@@ -17,6 +17,7 @@ FastAPI 是一个用于构建API（网络数据接口）的现代、高性能的
     FastAPI： https://fastapi.tiangolo.com/zh/
     pydantic：https://docs.pydantic.dev/
     starlette：https://www.starlette.io/
+    tips: https://github.com/Kludex/fastapi-tips
 
 ## uninstall
 
