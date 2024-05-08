@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ddddocr_demo"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.8"
+ddddocr = "^1.5.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
