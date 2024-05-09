@@ -52,6 +52,7 @@ async def handle_gather_error():
     for result in results:
         print(result)
         print(type(result))
+        print(f"result is Exception {isinstance(result, Exception)}")
 
 
 asyncio.run(handle_gather_error())
