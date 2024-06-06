@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pycryptodome-demo"
+version = "0.1.0"
+description = ""
+authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pycryptodomex = "^3.20.0"
+pycryptodome = "^3.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
