@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-magic"
+name = "python_magic_demo"
 version = "0.1.0"
 description = ""
 authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
@@ -7,7 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+python-magic = "^0.4.27"
 
+
+[tool.poetry.group.windows.dependencies]
+python-magic-bin = "^0.4.14"
 
 [build-system]
 requires = ["poetry-core"]
