@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 akshare = "^1.13.94"
+mplfinance = "^0.12.10b0"
 
 
 [build-system]
