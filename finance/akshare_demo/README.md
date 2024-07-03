@@ -5,3 +5,4 @@ AKShare is an elegant and simple financial data interface library for Python, bu
 ## Related documents
 
     github: https://github.com/akfamily/akshare
+    doc: https://akshare.akfamily.xyz/data/index.html
