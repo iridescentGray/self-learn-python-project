@@ -44,13 +44,6 @@ class UvicornServer(uvicorn.Server):
         self.thread.join()
 
 
-"""Response
-https://fastapi.tiangolo.com/zh/advanced/custom-response/
-
-like chatgpt response
-
-"""
-
 router_public = APIRouter()
 
 
