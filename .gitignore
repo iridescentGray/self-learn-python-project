@@ -5,6 +5,7 @@ dis
 dist-ssr
 coverage
 *.local
+*.log
 
 # Environments
 .env
