@@ -1,8 +1,32 @@
 import asyncio
+import functools
+import time
 from asyncio.events import AbstractEventLoop
 from concurrent.futures import ProcessPoolExecutor
+from typing import Any, Callable
 
-from python_basics.decorator_demo import async_timed
+
+def async_timed(func: Callable) -> Callable:
+    """
+    协程方法执行时间统计
+
+    Returns:
+        装饰器本身
+
+    """
+
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs) -> Any:
+        print(f"coroutine {func.__name__} 开始执行")
+        start = time.perf_counter()
+        try:
+            return await func(*args, **kwargs)
+        finally:
+            end = time.perf_counter()
+            total = end - start
+            print(f"coroutine {func.__name__} 用 {total} 秒执行完毕")
+
+    return wrapper
 
 
 def do_count_number(to: int) -> int:

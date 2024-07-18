@@ -1,7 +1,27 @@
 import asyncio
+import functools
+import time
 from pprint import pprint
+from typing import Any, Callable
 
-from python_basics.decorator_demo import async_timed
+
+def async_timed(func: Callable) -> Callable:
+    """
+    协程方法执行时间统计
+    """
+
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs) -> Any:
+        print(f"coroutine {func.__name__} 开始执行")
+        start = time.perf_counter()
+        try:
+            return await func(*args, **kwargs)
+        finally:
+            end = time.perf_counter()
+            total = end - start
+            print(f"coroutine {func.__name__} 用 {total} 秒执行完毕")
+
+    return wrapper
 
 
 async def delay(seconds):
@@ -10,7 +30,7 @@ async def delay(seconds):
 
 
 print(
-    f"-------------------------------use_create_task_create_batch_await_task------------------------------------"
+    "-------------------------------use_create_task_create_batch_await_task------------------------------------"
 )
 
 
@@ -28,7 +48,7 @@ async def use_create_task_create_batch_await_task():
 asyncio.run(use_create_task_create_batch_await_task())
 
 print(
-    f"----------------------------------use_gather_create_batch_await_task-------------------------------------"
+    "----------------------------------use_gather_create_batch_await_task-------------------------------------"
 )
 
 
@@ -43,7 +63,7 @@ async def use_gather_create_batch_await_task():
 asyncio.run(use_gather_create_batch_await_task())
 
 print(
-    f"------------------------------------------gather_task_group---------------------------------------------"
+    "------------------------------------------gather_task_group---------------------------------------------"
 )
 
 
@@ -63,7 +83,7 @@ async def gather_task_group():
 asyncio.run(gather_task_group())
 
 print(
-    f"----------------------------------use_as_completed_create_task------------------------------------------"
+    "----------------------------------use_as_completed_create_task------------------------------------------"
 )
 
 
@@ -81,7 +101,7 @@ async def use_as_completed_create_task():
 asyncio.run(use_as_completed_create_task())
 
 print(
-    f"-------------------------------timeout_for_as_completed_task-----------------------------------------"
+    "-------------------------------timeout_for_as_completed_task-----------------------------------------"
 )
 
 
@@ -99,7 +119,7 @@ async def timeout_for_as_completed_task():
 asyncio.run(timeout_for_as_completed_task())
 
 print(
-    f"-------------------------------use_wait_batch_wait_task-----------------------------------------"
+    "-------------------------------use_wait_batch_wait_task-----------------------------------------"
 )
 
 
@@ -117,7 +137,7 @@ async def use_wait_batch_wait_task():
 asyncio.run(use_wait_batch_wait_task())
 
 print(
-    f"-------------------------------wait_first_task_done_then-----------------------------------------"
+    "-------------------------------wait_first_task_done_then-----------------------------------------"
 )
 
 

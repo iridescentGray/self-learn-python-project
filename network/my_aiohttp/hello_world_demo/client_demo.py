@@ -1,9 +1,34 @@
 import asyncio
+import functools
+import time
+from typing import Any, Callable
 
 import aiohttp
 from aiohttp import ClientSession
 
-from python_basics.decorator_demo import async_timed
+
+def async_timed(func: Callable) -> Callable:
+    """
+    协程方法执行时间统计
+
+    Returns:
+        装饰器本身
+
+    """
+
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs) -> Any:
+        print(f"coroutine {func.__name__} 开始执行")
+        start = time.perf_counter()
+        try:
+            return await func(*args, **kwargs)
+        finally:
+            end = time.perf_counter()
+            total = end - start
+            print(f"coroutine {func.__name__} 用 {total} 秒执行完毕")
+
+    return wrapper
+
 
 """
 大多数基于 aiohttp 的应用程序在整个应用程序内都只使用一个会话，然后将此会话对象传递给需要的函数。
