@@ -21,11 +21,6 @@ feature:
 """
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Sends explanation on how to use the bot."""
-    await update.message.reply_text("Hi! Use /set <seconds> to set a timer")
-
-
 async def alarm(context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send the alarm message."""
     job = context.job
@@ -57,9 +52,7 @@ async def set_timer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             return
 
         job_removed = remove_job_if_exists(str(chat_id), context)
-        context.job_queue.run_once(
-            alarm, due, chat_id=chat_id, name=str(chat_id), data=due
-        )
+        context.job_queue.run(alarm, due, chat_id=chat_id, name=str(chat_id), data=due)
 
         text = "Timer successfully set!"
         if job_removed:
@@ -82,7 +75,6 @@ async def unset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 def main() -> None:
     application = Application.builder().token(token).build()
-    application.add_handler(CommandHandler(["start", "help"], start))
     application.add_handler(CommandHandler("set", set_timer))
     application.add_handler(CommandHandler("unset", unset))
     application.run_polling(allowed_updates=Update.ALL_TYPES)

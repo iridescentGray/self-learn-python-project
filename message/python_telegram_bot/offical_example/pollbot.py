@@ -158,7 +158,7 @@ def main() -> None:
     application.add_handler(CommandHandler("poll", poll))
     application.add_handler(CommandHandler("quiz", quiz))
     application.add_handler(CommandHandler("preview", preview))
-    application.add_handler(MessageHandler(filters.POLL, receive_poll))
+    # application.add_handler(MessageHandler(filters.POLL, receive_poll))
     application.add_handler(PollAnswerHandler(receive_poll_answer))
     application.add_handler(PollHandler(receive_quiz_answer))
     application.run_polling(allowed_updates=Update.ALL_TYPES)

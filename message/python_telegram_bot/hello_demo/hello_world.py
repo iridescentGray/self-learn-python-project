@@ -1,9 +1,8 @@
-from telegram import InlineQueryResultArticle, InputTextMessageContent, Update
+from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     ContextTypes,
-    InlineQueryHandler,
     MessageHandler,
     filters,
 )
@@ -35,22 +34,6 @@ async def caps(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=text_caps)
 
 
-# 把用户的输入改成大写
-async def inline_caps(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.inline_query.query
-    if not query:
-        return
-    results = []
-    results.append(
-        InlineQueryResultArticle(
-            id=query.upper(),
-            title="uppercase message",
-            input_message_content=InputTextMessageContent(query.upper()),
-        )
-    )
-    await context.bot.answer_inline_query(update.inline_query.id, results)
-
-
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -58,16 +41,16 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
-app = ApplicationBuilder().token(token).build()
-app.add_handler(CommandHandler("caps", caps))
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("hello", hello))
-app.add_handler(InlineQueryHandler(inline_caps))
-echo_handler = MessageHandler(filters.TEXT & (~filters.COMMAND), echo)
-app.add_handler(MessageHandler(filters.COMMAND, unknown))
+def main():
+    app = ApplicationBuilder().token(token).build()
+    app.add_handler(CommandHandler("caps", caps))
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("hello", hello))
+    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), echo))
+    app.add_handler(MessageHandler(filters.COMMAND, unknown))
+    print("run!")
+    app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
-app.add_handler(echo_handler)
-
-print("run!")
-app.run_polling()
+if __name__ == "__main__":
+    main()

@@ -23,6 +23,20 @@ feature:
 """
 
 
+async def echo(bot: Bot, update_id: int) -> int:
+    updates = await bot.get_updates(
+        offset=update_id, timeout=10, allowed_updates=Update.ALL_TYPES
+    )
+    for update in updates:
+        next_update_id = update.update_id + 1
+
+        if update.message and update.message.text:
+            logger.info("Found message %s!", update.message.text)
+            await update.message.reply_text(update.message.text)
+        return next_update_id
+    return update_id
+
+
 async def main() -> NoReturn:
     async with Bot(token) as bot:
         try:
@@ -38,20 +52,6 @@ async def main() -> NoReturn:
                 await asyncio.sleep(1)
             except Forbidden:
                 update_id += 1
-
-
-async def echo(bot: Bot, update_id: int) -> int:
-    updates = await bot.get_updates(
-        offset=update_id, timeout=10, allowed_updates=Update.ALL_TYPES
-    )
-    for update in updates:
-        next_update_id = update.update_id + 1
-
-        if update.message and update.message.text:
-            logger.info("Found message %s!", update.message.text)
-            await update.message.reply_text(update.message.text)
-        return next_update_id
-    return update_id
 
 
 if __name__ == "__main__":
