@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.11.8"
-ccxt = "^4.3.62"
+ccxt = "^4.3.80"
 plotly = "^5.22.0"
 
 [build-system]
