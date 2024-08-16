@@ -6,9 +6,9 @@ authors = ["colorfulgray0 <colorfulgray0@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.8"
+python = "3.12.5"
 ccxt = "^4.3.80"
-plotly = "^5.22.0"
+plotly = "^5.23.0"
 
 [build-system]
 requires = ["poetry-core"]
