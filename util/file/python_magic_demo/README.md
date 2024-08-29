@@ -10,7 +10,8 @@ A python wrapper for libmagic
         sudo apt-get install libmagic1
     mac:
         brew install libmagic
-
+    windows:
+        pip install python-magic-bin
 
     poetry install
     poetry shell
