@@ -7,7 +7,6 @@ from flask_jwt_extended import JWTManager
 from .api import api_blueprint
 from .api.models import db
 from .api.models.revoked_token import RevokedTokenModel
-from .api.models.user import UserModel
 from .config import config
 from .manage import migrate
 
