@@ -39,7 +39,7 @@ Base on MacOs ,if you want to use windows run ,it need Specific parameters
     -l参数：日志级别
     -c参数：表示并发数量，比如再加上-c 10，表示限制并发数量为10
 
-    # 创建task，给worker可执行的任务，
+    # 创建task，给worker可执行的任务
     执行create_task_by_delay.py
 
     #如果修改了task，需要，那么重启celery worker才能生效
@@ -58,7 +58,7 @@ Base on MacOs ,if you want to use windows run ,it need Specific parameters
     执行 python create_task_by_delay.py
 
     # 创建group task，给worker可执行的任务，
-    执行 python create_group_task.py 
+    执行 python create_group_task.py
 
     # 创建group task，给worker可执行的任务，
     执行 python create_chain_task.py
@@ -79,7 +79,7 @@ Base on MacOs ,if you want to use windows run ,it need Specific parameters
     celery  -A celery_app worker  -B  -l info
 
     # 后台启动celery worker进程
-    celery -A celery_app multi start work_1 
+    celery -A celery_app multi start work_1
 
     # 查看进程数
     celery -A celery_app status
