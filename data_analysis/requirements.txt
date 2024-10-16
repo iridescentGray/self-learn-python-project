@@ -8,24 +8,11 @@ pandas-datareader==0.10.0
 seaborn==0.12.2
 pyecharts==2.0.4
 plotly==5.18.0
-
-# polars
-polars==0.20.3
-# polars-excel
-xlsx2csv==0.8.2
+polars==0.8.3
+xlsx2csv==0.083
 xlsxwriter==3.1.9
-
-
-# streamlit
 streamlit==1.29.0
-
-# pygwalker
 pygwalker==0.3.20
-
-# ydata-profiling
 ydata-profiling==4.6.4
-
-# data-format
 pyarrow==15.0.0
-## hdf5
 tables==3.9.2
