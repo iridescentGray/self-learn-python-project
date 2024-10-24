@@ -83,6 +83,16 @@ class JenkinsApi(object):
         except Exception as e:
             logger.error(f"get_job_info error,reason:{str(e)}")
 
+    def is_job_exists(self, job_name: str) -> bool:
+        try:
+            job_exists = self.jenkins_server.job_exists(name=job_name)
+            if not job_exists:
+                return False
+            return True
+        except Exception as e:
+            logger.error(f"is_job_exists error,reason:{str(e)}")
+            return False
+
     def get_job_conf(self, job_name: str) -> typing.Optional[dict]:
         try:
             res = self.jenkins_server.get_job_config(job_name)
@@ -90,6 +100,15 @@ class JenkinsApi(object):
             return xml_parse
         except Exception as e:
             logger.error(f"get_job_conf error,reason:{str(e)}")
+
+    def reconfig_job(self, job_name: str, job_config: dict) -> bool:
+        config_xml = xmltodict.unparse(job_config)
+        try:
+            self.jenkins_server.reconfig_job(job_name, config_xml)
+            return True
+        except Exception as e:
+            logger.error(f"reconfig_job error,reason:{str(e)}")
+            return False
 
     def get_job_nextbuildnumber(self, job_name: str) -> typing.Optional[int]:
         try:
@@ -152,7 +171,8 @@ class JenkinsApi(object):
 
     def copy_job(self, source_job: str, target_job: str) -> bool:
         try:
-            self.jenkins_server.copy_job(source_job, target_job)
+            source_job_config_xml = self.jenkins_server.get_job_config(source_job)
+            self.jenkins_server.create_job(target_job, source_job_config_xml)
             return True
         except Exception as e:
             logger.error(f"get_all_view error,reason:{str(e)}")
