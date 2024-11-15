@@ -204,6 +204,32 @@ def synchronized(member):
     return wrapper
 
 
+def rate_limit(interval):
+    """
+    确保函数调用的间隔时间不小于指定的秒数。
+
+    :param interval: 间隔时间（秒）
+    """
+
+    def decorator(func):
+        last_call_time = [0]  # 使用可变类型保存上一次调用时间
+
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            current_time = time.time()
+            elapsed_time = current_time - last_call_time[0]
+            if elapsed_time < interval:
+                time_to_wait = interval - elapsed_time
+                print(f"Rate limited. Waiting for {time_to_wait:.2f} seconds.")
+                time.sleep(time_to_wait)
+            last_call_time[0] = time.time()  # 更新上次调用时间
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 class Foo(object):
     def perform_mutation(self, bytes):
         print(bytes)
