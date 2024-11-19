@@ -76,13 +76,6 @@ class JenkinsApi(object):
         except Exception as e:
             logger.error(f"get_all_view_info error,reason:{str(e)}")
 
-    def get_job_info(self, job_name: str) -> typing.Optional[dict]:
-        try:
-            res = self.jenkins_server.get_job_info(name=job_name)
-            return res
-        except Exception as e:
-            logger.error(f"get_job_info error,reason:{str(e)}")
-
     def is_job_exists(self, job_name: str) -> bool:
         try:
             job_exists = self.jenkins_server.job_exists(name=job_name)
@@ -92,6 +85,51 @@ class JenkinsApi(object):
         except Exception as e:
             logger.error(f"is_job_exists error,reason:{str(e)}")
             return False
+
+    def is_folder_exists(self, folder_name: str) -> bool:
+        try:
+            job_exists = self.jenkins_server.is_folder(folder_name)
+            if not job_exists:
+                return False
+            return True
+        except Exception as e:
+            logger.error(f"is_folder_exists error,reason:{str(e)}")
+            return False
+
+    def ensure_folder_exist(self, folder_name: str) -> None:
+        """确保文件夹存在,不存在则创建
+
+        小心:对于多级文件夹没有做特殊处理,请自行注意调用顺序,先创建浅层文件夹
+
+        Args:
+            folder_name (str): _description_
+
+        Returns:
+            bool: _description_
+        """
+        if self.jenkins_server.job_exists(
+            folder_name
+        ) and not self.jenkins_server.is_folder(folder_name):
+            raise Exception("异常:创建Jenkins文件夹时,存在同名Jenkins Job")
+
+        try:
+            self.jenkins_server.is_folder(folder_name)
+        except Exception as e:
+            not_find_msg = f"job[{folder_name}] does not exist"
+            if not_find_msg == e.args[0]:
+                # 文件夹不存在会抛上述异常
+                self.jenkins_server.create_folder(folder_name)
+                return
+
+            logger.error(f"ensure_folder_exist error,reason:{str(e)}")
+            raise e
+
+    def get_job_info(self, job_name: str) -> typing.Optional[dict]:
+        try:
+            res = self.jenkins_server.get_job_info(name=job_name)
+            return res
+        except Exception as e:
+            logger.error(f"get_job_info error,reason:{str(e)}")
 
     def get_job_conf(self, job_name: str) -> typing.Optional[dict]:
         try:
@@ -146,12 +184,18 @@ class JenkinsApi(object):
         except Exception as e:
             logger.error(f"start_job_build error,reason:{str(e)}")
 
-    def stop_job_build(self, job_name: str, build_number: int) -> typing.Optional[int]:
+    def stop_job_build(self, job_name: str, build_number: int) -> bool:
         try:
-            res = self.jenkins_server.stop_build(name=job_name, number=build_number)
-            return res
+            self.jenkins_server.stop_build(
+                name=job_name,
+                number=build_number,
+            )
+            return True
+        except jenkins.NotFoundException:
+            return False
         except Exception as e:
             logger.error(f"stop_job_build error,reason:{str(e)}")
+            return False
 
     def get_bulid_log(self, job_name: str, build_number: int) -> typing.Optional[str]:
         try:
@@ -161,6 +205,13 @@ class JenkinsApi(object):
             return res
         except Exception as e:
             logger.error(f"get_bulid_log error,reason:{str(e)}")
+
+    def get_bulid_info(self, job_name: str, build_number: int) -> typing.Optional[dict]:
+        try:
+            res = self.jenkins_server.get_build_info(name=job_name, number=build_number)
+            return res
+        except Exception as e:
+            logger.error(f"get_bulid_info error,reason:{str(e)}")
 
     def get_all_view(self) -> typing.Optional[list]:
         try:
@@ -176,4 +227,12 @@ class JenkinsApi(object):
             return True
         except Exception as e:
             logger.error(f"get_all_view error,reason:{str(e)}")
+            return False
+
+    def delete_job(self, job_name: str) -> bool:
+        try:
+            self.jenkins_server.delete_job(job_name)
+            return True
+        except Exception as e:
+            logger.error(f"delete_job error,reason:{str(e)}")
             return False
