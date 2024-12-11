@@ -24,7 +24,11 @@ redis = "^5.0.8"
 sqlalchemy = "^2.0.34"
 polars = "^1.9.0"
 xlsx2csv = "^0.8.3"
+xlsxwriter = "^3.2.0"
+xmltodict = "^0.14.2"
+numpy = "^2.1.2"
 python-jenkins = "^1.8.2"
+
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
