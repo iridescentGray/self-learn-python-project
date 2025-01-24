@@ -1,0 +1,5 @@
+api_consumer_key = ""
+api_secret_key = ""
+access_token_key = ""
+access_token_ssecret = ""
+bearer_token = ""
