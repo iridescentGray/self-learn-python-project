@@ -1,0 +1,10 @@
+[project]
+name = "huawei"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.12.7"
+dependencies = [
+    "huaweicloudsdkcore>=3.1.175",
+    "huaweicloudsdkiam>=3.1.175",
+]
